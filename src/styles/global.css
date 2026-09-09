@@ -81,7 +81,7 @@ html[data-resolved='dark'] {
   --header-h: 68px;
 
   --container: 1180px;
-  --gutter: clamp(20px, 4.2vw, 48px);
+  --gutter: clamp(16px, 4.2vw, 48px);
   --measure: 54ch;
   --radius: 16px;
 

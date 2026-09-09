@@ -23,7 +23,7 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: 'DMPResearch · small studio · agent team',
+  kicker: 'Small studio · agent team',
   titleLead: 'A small studio with a team of agents.',
   titleAccent: 'Almost any software.',
   text: 'Two people steer. Agents research, draft and ship in parallel. Sites, products, tools, backends. If it should exist as software, we can build it.',
