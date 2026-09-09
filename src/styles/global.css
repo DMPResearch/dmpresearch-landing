@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px;
   scrollbar-gutter: stable;
 }
 
@@ -17,9 +18,10 @@ body {
   background-color: var(--surface-base);
   color: var(--text-primary);
   font-size: var(--fs-body);
-  line-height: 1.3;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 img {
@@ -55,60 +57,75 @@ button {
   font-family: var(--font-button);
 }
 
-/* Design Tokens */
+:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: rgba(30, 152, 98, 0.28);
+}
+
+section[id] {
+  scroll-margin-top: 72px;
+}
+
+/* Design Tokens — DMPResearch brand */
 :root {
-  /* Colors */
-  --bg-dark: #0a0a0a;
-  --bg-card: #1a1a1a;
-  --bg-card-hover: #222222;
-  --brand-primary: #fb8857;
-  --accent: #B3B6FF;
-  --accent-light: #F5E6D3;
-  --text-on-dark: #ffffff;
-  --text-primary: #0a0a0a;
-  --text-body: #0a0a0a;
-  --text-secondary: #999999;
-  --text-muted: #666666;
-  --text-nav: #c9c9c9;
-  --color-ink-strong: #1c1c1c;
-  --border-color: #2a2a2a;
+  /* Forest ink, canopy green, mineral blue, gold, sage canvas */
+  --bg-dark: #0b100d;
+  --bg-card: #141c17;
+  --bg-card-hover: #1a241e;
+  --brand-primary: #1e9862;
+  --accent: #3a5bff;
+  --accent-light: #d8e8df;
+  --gold: #c49a3c;
+  --text-on-dark: #f2f5f1;
+  --text-on-dark-muted: rgba(242, 245, 241, 0.7);
+  --text-on-dark-faint: rgba(242, 245, 241, 0.5);
+  --text-primary: #0b100d;
+  --text-body: #0b100d;
+  --text-secondary: #7a847c;
+  --text-muted: #5f6a62;
+  --text-nav: #c5c9c0;
+  --color-ink-strong: #121a15;
+  --border-color: #243029;
+  --border-on-light: rgba(11, 16, 13, 0.12);
+  --border-on-dark: rgba(242, 245, 241, 0.14);
   --border-strong: var(--bg-dark);
-  --text-dim-38: rgba(10, 10, 10, 0.38);
-  --text-dim-72: rgba(10, 10, 10, 0.72);
-  --about-circle-think-more: #B3B6FF;
-  --about-circle-ask-a-lot: #EBE8DF;
-  --about-circle-design-less: var(--brand-primary);
-  --surface-base: #F9F7F1;
-  --surface-panel: rgba(255, 255, 255, 0.72);
-  --surface-panel-border: rgba(10, 10, 10, 0.14);
+  --text-dim-38: rgba(11, 16, 13, 0.38);
+  --text-dim-72: rgba(11, 16, 13, 0.72);
+  --surface-base: #e8ede6;
+  --surface-panel: rgba(255, 255, 255, 0.78);
+  --surface-panel-border: rgba(11, 16, 13, 0.12);
   --surface-field: #ffffff;
-  --surface-field-border: rgba(10, 10, 10, 0.22);
+  --surface-field-border: rgba(11, 16, 13, 0.2);
   --surface-field-border-active: var(--brand-primary);
   --surface-field-border-active-width: 1.5px;
   --surface-field-focus-ring: 0 0 0 var(--surface-field-border-active-width) var(--surface-field-border-active);
-  --surface-placeholder: rgba(10, 10, 10, 0.56);
-  --surface-selected: rgba(179, 182, 255, 0.18);
-  --surface-brand-glow: rgba(251, 136, 87, 0.16);
-  --surface-accent-glow: rgba(179, 182, 255, 0.18);
-  --surface-subtle: #efe9df;
-  --surface-subtle-hover: #ebe4d8;
-  --surface-subtle-border: rgba(10, 10, 10, 0.08);
-  --focus-ring-color: rgba(251, 136, 87, 0.28);
-  --shadow-float: 0 18px 36px rgba(10, 10, 10, 0.12);
+  --surface-placeholder: rgba(11, 16, 13, 0.5);
+  --surface-selected: rgba(58, 91, 255, 0.14);
+  --surface-brand-glow: rgba(30, 152, 98, 0.18);
+  --surface-accent-glow: rgba(58, 91, 255, 0.16);
+  --surface-subtle: #dce5dd;
+  --surface-subtle-hover: #d2ddd4;
+  --surface-subtle-border: rgba(11, 16, 13, 0.08);
+  --focus-ring-color: rgba(30, 152, 98, 0.3);
+  --shadow-float: 0 18px 36px rgba(11, 16, 13, 0.12);
 
   /* Spacing */
-  --section-padding: 100px 0;
+  --section-padding: clamp(64px, 9vw, 112px) 0;
   --container-width: 1200px;
   --container-padding: 0 24px;
 
-  /* Typography */
-  --fs-display: 3rem;
-  --fs-h1: 3rem;
-  --fs-h2: 2.75rem;
-  --fs-h3: 1.9rem;
-  --fs-h4: 1.8rem;
-  --fs-h5: 1.3rem;
-  --fs-body: 1.1rem;
+  /* Typography (fluid) */
+  --fs-display: clamp(2.5rem, 1.2rem + 4.6vw, 4.5rem);
+  --fs-h1: clamp(2.1rem, 1.3rem + 2.8vw, 3.25rem);
+  --fs-h2: clamp(2rem, 1.3rem + 2.4vw, 2.9rem);
+  --fs-h3: clamp(1.25rem, 1.05rem + 0.7vw, 1.6rem);
+  --fs-h4: 1.35rem;
+  --fs-h5: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+  --fs-body: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
   --fs-small: 0.875rem;
   --fs-xs: 0.75rem;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -139,18 +156,21 @@ button {
 }
 
 .section-label {
-  font-size: var(--fs-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 16px;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+  color: var(--text-muted);
 }
 
 .section-title {
   font-size: var(--fs-h1);
   font-weight: var(--fw-headline);
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 h1,
@@ -169,6 +189,7 @@ h3,
 h4,
 h5 {
   font-weight: var(--fw-headline);
+  line-height: 1.1;
 }
 
 h1 {
@@ -196,28 +217,12 @@ h5 {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  :root {
-    --fs-display: 3.2rem;
-    --fs-h1: 2.5rem;
-    --fs-h2: 2.5rem;
-    --fs-h3: 1.25rem;
-  }
-}
-
 @media (max-width: 768px) {
   :root {
-    --section-padding: 64px 0;
-    --container-padding: 0 16px;
-    --fs-display: 2.4rem;
-    --fs-h1: 2rem;
-    --fs-h2: 2rem;
-    --fs-h3: 1.15rem;
-    --fs-body: 1rem;
+    --container-padding: 0 20px;
   }
 
   .section-label {
-    letter-spacing: 1.2px;
     margin-bottom: 12px;
   }
 }

@@ -18,57 +18,68 @@ const { number, title, description, className = '' } = Astro.props;
 </div>
 
 <style>
+  /*
+    Always readable. No hover, focus, or scroll state is required to
+    reveal this content; the only hover effect is a subtle nudge.
+  */
   .ds-numbered-feature {
     display: flex;
     gap: 24px;
     padding: 28px 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-on-light);
     align-items: flex-start;
+    opacity: 1;
+    filter: none;
   }
 
   .ds-numbered-feature__number {
-    font-size: var(--fs-xs);
-    color: var(--text-muted);
-    font-weight: var(--fw-medium);
-    min-width: 28px;
-    padding-top: 2px;
+    font-family: var(--font-title);
+    font-size: var(--fs-small);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.08em;
+    color: var(--brand-primary);
+    min-width: 36px;
+    padding-top: 4px;
   }
 
   .ds-numbered-feature__content {
     flex: 1;
-    filter: blur(4px);
-    opacity: 0.68;
-    transition:
-      filter 260ms ease,
-      opacity 260ms ease,
-      transform 260ms ease;
+    opacity: 1;
+    filter: none;
     transform: translateX(0);
+    transition: transform 260ms ease;
   }
 
   .ds-numbered-feature:hover .ds-numbered-feature__content,
   .ds-numbered-feature:focus-within .ds-numbered-feature__content {
-    filter: blur(0);
-    opacity: 1;
     transform: translateX(6px);
   }
 
   .ds-numbered-feature__title {
     font-size: var(--fs-h3);
     font-weight: var(--fw-semibold);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
   }
 
   .ds-numbered-feature__desc {
     font-size: var(--fs-body);
     line-height: 1.6;
+    color: var(--text-dim-72);
+  }
+
+  @media (max-width: 768px) {
+    .ds-numbered-feature {
+      gap: 16px;
+      padding: 22px 0;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .ds-numbered-feature__content {
       transition: none;
-      transform: none;
     }
 
     .ds-numbered-feature:hover .ds-numbered-feature__content,

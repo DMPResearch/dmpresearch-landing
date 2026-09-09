@@ -2,7 +2,9 @@
 
 Studio site for [DMPResearch](https://github.com/DMPResearch), live at [dmpresearch.flowstarter.dev](https://dmpresearch.flowstarter.dev).
 
-The page chrome is ported from the Dorin portfolio Flowstarter template (cream and near-black palette, Clash Grotesk titles, intro overlay, masonry case cards, scroll reveals). Copy lives in `src/content/site-labels.md`.
+Astro static site. Page chrome descends from the Dorin portfolio Flowstarter template (Clash Grotesk titles, one-shot intro overlay), restyled to the DMPResearch palette: forest ink `#0b100d`, canopy green `#1e9862`, mineral blue `#3a5bff`, gold `#c49a3c`, sage canvas `#e8ede6`. Each product gets a full section with its real screenshot from `public/images/`. Copy lives in `src/content/site-labels.md`.
+
+Rule of thumb for the front end: nothing may require hover to become readable. Idle blur or opacity reveals on body copy are out; a one-shot intro animation is fine.
 
 We build useful products that blend AI with human work:
 

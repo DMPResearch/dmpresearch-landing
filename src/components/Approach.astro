@@ -4,25 +4,36 @@ import SectionBlock from './design-system/SectionBlock.astro';
 import SectionHeading from './design-system/SectionHeading.astro';
 import NumberedFeatureItem from './design-system/NumberedFeatureItem.astro';
 
-const { approach } = siteLabels;
+const { agents } = siteLabels;
+const loop: string[] = agents.loop ?? [];
 ---
 
-<SectionBlock id="approach" className="expertise" tone="none">
-  <div class="expertise__inner container">
-    <div class="expertise__left">
+<SectionBlock id="agents" className="agents" tone="none">
+  <div class="agents__inner container">
+    <div class="agents__left">
       <SectionHeading
-        label={approach.sectionLabel}
-        title={approach.sectionTitle}
-        maxWidth="400px"
+        label={agents.sectionLabel}
+        title={agents.sectionTitle}
+        maxWidth="16ch"
       />
+      <p class="agents__lead">{agents.text}</p>
+      {loop.length > 0 && (
+        <ol class="agents__loop" aria-label="How the loop works">
+          {loop.map((step, index) => (
+            <li class:list={['agents__loop-step', index === loop.length - 1 && 'agents__loop-step--repeat']}>
+              <span class="agents__loop-index">{String(index + 1).padStart(2, '0')}</span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+      )}
     </div>
-    <div class="expertise__right is-intro-state" data-expertise-list>
-      {approach.items.map((item, index) => (
+    <div class="agents__right">
+      {agents.items.map((item) => (
         <NumberedFeatureItem
           number={item.number}
           title={item.title}
           description={item.description}
-          className={index === 0 ? 'expertise__item--first' : ''}
         />
       ))}
     </div>
@@ -30,72 +41,87 @@ const { approach } = siteLabels;
 </SectionBlock>
 
 <style>
-  :global(.expertise) {
-    background: var(--surface-base);
+  :global(.agents) {
+    background: var(--surface-subtle);
     color: var(--bg-dark);
+    border-top: 1px solid var(--border-on-light);
   }
 
-  .expertise__inner {
+  .agents__inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 6vw, 96px);
+    align-items: start;
   }
 
-  .expertise__right :global(.expertise__item--first) {
+  .agents__left {
+    position: sticky;
+    top: 96px;
+  }
+
+  .agents__lead {
+    margin-top: 22px;
+    max-width: 30rem;
+    line-height: 1.6;
+    color: var(--text-dim-72);
+  }
+
+  .agents__loop {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .agents__loop-step {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px 8px 10px;
+    border: 1px solid var(--border-on-light);
+    background: rgba(255, 255, 255, 0.55);
+    font-family: var(--font-title);
+    font-size: var(--fs-small);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .agents__loop-step--repeat {
+    border-style: dashed;
+    background: transparent;
+    color: var(--text-muted);
+  }
+
+  .agents__loop-index {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    color: var(--brand-primary);
+  }
+
+  .agents__loop-step--repeat .agents__loop-index {
+    color: var(--gold);
+  }
+
+  .agents__right :global(.ds-numbered-feature:first-child) {
     padding-top: 0;
   }
 
-  .expertise__right.is-intro-state :global(.expertise__item--first .ds-numbered-feature__content) {
-    filter: blur(0);
-    opacity: 1;
-  }
-
-  .expertise__right :global(.ds-numbered-feature:last-child) {
+  .agents__right :global(.ds-numbered-feature:last-child) {
     border-bottom: none;
-    padding-bottom: 4rem;
+    padding-bottom: 0;
   }
 
-  @media (max-width: 768px) {
-    .expertise__inner {
+  @media (max-width: 900px) {
+    .agents__inner {
       grid-template-columns: 1fr;
-      gap: 36px;
+      gap: 40px;
+    }
+
+    .agents__left {
+      position: static;
     }
   }
 </style>
-
-<script>
-  const expertiseList = document.querySelector('[data-expertise-list]');
-
-  if (expertiseList) {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let introPlayed = false;
-
-    const clearIntroState = () => {
-      expertiseList.classList.remove('is-intro-state');
-    };
-
-    if (reduceMotion.matches) {
-      clearIntroState();
-    } else {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (!entry.isIntersecting || introPlayed) return;
-
-          introPlayed = true;
-          expertiseList.classList.add('is-intro-state');
-
-          window.setTimeout(() => {
-            clearIntroState();
-          }, 1400);
-
-          observer.disconnect();
-        },
-        {
-          threshold: 0.35,
-        }
-      );
-
-      observer.observe(expertiseList);
-    }
-  }
-</script>

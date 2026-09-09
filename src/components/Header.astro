@@ -20,7 +20,7 @@ const ctaHref = header.ctaHref;
         href={ctaHref}
         label={ctaLabel}
         variant="outline"
-        external={true}
+        external={ctaHref.startsWith('http')}
         className="header__cta ds-action-button--outline-light"
       />
     </div>
@@ -44,7 +44,7 @@ const ctaHref = header.ctaHref;
         href={ctaHref}
         label={ctaLabel}
         variant="outline"
-        external={true}
+        external={ctaHref.startsWith('http')}
         className="mobile-nav__cta ds-action-button--outline-light"
       />
     </div>
