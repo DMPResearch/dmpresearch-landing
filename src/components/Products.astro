@@ -20,7 +20,7 @@ const { products } = siteLabels;
       style={`--product-accent: ${product.color};`}
     >
       <div class="product-feature__inner container">
-        <div class="product-feature__copy">
+        <div class="product-feature__copy" data-scroll-reveal>
           <p class="product-feature__eyebrow">
             <span>{product.eyebrow}</span>
             {product.status && <span class="product-feature__status">{product.status}</span>}
@@ -50,6 +50,8 @@ const { products } = siteLabels;
           target="_blank"
           rel="noopener noreferrer"
           aria-label={product.hrefLabel}
+          data-scroll-reveal
+          style="--reveal-delay: 120ms;"
         >
           <span class="product-feature__browser" aria-hidden="true">
             <i></i><i></i><i></i>
@@ -209,12 +211,14 @@ const { products } = siteLabels;
     border: 1px solid var(--border-on-light);
     background: #fff;
     box-shadow: var(--shadow-float);
-    transition: transform 240ms ease, box-shadow 240ms ease;
+    transition: box-shadow 240ms ease;
   }
 
-  .product-feature__media:hover,
-  .product-feature__media:focus-visible {
-    transform: translateY(-4px);
+  /* Lift on hover only once revealed; the reveal owns transform until then. */
+  .product-feature__media:not(.is-observing):hover,
+  .product-feature__media.is-visible:hover,
+  .product-feature__media:not(.is-observing):focus-visible,
+  .product-feature__media.is-visible:focus-visible {
     box-shadow: 0 28px 48px rgba(11, 16, 13, 0.16);
   }
 

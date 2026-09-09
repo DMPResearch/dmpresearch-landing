@@ -18,7 +18,7 @@ const loop: string[] = agents.loop ?? [];
       />
       <p class="agents__lead">{agents.text}</p>
       {loop.length > 0 && (
-        <ol class="agents__loop" aria-label="How the loop works">
+        <ol class="agents__loop" aria-label="How the loop works" data-scroll-reveal>
           {loop.map((step, index) => (
             <li class:list={['agents__loop-step', index === loop.length - 1 && 'agents__loop-step--repeat']}>
               <span class="agents__loop-index">{String(index + 1).padStart(2, '0')}</span>
@@ -29,11 +29,12 @@ const loop: string[] = agents.loop ?? [];
       )}
     </div>
     <div class="agents__right">
-      {agents.items.map((item) => (
+      {agents.items.map((item, index) => (
         <NumberedFeatureItem
           number={item.number}
           title={item.title}
           description={item.description}
+          revealDelay={index * 80}
         />
       ))}
     </div>

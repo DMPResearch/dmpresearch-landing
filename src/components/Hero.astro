@@ -378,6 +378,17 @@ const heroParagraphSegments = heroParagraphs.map((paragraph) =>
     }
   }
 
+  @media (max-width: 640px) {
+    .hero__product {
+      padding: 14px 16px 16px;
+    }
+
+    /* Keep the hero short on phones; the full screenshots live in Products. */
+    .hero__product-shot {
+      display: none;
+    }
+  }
+
   @media (max-width: 480px) {
     .hero__showcase-grid {
       grid-template-columns: 1fr;

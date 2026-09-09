@@ -40,8 +40,6 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
       rel="stylesheet"
     />
     <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet" />
-    <link rel="preload" as="image" href="/images/flowstarter-site.webp" />
-    <link rel="preload" as="image" href="/images/ereno-site.webp" />
     <script is:inline>
       document.documentElement.classList.add('js');
     </script>
@@ -49,6 +47,7 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
   </head>
   <body>
     <slot />
+    <script src="../scripts/scroll-reveal.js"></script>
   </body>
 </html>
 

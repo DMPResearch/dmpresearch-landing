@@ -216,6 +216,42 @@ h5 {
   font-family: var(--font-button);
 }
 
+/* Scroll reveal
+   Elements with [data-scroll-reveal] start slightly blurred and dimmed once
+   JS marks them `.is-observing`; the observer adds `.is-visible` as they scroll
+   into view. Without JS nothing is marked, so content renders sharp. */
+html.js [data-scroll-reveal] {
+  --reveal-delay: 0ms;
+}
+
+html.js [data-scroll-reveal].is-observing {
+  opacity: 0.55;
+  filter: blur(6px);
+  transform: translateY(14px);
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay),
+    filter 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay);
+  will-change: opacity, filter, transform;
+}
+
+html.js [data-scroll-reveal].is-observing.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-scroll-reveal],
+  html.js [data-scroll-reveal].is-observing {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   :root {

@@ -4,12 +4,18 @@ interface Props {
   title: string;
   description: string;
   className?: string;
+  /** Stagger for the scroll reveal, in ms. */
+  revealDelay?: number;
 }
 
-const { number, title, description, className = '' } = Astro.props;
+const { number, title, description, className = '', revealDelay = 0 } = Astro.props;
 ---
 
-<div class={`ds-numbered-feature ${className}`.trim()}>
+<div
+  class={`ds-numbered-feature ${className}`.trim()}
+  data-scroll-reveal
+  style={revealDelay ? `--reveal-delay: ${revealDelay}ms;` : undefined}
+>
   <span class="ds-numbered-feature__number">{number}</span>
   <div class="ds-numbered-feature__content">
     <h3 class="ds-numbered-feature__title">{title}</h3>
@@ -19,8 +25,9 @@ const { number, title, description, className = '' } = Astro.props;
 
 <style>
   /*
-    Always readable. No hover, focus, or scroll state is required to
-    reveal this content; the only hover effect is a subtle nudge.
+    Readable by default. The scroll-driven blur reveal is applied globally via
+    [data-scroll-reveal] (see global.css) and needs no hover or focus. The only
+    hover effect is a subtle nudge, and only once the item has been revealed.
   */
   .ds-numbered-feature {
     display: flex;
@@ -28,8 +35,6 @@ const { number, title, description, className = '' } = Astro.props;
     padding: 28px 0;
     border-bottom: 1px solid var(--border-on-light);
     align-items: flex-start;
-    opacity: 1;
-    filter: none;
   }
 
   .ds-numbered-feature__number {
@@ -44,14 +49,15 @@ const { number, title, description, className = '' } = Astro.props;
 
   .ds-numbered-feature__content {
     flex: 1;
-    opacity: 1;
-    filter: none;
     transform: translateX(0);
     transition: transform 260ms ease;
   }
 
-  .ds-numbered-feature:hover .ds-numbered-feature__content,
-  .ds-numbered-feature:focus-within .ds-numbered-feature__content {
+  /* Nudge only after reveal (or when JS never marked the item). */
+  .ds-numbered-feature:not(.is-observing):hover .ds-numbered-feature__content,
+  .ds-numbered-feature.is-visible:hover .ds-numbered-feature__content,
+  .ds-numbered-feature:not(.is-observing):focus-within .ds-numbered-feature__content,
+  .ds-numbered-feature.is-visible:focus-within .ds-numbered-feature__content {
     transform: translateX(6px);
   }
 
@@ -84,7 +90,7 @@ const { number, title, description, className = '' } = Astro.props;
 
     .ds-numbered-feature:hover .ds-numbered-feature__content,
     .ds-numbered-feature:focus-within .ds-numbered-feature__content {
-      transform: none;
+      transform: none !important;
     }
   }
 </style>

@@ -106,6 +106,7 @@ team:
   story:
     - "We met building software for other people and kept noticing the same gap: the work agents can now do in an afternoon used to justify a whole team, but somebody still has to know what good looks like. So we became that somebody, twice over."
     - "Darius owns the systems and shipping. Dorin owns the craft people feel. Agents fill in everything around us, and we review all of it. Flowstarter and Ereno are the proof, and the same setup is how we would build your product."
+  agentsNote: "AI agents are the rest of the crew. They draft, we decide."
   members:
     - name: "Darius"
       role: "Product and engineering"
