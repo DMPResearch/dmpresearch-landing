@@ -34,69 +34,14 @@ const canonical = Astro.site
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Sora:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Sora:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/styles/site.css" />
     <title>{title}</title>
   </head>
   <body>
     <slot />
+    <script src="/scripts/reveal.js" defer></script>
   </body>
 </html>
-
-<style is:global>
-  :root {
-    --ink: #0b100d;
-    --ink-raised: #12181f;
-    --cream: #efede5;
-    --cream-soft: #f7f5ee;
-    --muted: #9aa19a;
-    --line: rgba(239, 237, 229, 0.12);
-    --flow-a: #4d5dd9;
-    --flow-b: #3fc4c4;
-    --ereno: #9db117;
-    --grad: linear-gradient(135deg, var(--flow-a) 0%, var(--flow-b) 52%, var(--ereno) 100%);
-    --font-sans: 'Sora', system-ui, sans-serif;
-    --font-display: 'Newsreader', Georgia, serif;
-    --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    color: var(--cream);
-    background:
-      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(77, 93, 217, 0.18), transparent 55%),
-      radial-gradient(ellipse 60% 40% at 95% 5%, rgba(157, 177, 23, 0.12), transparent 50%),
-      var(--ink);
-    font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-
-  img {
-    display: block;
-    max-width: 100%;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  ::selection {
-    background: rgba(63, 196, 196, 0.35);
-    color: var(--cream-soft);
-  }
-</style>
