@@ -9,9 +9,9 @@ export const contact = {
 };
 
 export const meta = {
-  title: 'DMPResearch — Two people, AI agents, custom software',
+  title: 'DMPResearch — Websites and web apps for EU businesses',
   description:
-    'Darius and Dorin run a small studio with AI agents. We build almost any custom software. Agents draft, we decide, you get working software.',
+    'A two-person studio in Europe. We build websites, web apps, and custom software. AI agents help us ship faster.',
 };
 
 export const nav = [
@@ -23,12 +23,12 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: 'Two builders + AI agents',
-  titleLead: 'Two people and a crew of AI agents.',
-  titleAccent: 'We build your software.',
-  text: 'Darius does product and engineering. Dorin does design. Agents research, draft, and scaffold in parallel while we decide what ships. Sites, products, tools, backends. If you need custom software, we should talk.',
+  kicker: 'A small studio in the EU',
+  titleLead: 'Websites and web apps',
+  titleAccent: 'for EU businesses.',
+  text: 'Darius does product and engineering. Dorin does design. AI agents handle research and first drafts, so two people ship at the pace of a bigger team. Websites, web apps, custom software. If you need something built, we should talk.',
   primary: { label: 'Book a call', href: '#contact' },
-  secondary: { label: 'Our products', href: '#products' },
+  secondary: { label: 'See our work', href: '#products' },
 };
 
 export interface Product {
@@ -134,28 +134,28 @@ export const work = {
 };
 
 export const ambition = {
-  kicker: 'What we think',
-  title: 'Agents are fast. Taste is ours.',
-  text: "Agents let two people ship at the pace of a bigger team. But they don't know what good looks like. We do. This same setup works for your project too.",
+  kicker: 'How we think',
+  title: 'Small on purpose.',
+  text: 'Most studios grow headcount when they get busy. We added agents instead. Darius and Dorin still make every decision about what ships. The agents do volume work. We do the thinking.',
   points: [
     {
-      title: 'Agents do the volume',
-      text: "Research, first drafts, scaffolding, iteration. They run in parallel and they don't stop.",
+      title: 'You work with us directly',
+      text: 'No project managers, no handoffs to juniors. When you hire us, you get us.',
     },
     {
-      title: 'We make the calls',
-      text: 'Architecture, taste, what to cut. Darius and Dorin decide what ships.',
+      title: 'Agents handle the grind',
+      text: "Research, first drafts, scaffolding, iteration. They run in parallel and they don't stop. That's how two people keep up.",
     },
     {
       title: 'You get working software',
-      text: 'Not a slide deck. A live product you can use, own, and change.',
+      text: 'Not a slide deck. A live site or app you can use, own, and change.',
     },
   ],
 };
 
 export const method = {
-  title: 'How we actually build things.',
-  text: 'Every project here was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
+  title: 'How we build things.',
+  text: 'Every project on this page was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
   loop: ['Agents draft', 'We review', 'It ships', 'We revisit'],
   columns: [
     {
@@ -180,8 +180,8 @@ export const method = {
 };
 
 export const team = {
-  title: 'Two people. You know who decided what.',
-  text: 'We met building software for other people and kept noticing the same thing: agents can do in an afternoon what used to take a week, but someone still has to know what good looks like. So we stayed small on purpose.',
+  title: "Two people. You know who you're working with.",
+  text: 'We met building software for other people and kept noticing the same thing: agents can do in an afternoon what used to take a week. But someone still has to know what good looks like. So we stayed small on purpose.',
   members: [
     {
       name: 'Darius',
@@ -193,7 +193,7 @@ export const team = {
     {
       name: 'Dorin',
       role: 'Design and craft',
-      bio: 'Owns the visual systems, interface work, and the templates clients actually use. Nothing ships until it passes his bar.',
+      bio: 'Owns the visual systems, interface work, and the templates in the Flowstarter library. Nothing ships until it passes his bar.',
       photo: '/images/team/dorin.jpeg',
       photoAlt: 'Portrait of Dorin',
     },
@@ -202,8 +202,8 @@ export const team = {
 };
 
 export const cta = {
-  title: 'Tell us what you need built.',
-  text: 'We build custom software. Book a call or send us a note. You talk to Darius and Dorin directly, no account managers.',
+  title: "Let's talk about what you need.",
+  text: 'We build websites and web apps for businesses in Europe. Book a call or send a note to hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
   bookHint: "Thirty minutes is enough to figure out if we're a fit.",
   formTitle: 'Rather write?',
   formText: 'Send a short note. We reply by email, usually within a day.',
