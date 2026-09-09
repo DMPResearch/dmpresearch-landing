@@ -1,0 +1,540 @@
+---
+import Base from '../layouts/Base.astro'
+
+const mission =
+  'We build useful products that blend AI with human work, so people stay in control while software does the heavy lifting.'
+---
+
+<Base title="DMPResearch" description={mission}>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="top">
+    <a class="brand" href="/">
+      <img src="/mark.svg" width="36" height="36" alt="" />
+      <span>DMPResearch</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#products">Products</a>
+      <a href="#approach">Approach</a>
+      <a href="https://github.com/DMPResearch" rel="noopener noreferrer">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="kicker reveal">Studio</p>
+      <h1 class="reveal delay-1">
+        <span class="brand-word">DMPResearch</span>
+      </h1>
+      <p class="lede reveal delay-2">{mission}</p>
+      <div class="hero-actions reveal delay-3">
+        <a class="btn btn-primary" href="#products">See the products</a>
+        <a class="btn btn-ghost" href="https://github.com/DMPResearch" rel="noopener noreferrer"
+          >View on GitHub</a
+        >
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="section-head reveal">
+        <h2>Two products. One idea.</h2>
+        <p>AI does the research and drafting. People keep the judgment and the last mile.</p>
+      </div>
+
+      <article class="product product-flow reveal">
+        <div class="product-copy">
+          <div class="product-mark">
+            <img src="/flowstarter.svg" width="56" height="56" alt="" />
+            <h3>Flowstarter</h3>
+          </div>
+          <p class="product-tag">Concierge websites for service businesses</p>
+          <p>
+            A small team designs and ships a premium site, then hands the client a constrained AI
+            editor so they can keep it current themselves. Not a self-serve site builder. A
+            partnership with software in the loop.
+          </p>
+          <a class="text-link" href="https://flowstarter.dev" rel="noopener noreferrer"
+            >Visit flowstarter.dev</a
+          >
+        </div>
+        <div class="product-panel flow-panel" aria-hidden="true">
+          <div class="panel-glow"></div>
+          <p class="panel-label">Editor + build</p>
+          <ul>
+            <li>Discovery to live site</li>
+            <li>Constrained AI editing</li>
+            <li>Team on call for the hard parts</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="product product-ereno reveal">
+        <div class="product-copy">
+          <div class="product-mark">
+            <img src="/ereno.svg" width="56" height="56" alt="" />
+            <h3>Ereno</h3>
+          </div>
+          <p class="product-tag">Conversational travel companion</p>
+          <p>
+            Trip planning and base scouting in one decision session. Ereno holds constraints,
+            researches with evidence, and helps you choose. You book with the provider. No booking
+            promises, no black-box chain of thought.
+          </p>
+          <a class="text-link" href="https://ereno.flowstarter.dev" rel="noopener noreferrer"
+            >Visit ereno.flowstarter.dev</a
+          >
+        </div>
+        <div class="product-panel ereno-panel" aria-hidden="true">
+          <div class="panel-glow"></div>
+          <p class="panel-label">Trips + Base</p>
+          <ul>
+            <li>Plan itineraries with trade-offs</li>
+            <li>Scout bases for remote work</li>
+            <li>Evidence and uncertainty, shown</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="approach" id="approach">
+      <div class="approach-grid">
+        <div class="approach-lead reveal">
+          <h2>How we work</h2>
+          <p>
+            Software should amplify judgment, not replace it. Every product we ship keeps a clear
+            handoff: models draft and retrieve, people decide and act.
+          </p>
+        </div>
+        <ol class="principles">
+          <li class="reveal delay-1">
+            <strong>Useful first</strong>
+            <span>Ship tools people finish work with, not demos that impress once.</span>
+          </li>
+          <li class="reveal delay-2">
+            <strong>Human in the loop</strong>
+            <span>AI proposes. Provenance stays visible. Final calls stay human.</span>
+          </li>
+          <li class="reveal delay-3">
+            <strong>Honest surfaces</strong>
+            <span>No fake certainty. Constraints, sources, and limits stay in the open.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-brand">
+      <img src="/mark.svg" width="28" height="28" alt="" />
+      <span>DMPResearch</span>
+    </div>
+    <p>{mission}</p>
+    <div class="foot-links">
+      <a href="https://flowstarter.dev" rel="noopener noreferrer">Flowstarter</a>
+      <a href="https://ereno.flowstarter.dev" rel="noopener noreferrer">Ereno</a>
+      <a href="https://github.com/DMPResearch" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .noise {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .top,
+  main,
+  .foot {
+    position: relative;
+    z-index: 1;
+  }
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .brand img {
+    border-radius: 9px;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.92rem;
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 160ms ease;
+  }
+
+  .nav a:hover {
+    color: var(--cream);
+  }
+
+  .hero {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: clamp(4rem, 14vh, 7.5rem) 1.5rem clamp(5rem, 12vh, 7rem);
+  }
+
+  .kicker {
+    margin: 0 0 1rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 9vw, 6.4rem);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+  }
+
+  .brand-word {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lede {
+    max-width: 36rem;
+    margin: 1.75rem 0 0;
+    color: rgba(239, 237, 229, 0.82);
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2.25rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    padding: 0 1.15rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .btn-primary {
+    color: var(--ink);
+    background: var(--cream);
+  }
+
+  .btn-primary:hover {
+    background: var(--cream-soft);
+  }
+
+  .btn-ghost {
+    color: var(--cream);
+    border: 1px solid var(--line);
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(239, 237, 229, 0.28);
+  }
+
+  .products {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+
+  .section-head {
+    max-width: 34rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-head h2,
+  .approach-lead h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .section-head p,
+  .approach-lead p {
+    margin: 0.9rem 0 0;
+    color: var(--muted);
+  }
+
+  .product {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 1.5rem;
+    align-items: stretch;
+    margin-top: 1.25rem;
+    padding: 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(18, 24, 31, 0.72);
+  }
+
+  .product-mark {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .product-mark img {
+    border-radius: 14px;
+  }
+
+  .product-mark h3 {
+    margin: 0;
+    font-size: 1.55rem;
+    letter-spacing: -0.02em;
+  }
+
+  .product-tag {
+    margin: 0 0 0.85rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .product-copy p:not(.product-tag) {
+    margin: 0 0 1.25rem;
+    color: rgba(239, 237, 229, 0.86);
+  }
+
+  .text-link {
+    color: var(--cream);
+    font-weight: 500;
+    text-underline-offset: 0.2em;
+  }
+
+  .product-flow .text-link {
+    text-decoration-color: rgba(77, 93, 217, 0.7);
+  }
+
+  .product-ereno .text-link {
+    text-decoration-color: rgba(157, 177, 23, 0.7);
+  }
+
+  .product-panel {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+    min-height: 240px;
+    padding: 1.35rem;
+    border-radius: 14px;
+  }
+
+  .flow-panel {
+    background: linear-gradient(160deg, #1a2148 0%, #13252b 100%);
+  }
+
+  .ereno-panel {
+    background: linear-gradient(160deg, #1c2410 0%, #152018 100%);
+  }
+
+  .panel-glow {
+    position: absolute;
+    inset: auto -20% -40% 20%;
+    height: 70%;
+    filter: blur(40px);
+    opacity: 0.55;
+  }
+
+  .flow-panel .panel-glow {
+    background: radial-gradient(circle, rgba(63, 196, 196, 0.55), transparent 70%);
+  }
+
+  .ereno-panel .panel-glow {
+    background: radial-gradient(circle, rgba(157, 177, 23, 0.5), transparent 70%);
+  }
+
+  .panel-label {
+    position: relative;
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(239, 237, 229, 0.7);
+  }
+
+  .product-panel ul {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-panel li {
+    padding: 0.35rem 0;
+    border-top: 1px solid rgba(239, 237, 229, 0.12);
+    font-size: 0.98rem;
+  }
+
+  .approach {
+    border-top: 1px solid var(--line);
+    background: rgba(0, 0, 0, 0.22);
+  }
+
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 2.5rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem;
+  }
+
+  .principles {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .principles li {
+    display: grid;
+    gap: 0.35rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(18, 24, 31, 0.55);
+  }
+
+  .principles strong {
+    font-size: 1.02rem;
+  }
+
+  .principles span {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .foot {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .foot-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+    font-weight: 600;
+  }
+
+  .foot-brand img {
+    border-radius: 8px;
+  }
+
+  .foot > p {
+    max-width: 38rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .foot-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-top: 1.35rem;
+  }
+
+  .foot-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.92rem;
+  }
+
+  .foot-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 700ms var(--ease) forwards;
+  }
+
+  .delay-1 {
+    animation-delay: 80ms;
+  }
+  .delay-2 {
+    animation-delay: 160ms;
+  }
+  .delay-3 {
+    animation-delay: 240ms;
+  }
+
+  @keyframes rise {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 860px) {
+    .product,
+    .approach-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .nav a:first-child,
+    .nav a:nth-child(2) {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+  }
+</style>

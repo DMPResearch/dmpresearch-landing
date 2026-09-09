@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="field" x1="80" y1="40" x2="940" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#12181F"/>
+      <stop offset="1" stop-color="#0B100D"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="260" y1="180" x2="780" y2="860" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4D5DD9"/>
+      <stop offset="0.5" stop-color="#3FC4C4"/>
+      <stop offset="1" stop-color="#9DB117"/>
+    </linearGradient>
+    <mask id="dmask">
+      <rect width="1024" height="1024" fill="black"/>
+      <g transform="translate(512 512)" fill="none" stroke="white" stroke-width="72" stroke-linecap="round">
+        <path d="M -130 -240 L -130 240"/>
+        <path d="M -130 -240 C 40 -240, 270 -140, 270 0 C 270 140, 40 240, -130 240"/>
+      </g>
+    </mask>
+  </defs>
+  <rect width="1024" height="1024" rx="224" fill="url(#field)"/>
+  <rect width="1024" height="1024" fill="url(#accent)" mask="url(#dmask)"/>
+  <g transform="translate(512 512)" fill="none" stroke-linecap="round">
+    <path d="M -20 -95 L 100 -95" stroke="#F4F1EA" stroke-width="40"/>
+    <path d="M -20 0 L 160 0" stroke="#F4F1EA" stroke-width="40"/>
+    <path d="M -20 95 L 80 95" stroke="rgba(244,241,234,0.55)" stroke-width="32"/>
+  </g>
+</svg>
