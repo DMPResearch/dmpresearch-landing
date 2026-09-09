@@ -1,56 +1,47 @@
 ---
-import { frontmatter as site } from '../content/site-labels.md';
-
-const { hero } = site;
+import { contact, hero } from '../content/site';
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__orb hero__orb--a" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--b" aria-hidden="true"></div>
+
   <div class="hero__inner container">
     <div class="hero__copy">
-      <p class="kicker hero__kicker" style="--i: 0">
-        <b>{hero.kicker}</b>
-        <span aria-hidden="true">·</span>
-        <span>{hero.kickerDetail}</span>
-      </p>
-
-      <h1 id="hero-title" class="hero__title" style="--i: 1">
-        {hero.titleLead}<br />
-        <em>{hero.titleEmphasis}</em><br />
-        {hero.titleTail}
+      <p class="kicker" data-rise style="--i: 0">{hero.kicker}</p>
+      <h1 id="hero-title" data-rise style="--i: 1">
+        {hero.titleLead}
+        <span class="hero__accent">{hero.titleAccent}</span>
       </h1>
-
-      <p class="lede hero__lede" style="--i: 2">{hero.lede}</p>
-
-      <div class="hero__actions" style="--i: 3">
+      <p class="lede hero__text" data-rise style="--i: 2">{hero.text}</p>
+      <div class="hero__actions" data-rise style="--i: 3">
         <a class="btn btn--solid" href={hero.primary.href}>
           {hero.primary.label}
-          <span class="btn__arrow" aria-hidden="true">↓</span>
+          <span class="btn__arrow" aria-hidden="true">→</span>
         </a>
         <a class="btn btn--ghost" href={hero.secondary.href}>{hero.secondary.label}</a>
       </div>
     </div>
 
-    <nav class="hero__contents" aria-label="Page contents" style="--i: 2">
-      <p class="kicker hero__contents-label">{hero.contentsLabel}</p>
-      <ol class="hero__toc">
-        {hero.contents.map((item: { number: string; label: string; note: string; href: string }) => (
+    <div class="hero__panel" data-rise style="--i: 2">
+      <div class="hero__panel-top">
+        <span class="mono">Live signal</span>
+        <span class="hero__pulse" aria-hidden="true"></span>
+      </div>
+      <ul class="hero__facts">
+        {hero.facts.map((fact) => (
           <li>
-            <a class="hero__toc-link" href={item.href}>
-              <span class="hero__toc-number">{item.number}</span>
-              <span class="hero__toc-label">{item.label}</span>
-              <span class="hero__toc-note">{item.note}</span>
-            </a>
+            <strong>{fact.value}</strong>
+            <span>{fact.label}</span>
           </li>
         ))}
-      </ol>
-    </nav>
-  </div>
-
-  <div class="hero__facts-wrap">
-    <div class="rule-grad" aria-hidden="true"></div>
-    <ul class="hero__facts container" aria-label="Studio at a glance">
-      {hero.facts.map((fact: string) => <li>{fact}</li>)}
-    </ul>
+      </ul>
+      <div class="rule-grad" aria-hidden="true"></div>
+      <p class="hero__panel-note">
+        Build the narrow product exceptionally well. Turn repeated success into infrastructure.
+      </p>
+      <a class="hero__mail link" href={contact.href}>{contact.email}</a>
+    </div>
   </div>
 </section>
 
@@ -58,173 +49,172 @@ const { hero } = site;
   .hero {
     position: relative;
     overflow: clip;
+    border-bottom: 1px solid var(--line);
+    min-height: min(92dvh, 880px);
+    display: grid;
+    align-items: center;
   }
 
-  /* Faint ruled-paper lines behind the cover page. */
-  .hero::before {
-    content: '';
+  .hero__orb {
     position: absolute;
-    inset: 0;
+    border-radius: 50%;
+    filter: blur(80px);
     pointer-events: none;
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent 0 47px,
-      rgba(14, 18, 22, 0.05) 47px 48px
-    );
-    mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+    opacity: 0.55;
+  }
+
+  .hero__orb--a {
+    width: min(520px, 70vw);
+    height: min(520px, 70vw);
+    top: -12%;
+    right: -8%;
+    background: radial-gradient(circle, rgba(91, 108, 255, 0.55), transparent 68%);
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+
+  .hero__orb--b {
+    width: min(420px, 60vw);
+    height: min(420px, 60vw);
+    bottom: -18%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(47, 214, 200, 0.35), transparent 68%);
+    animation: drift 18s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(24px, -18px, 0) scale(1.08);
+    }
   }
 
   .hero__inner {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--s-8);
-    padding-block: clamp(56px, 8vw, 120px) clamp(48px, 7vw, 96px);
+    gap: clamp(40px, 6vw, 72px);
+    padding-block: clamp(56px, 8vw, 100px) clamp(64px, 9vw, 120px);
   }
 
   .hero__copy {
     display: grid;
-    gap: var(--s-6);
-    max-width: 760px;
+    gap: var(--s-5);
+    max-width: 720px;
   }
 
-  .hero__title em {
-    font-style: italic;
-    font-weight: 400;
+  .hero__accent {
+    display: block;
     background: var(--grad);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    padding-right: 0.04em;
+  }
+
+  .hero__text {
+    max-width: 46ch;
   }
 
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--s-3);
+    margin-top: var(--s-2);
   }
 
-  /* Contents panel */
-  .hero__contents {
-    align-self: end;
-    border-top: 1px solid var(--ink);
-    padding-top: var(--s-4);
-  }
-
-  .hero__contents-label {
-    margin-bottom: var(--s-2);
-  }
-
-  .hero__toc li {
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .hero__toc-link {
+  .hero__panel {
     display: grid;
-    grid-template-columns: 2.5rem 1fr auto;
-    align-items: baseline;
-    gap: var(--s-3);
-    padding: 14px 0;
-    transition: padding-left 220ms var(--ease-out);
+    gap: var(--s-5);
+    padding: clamp(22px, 3vw, 28px);
+    border: 1px solid var(--line-2);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.05), transparent 45%),
+      rgba(14, 20, 27, 0.75);
+    box-shadow: var(--shadow-frame);
+    backdrop-filter: blur(16px);
   }
 
-  .hero__toc-link:hover {
-    padding-left: var(--s-2);
-  }
-
-  .hero__toc-number {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    color: var(--ink-3);
-  }
-
-  .hero__toc-label {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    font-variation-settings: 'opsz' 36;
-  }
-
-  .hero__toc-note {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.04em;
-    color: var(--ink-3);
-    text-align: right;
-  }
-
-  /* Narrow phones: keep the label on one line, tuck the note beneath it. */
-  @media (max-width: 480px) {
-    .hero__toc-link {
-      grid-template-columns: 2.5rem 1fr;
-      grid-template-areas:
-        'number label'
-        'number note';
-      row-gap: var(--s-1);
-    }
-
-    .hero__toc-number {
-      grid-area: number;
-    }
-
-    .hero__toc-label {
-      grid-area: label;
-    }
-
-    .hero__toc-note {
-      grid-area: note;
-      text-align: left;
-    }
-  }
-
-  /* Facts strip */
-  .hero__facts {
+  .hero__panel-top {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-2) var(--s-6);
-    padding-block: var(--s-4);
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-2);
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero__pulse {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--olive);
+    box-shadow: 0 0 0 0 rgba(182, 209, 42, 0.55);
+    animation: pulse 2.2s ease-out infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(182, 209, 42, 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 14px rgba(182, 209, 42, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(182, 209, 42, 0);
+    }
+  }
+
+  .hero__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-4);
   }
 
   .hero__facts li {
-    display: flex;
-    align-items: center;
-    gap: var(--s-3);
+    display: grid;
+    gap: 4px;
   }
 
-  .hero__facts li::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--ink);
+  .hero__facts strong {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 1.3rem + 1.5vw, 2.4rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
   }
 
-  /* One-shot page load stagger. */
-  @media (prefers-reduced-motion: no-preference) {
-    .hero__copy > *,
-    .hero__contents {
-      opacity: 0;
-      animation: rise 700ms var(--ease-out) forwards;
-      animation-delay: calc(80ms + var(--i, 0) * 110ms);
-    }
+  .hero__facts span {
+    color: var(--fg-3);
+    font-size: 0.85rem;
   }
 
-  @media (min-width: 900px) {
+  .hero__panel-note {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+    line-height: 1.5;
+    max-width: 36ch;
+  }
+
+  .hero__mail {
+    justify-self: start;
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+  }
+
+  @media (min-width: 960px) {
     .hero__inner {
-      grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
-      gap: clamp(48px, 6vw, 96px);
+      grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
       align-items: end;
     }
+  }
 
-    .hero__toc-label {
-      font-size: 1.65rem;
+  @media (max-width: 640px) {
+    .hero__facts {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__orb,
+    .hero__pulse {
+      animation: none;
     }
   }
 </style>

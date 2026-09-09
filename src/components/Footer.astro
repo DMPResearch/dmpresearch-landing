@@ -1,70 +1,55 @@
 ---
-import { frontmatter as site } from '../content/site-labels.md';
+import { contact, footer } from '../content/site';
 
-const { footer, contact, header } = site;
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer on-ink">
+<footer class="footer">
   <div class="footer__inner container">
-    <div class="footer__brand">
-      <img src="/mark.svg" width="32" height="32" alt="" />
-      <div>
-        <p class="footer__wordmark">{header.wordmark}</p>
-        <p class="footer__tagline">{footer.tagline}</p>
-      </div>
-    </div>
+    <a class="footer__brand" href="#top">
+      <img src="/mark.svg" width="24" height="24" alt="" />
+      <span>DMPResearch</span>
+    </a>
 
-    <nav class="footer__nav" aria-label="Footer">
+    <nav aria-label="Footer">
       <ul class="footer__links">
-        {footer.links.map((link: { label: string; href: string }) => (
+        {footer.links.map((link) => (
           <li><a class="footer__link" href={link.href} target="_blank" rel="noopener">{link.label}</a></li>
         ))}
         <li><a class="footer__link" href={contact.href}>{contact.email}</a></li>
       </ul>
     </nav>
 
-    <p class="footer__copy">© {year} {footer.copyright}</p>
+    <p class="mono footer__copy">© {year} DMPResearch · Gretly ecosystem</p>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--ink);
-    color: var(--on-ink);
-    border-top: 1px solid var(--rule-on-ink);
+    border-top: 1px solid var(--line);
   }
 
   .footer__inner {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--s-6);
-    padding-block: var(--s-7);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4) var(--s-6);
+    padding-block: var(--s-6);
   }
 
   .footer__brand {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--s-4);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
   .footer__brand img {
-    flex: none;
-    border-radius: 8px;
-  }
-
-  .footer__wordmark {
-    font-family: var(--font-display);
-    font-size: 1.35rem;
-    line-height: 1.1;
-    font-variation-settings: 'opsz' 24;
-  }
-
-  .footer__tagline {
-    margin-top: var(--s-1);
-    font-size: var(--t-small);
-    color: var(--on-ink-2);
-    max-width: 36ch;
+    border-radius: 6px;
   }
 
   .footer__links {
@@ -74,35 +59,24 @@ const year = new Date().getFullYear();
   }
 
   .footer__link {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.06em;
-    color: var(--on-ink-2);
-    border-bottom: 1px solid transparent;
-    transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+    font-size: 0.875rem;
+    color: var(--fg-2);
+    transition: color 160ms var(--ease);
   }
 
   .footer__link:hover {
-    color: var(--on-ink);
-    border-bottom-color: var(--on-ink);
+    color: var(--fg);
   }
 
   .footer__copy {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    color: var(--on-ink-3);
+    flex-basis: 100%;
+    text-transform: none;
+    letter-spacing: 0.02em;
   }
 
   @media (min-width: 820px) {
-    .footer__inner {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: start;
-    }
-
     .footer__copy {
-      grid-column: 1 / -1;
-      padding-top: var(--s-5);
-      border-top: 1px solid var(--rule-on-ink);
+      flex-basis: auto;
     }
   }
 </style>

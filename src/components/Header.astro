@@ -1,28 +1,31 @@
 ---
-import { frontmatter as site } from '../content/site-labels.md';
-
-const { header, contact } = site;
+import { contact, nav } from '../content/site';
 ---
 
-<header class="header">
+<header class="header" data-header>
+  <div class="header__glow" aria-hidden="true"></div>
   <div class="header__inner container">
     <a class="header__brand" href="#top" aria-label="DMPResearch, back to top">
       <img src="/mark.svg" width="28" height="28" alt="" />
-      <span>{header.wordmark}</span>
+      <span>DMPResearch</span>
     </a>
 
     <nav class="header__nav" aria-label="Site">
       <ul id="site-nav" class="header__list">
-        {header.navLinks.map((link: { label: string; href: string }) => (
-          <li><a class="header__link" href={link.href}>{link.label}</a></li>
+        {nav.map((link) => (
+          <li>
+            <a class="header__link" href={link.href} data-nav-link={link.href.replace('#', '')}>
+              {link.label}
+            </a>
+          </li>
         ))}
         <li class="header__list-cta">
-          <a class="header__link header__link--cta" href={contact.href}>{header.ctaLabel}</a>
+          <a class="header__link" href={contact.href}>{contact.label}</a>
         </li>
       </ul>
     </nav>
 
-    <a class="header__email" href={contact.href}>{header.ctaLabel}</a>
+    <a class="btn btn--ghost header__cta" href={contact.href}>{contact.label}</a>
 
     <button class="header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
       <span class="header__toggle-open">Menu</span>
@@ -32,27 +35,69 @@ const { header, contact } = site;
 </header>
 
 <script>
-  const header = document.querySelector('.header') as HTMLElement | null;
+  const header = document.querySelector('[data-header]') as HTMLElement | null;
   const toggle = document.querySelector('.header__toggle') as HTMLButtonElement | null;
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]'));
 
   if (header && toggle) {
     const setOpen = (open: boolean) => {
       header.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
     };
 
-    toggle.addEventListener('click', () => {
-      setOpen(!header.classList.contains('is-open'));
-    });
-
-    header.querySelectorAll('.header__link').forEach((link) => {
+    toggle.addEventListener('click', () => setOpen(!header.classList.contains('is-open')));
+    header.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => setOpen(false));
     });
-
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') setOpen(false);
     });
   }
+
+  // Scrollspy: highlight the nav item for the section in view.
+  const ids = links.map((link) => link.dataset.navLink).filter(Boolean) as string[];
+  const sections = ids
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => Boolean(el));
+
+  const setActive = (id: string | null) => {
+    links.forEach((link) => {
+      const active = link.dataset.navLink === id;
+      link.classList.toggle('is-active', active);
+      if (active) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  if (sections.length && 'IntersectionObserver' in window) {
+    const ratios = new Map<string, number>();
+    const spy = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        }
+        let bestId: string | null = null;
+        let best = 0;
+        for (const [id, ratio] of ratios) {
+          if (ratio > best) {
+            best = ratio;
+            bestId = id;
+          }
+        }
+        if (bestId) setActive(bestId);
+      },
+      { rootMargin: '-20% 0px -55% 0px', threshold: [0, 0.15, 0.35, 0.55, 0.75] },
+    );
+    sections.forEach((section) => spy.observe(section));
+  }
+
+  // Soft header elevation after scroll.
+  const onScroll = () => {
+    header?.classList.toggle('is-scrolled', window.scrollY > 12);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 </script>
 
 <style>
@@ -60,10 +105,29 @@ const { header, contact } = site;
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(244, 241, 234, 0.86);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule);
+    background: rgba(7, 10, 14, 0.55);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    border-bottom: 1px solid transparent;
+    transition: border-color 220ms var(--ease), background 220ms var(--ease);
+  }
+
+  .header.is-scrolled {
+    border-bottom-color: var(--line);
+    background: rgba(7, 10, 14, 0.82);
+  }
+
+  .header__glow {
+    position: absolute;
+    inset: auto 20% -1px;
+    height: 1px;
+    background: var(--grad);
+    opacity: 0;
+    transition: opacity 220ms var(--ease);
+  }
+
+  .header.is-scrolled .header__glow {
+    opacity: 0.7;
   }
 
   .header__inner {
@@ -71,7 +135,7 @@ const { header, contact } = site;
     align-items: center;
     justify-content: space-between;
     gap: var(--s-5);
-    height: 64px;
+    height: 68px;
   }
 
   .header__brand {
@@ -79,19 +143,19 @@ const { header, contact } = site;
     align-items: center;
     gap: var(--s-3);
     font-family: var(--font-display);
-    font-size: 1.35rem;
-    letter-spacing: -0.01em;
-    font-variation-settings: 'opsz' 24;
+    font-size: 1.12rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
   .header__brand img {
-    border-radius: 7px;
+    border-radius: 8px;
   }
 
   .header__list {
     display: flex;
     align-items: center;
-    gap: var(--s-6);
+    gap: 4px;
   }
 
   .header__list-cta {
@@ -99,45 +163,51 @@ const { header, contact } = site;
   }
 
   .header__link {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    padding: var(--s-2) 0;
-    border-bottom: 1px solid transparent;
-    transition: color 160ms var(--ease-out), border-color 160ms var(--ease-out);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--fg-3);
+    border-radius: 999px;
+    transition: color 160ms var(--ease), background 160ms var(--ease);
   }
 
   .header__link:hover {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
+    color: var(--fg);
   }
 
-  .header__email {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 10px 16px;
-    border: 1px solid var(--ink);
+  .header__link.is-active {
+    color: var(--fg);
+    background: rgba(238, 243, 236, 0.06);
+  }
+
+  .header__link.is-active::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 2px;
     border-radius: 999px;
-    transition: background-color 160ms var(--ease-out), color 160ms var(--ease-out);
+    background: var(--grad);
   }
 
-  .header__email:hover {
-    background: var(--ink);
-    color: var(--on-ink);
+  .header__cta {
+    min-height: 40px;
+    padding-inline: var(--s-4);
+    font-size: 0.875rem;
   }
 
   .header__toggle {
     display: none;
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 10px 14px;
-    border: 1px solid var(--ink);
+    min-height: 40px;
+    padding: 0 var(--s-4);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--line-2);
     border-radius: 999px;
   }
 
@@ -145,13 +215,14 @@ const { header, contact } = site;
     display: none;
   }
 
-  @media (max-width: 820px) {
-    .header__email {
+  @media (max-width: 860px) {
+    .header__cta {
       display: none;
     }
 
     .header__toggle {
       display: inline-flex;
+      align-items: center;
     }
 
     .header__nav {
@@ -160,9 +231,9 @@ const { header, contact } = site;
       left: 0;
       right: 0;
       display: none;
-      background: var(--paper);
-      border-bottom: 1px solid var(--rule);
-      box-shadow: var(--shadow-plate);
+      background: rgba(7, 10, 14, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
     }
 
     .header.is-open .header__nav {
@@ -183,11 +254,11 @@ const { header, contact } = site;
       gap: 0;
       width: min(100% - 2 * var(--gutter), var(--container));
       margin-inline: auto;
-      padding: var(--s-3) 0 var(--s-5);
+      padding: var(--s-3) 0 var(--s-6);
     }
 
     .header__list li + li {
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid var(--line);
     }
 
     .header__list-cta {
@@ -195,26 +266,24 @@ const { header, contact } = site;
     }
 
     .header__link {
-      display: flex;
-      justify-content: space-between;
+      display: block;
       font-family: var(--font-display);
-      font-size: 1.75rem;
-      letter-spacing: -0.01em;
-      text-transform: none;
-      color: var(--ink);
+      font-size: 1.7rem;
+      font-weight: 550;
+      letter-spacing: -0.03em;
+      color: var(--fg);
       padding: 18px 0;
-      border-bottom: 0;
-      font-variation-settings: 'opsz' 36;
+      border-radius: 0;
+      background: transparent;
     }
 
-    .header__link:hover {
-      border-bottom: 0;
+    .header__link.is-active::after {
+      display: none;
     }
 
-    .header__link--cta::after {
-      content: '→';
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
+    .header__link.is-active {
+      color: var(--teal);
+      background: transparent;
     }
   }
 </style>

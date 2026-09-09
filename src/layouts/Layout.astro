@@ -1,5 +1,5 @@
 ---
-import { frontmatter as site } from '../content/site-labels.md';
+import { meta } from '../content/site';
 import '../styles/global.css';
 
 interface Props {
@@ -7,8 +7,7 @@ interface Props {
   description?: string;
 }
 
-const { siteMeta } = site;
-const { title = siteMeta.title, description = siteMeta.description } = Astro.props;
+const { title = meta.title, description = meta.description } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
 const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png';
@@ -21,7 +20,7 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f4f1ea" />
+    <meta name="theme-color" content="#070a0e" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/mark.png" />
@@ -34,16 +33,36 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
-    />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/geist-latin.woff2" crossorigin />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <slot />
+    <script>
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+
+      if (reduce || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('is-in'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-in');
+                io.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.1 },
+        );
+        targets.forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>
 
@@ -54,8 +73,8 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     left: 8px;
     z-index: 200;
     padding: 10px 14px;
-    background: var(--ink);
-    color: var(--on-ink);
+    background: var(--fg);
+    color: var(--on-light);
     font-size: var(--t-small);
     border-radius: 999px;
     transform: translateY(-200%);
@@ -63,6 +82,5 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
 
   .skip:focus-visible {
     transform: none;
-    outline-color: var(--ink);
   }
 </style>

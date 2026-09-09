@@ -1,49 +1,39 @@
 ---
-import { frontmatter as site } from '../content/site-labels.md';
-
-const { team } = site;
+import { team } from '../content/site';
 ---
 
 <section class="team section" id="team" aria-labelledby="team-title">
   <div class="container">
-    <header class="team__head reveal">
-      <p class="kicker">
-        <b>{team.number}</b>
-        <span aria-hidden="true">—</span>
-        <span>{team.kicker}</span>
-      </p>
+    <header class="team__head" data-reveal>
+      <p class="kicker">The team</p>
       <h2 id="team-title">{team.title}</h2>
-      <p class="lede">{team.lede}</p>
+      <p class="lede">{team.text}</p>
     </header>
 
-    <ul class="team__grid reveal">
-      {team.members.map((member: { name: string; role: string; bio: string; accent: string }) => (
-        <li class:list={['team__card', `team__card--${member.accent}`]}>
-          <span class="team__initial" aria-hidden="true">{member.name.charAt(0)}</span>
+    <ul class="team__grid">
+      {team.members.map((member, index) => (
+        <li class="team__member" data-reveal style={`--delay: ${index * 100}ms`}>
+          <span class="team__initial" aria-hidden="true">{member.name.slice(0, 1)}</span>
           <h3 class="team__name">{member.name}</h3>
-          <p class="team__role">{member.role}</p>
+          <p class="mono team__role">{member.role}</p>
           <p class="team__bio">{member.bio}</p>
         </li>
       ))}
-      <li class="team__card team__card--crew">
-        <span class="team__initial team__initial--crew" aria-hidden="true">·</span>
-        <h3 class="team__name">{team.crew.name}</h3>
-        <p class="team__role">{team.crew.role}</p>
-        <p class="team__bio">{team.crew.bio}</p>
-      </li>
     </ul>
+
+    <p class="team__crew" data-reveal>{team.crew}</p>
   </div>
 </section>
 
 <style>
   .team {
-    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--line);
   }
 
   .team__head {
     display: grid;
-    gap: var(--s-5);
-    max-width: 820px;
+    gap: var(--s-4);
+    max-width: 720px;
     margin-bottom: var(--s-8);
   }
 
@@ -53,67 +43,59 @@ const { team } = site;
     gap: var(--s-5);
   }
 
-  .team__card {
-    --accent: var(--ink);
+  .team__member {
     display: grid;
-    gap: var(--s-2);
-    padding: var(--s-5);
-    border: 1px solid var(--ink);
-    background: var(--paper);
+    gap: var(--s-3);
+    padding: clamp(24px, 3vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 50%),
+      rgba(14, 20, 27, 0.7);
+    transition: border-color 200ms var(--ease), transform 200ms var(--ease);
   }
 
-  .team__card--blue {
-    --accent: var(--blue);
-  }
-
-  .team__card--olive {
-    --accent: var(--olive);
-  }
-
-  .team__card--crew {
-    border-style: dashed;
-    border-color: var(--rule-strong);
+  .team__member:hover {
+    border-color: var(--line-2);
+    transform: translateY(-3px);
   }
 
   .team__initial {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--grad);
+    color: #070a0e;
     font-family: var(--font-display);
-    font-size: clamp(5rem, 4rem + 5vw, 8rem);
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    color: var(--accent);
-    margin-bottom: var(--s-4);
-    font-variation-settings: 'opsz' 72;
-  }
-
-  .team__initial--crew {
-    color: var(--ink-3);
+    font-size: 1.4rem;
+    font-weight: 700;
   }
 
   .team__name {
-    font-size: clamp(1.7rem, 1.4rem + 1vw, 2.3rem);
-  }
-
-  .team__role {
-    font-family: var(--font-mono);
-    font-size: var(--t-mono);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink-3);
+    font-size: clamp(2rem, 1.5rem + 1.8vw, 2.8rem);
+    letter-spacing: -0.04em;
   }
 
   .team__bio {
-    margin-top: var(--s-3);
-    color: var(--ink-2);
+    color: var(--fg-2);
+    max-width: 40ch;
+  }
+
+  .team__crew {
+    margin-top: var(--s-7);
+    padding: 20px 22px;
+    border: 1px dashed var(--line-2);
+    border-radius: var(--radius);
+    color: var(--fg-2);
+    max-width: 64ch;
   }
 
   @media (min-width: 760px) {
     .team__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--s-5);
-    }
-
-    .team__card {
-      padding: var(--s-6);
     }
   }
 </style>
