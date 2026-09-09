@@ -1,0 +1,71 @@
+---
+import { frontmatter as siteLabels } from '../content/site-labels.md';
+import SectionBlock from './design-system/SectionBlock.astro';
+import ActionButton from './design-system/ActionButton.astro';
+
+const { cta } = siteLabels;
+---
+
+<SectionBlock className="cta-section" tone="accent" padding="none">
+  <div class="cta-section__inner container">
+    <h2 class="cta-section__heading">{cta.heading}</h2>
+    <div class="cta-section__actions">
+      {cta.actions.map((action) => (
+        <ActionButton
+          href={action.href}
+          label={action.label}
+          variant="outline"
+          external={true}
+          className="cta-section__btn ds-action-button--outline-dark"
+        />
+      ))}
+    </div>
+  </div>
+</SectionBlock>
+
+<style>
+  .cta-section__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .cta-section__heading {
+    max-width: 780px;
+    font-size: var(--fs-h1);
+    line-height: 1.1;
+    text-transform: uppercase;
+  }
+
+  .cta-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .cta-section__actions :global(.cta-section__btn) {
+    min-width: 210px;
+  }
+
+  @media (max-width: 768px) {
+    .cta-section__inner {
+      padding-top: 60px;
+      padding-bottom: 60px;
+      gap: 32px;
+    }
+
+    .cta-section__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .cta-section__actions :global(.cta-section__btn) {
+      width: 100%;
+    }
+  }
+</style>
