@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 
 export default defineConfig({
-  site: 'https://dmpresearch.netlify.app',
+  site: 'https://flowstarter.dev',
   compressHTML: true,
 })
