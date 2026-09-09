@@ -9,9 +9,9 @@ export const contact = {
 };
 
 export const meta = {
-  title: 'DMPResearch — Custom software, built with AI agents',
+  title: 'DMPResearch — Small studio, agent team, custom software',
   description:
-    'DMPResearch builds custom software for you. Darius and Dorin use AI agents to ship faster. Book a call or write hello@flowstarter.dev.',
+    'DMPResearch is a small studio with a team of AI agents. Darius and Dorin steer. Agents accelerate. We build almost any software. Book a call.',
 };
 
 export const nav = [
@@ -23,17 +23,12 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: 'DMPResearch · two-person studio',
-  titleLead: 'We make AI work for us.',
-  titleAccent: 'You can have that too.',
-  text: 'Darius and Dorin ship real products with AI agents in the loop. Agents accelerate the work. We keep the judgment. If you want something built the same way, talk to us.',
+  kicker: 'DMPResearch · small studio · agent team',
+  titleLead: 'A small studio with a team of agents.',
+  titleAccent: 'Almost any software.',
+  text: 'Two people steer. Agents research, draft and ship in parallel. Sites, products, tools, backends. If it should exist as software, we can build it.',
   primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See what we shipped', href: '#products' },
-  facts: [
-    { value: '2', label: 'Live products' },
-    { value: '3+', label: 'Client sites' },
-    { value: '2', label: 'People' },
-  ],
 };
 
 export interface Product {
