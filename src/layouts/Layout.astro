@@ -1,12 +1,13 @@
 ---
-import { frontmatter as siteLabels } from '../content/site-labels.md';
+import { frontmatter as site } from '../content/site-labels.md';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { siteMeta } = siteLabels;
+const { siteMeta } = site;
 const { title = siteMeta.title, description = siteMeta.description } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
@@ -18,12 +19,14 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b100d" />
+    <meta name="theme-color" content="#f4f1ea" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/mark.png" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="DMPResearch" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -33,24 +36,33 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     <meta name="twitter:description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://api.fontshare.com" />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
     />
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap" rel="stylesheet" />
-    <script is:inline>
-      document.documentElement.classList.add('js');
-    </script>
-    <title>{title}</title>
   </head>
   <body>
+    <a class="skip" href="#main">Skip to content</a>
     <slot />
-    <script src="../scripts/scroll-reveal.js"></script>
   </body>
 </html>
 
-<style is:global>
-  @import '../styles/global.css';
+<style>
+  .skip {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 200;
+    padding: 10px 14px;
+    background: var(--ink);
+    color: var(--on-ink);
+    font-size: var(--t-small);
+    border-radius: 999px;
+    transform: translateY(-200%);
+  }
+
+  .skip:focus-visible {
+    transform: none;
+    outline-color: var(--ink);
+  }
 </style>

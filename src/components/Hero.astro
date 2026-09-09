@@ -1,415 +1,230 @@
 ---
-import { frontmatter as siteLabels } from '../content/site-labels.md';
-import SectionBlock from './design-system/SectionBlock.astro';
-import ActionButton from './design-system/ActionButton.astro';
+import { frontmatter as site } from '../content/site-labels.md';
 
-const { hero, products } = siteLabels;
-const heroHighlights: string[] = hero.highlights ?? [];
-
-const escapeRegex = (value = '') => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const heroParagraphs = String(hero.text ?? '')
-  .split(/\n\s*\n/)
-  .map((paragraph) => paragraph.replace(/\s*\n\s*/g, ' ').trim())
-  .filter(Boolean);
-
-const highlightPattern = new RegExp(`(${heroHighlights.map(escapeRegex).join('|')})`, 'gi');
-
-const heroParagraphSegments = heroParagraphs.map((paragraph) =>
-  paragraph
-    .split(highlightPattern)
-    .filter(Boolean)
-    .map((segment) => ({
-      text: segment,
-      highlighted: heroHighlights.some((phrase) => phrase.toLowerCase() === segment.toLowerCase()),
-    }))
-);
+const { hero } = site;
 ---
 
-<div class="hero__intro-overlay" aria-hidden="true">
-  <span class="hero__intro-text">{hero.introTitle}</span>
-</div>
-
-<SectionBlock id="home" className="hero" tone="dark" padding="none">
+<section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero__inner container">
-    <div class="hero__content">
-      {hero.eyebrow && <p class="hero__eyebrow">{hero.eyebrow}</p>}
-      <h1 class="hero__title">{hero.title}</h1>
-      <div class="hero__text">
-        {heroParagraphSegments.map((paragraph) => (
-          <p>
-            {paragraph.map((segment) =>
-              segment.highlighted ? (
-                <span class="hero__text-highlight">{segment.text}</span>
-              ) : (
-                segment.text
-              )
-            )}
-          </p>
-        ))}
-      </div>
-      <div class="hero__actions">
-        {hero.actions.map((action) => (
-          <ActionButton
-            href={action.href}
-            label={action.label}
-            variant={action.outline ? 'outline' : 'primary'}
-            className={action.outline ? 'ds-action-button--outline-light' : 'ds-action-button--primary-light'}
-          />
-        ))}
+    <div class="hero__copy">
+      <p class="kicker hero__kicker" style="--i: 0">
+        <b>{hero.kicker}</b>
+        <span aria-hidden="true">·</span>
+        <span>{hero.kickerDetail}</span>
+      </p>
+
+      <h1 id="hero-title" class="hero__title" style="--i: 1">
+        {hero.titleLead}<br />
+        <em>{hero.titleEmphasis}</em><br />
+        {hero.titleTail}
+      </h1>
+
+      <p class="lede hero__lede" style="--i: 2">{hero.lede}</p>
+
+      <div class="hero__actions" style="--i: 3">
+        <a class="btn btn--solid" href={hero.primary.href}>
+          {hero.primary.label}
+          <span class="btn__arrow" aria-hidden="true">↓</span>
+        </a>
+        <a class="btn btn--ghost" href={hero.secondary.href}>{hero.secondary.label}</a>
       </div>
     </div>
 
-    <div class="hero__showcase" aria-label="Our products">
-      {hero.showcaseLabel && (
-        <p class="hero__showcase-label">
-          <span class="hero__showcase-dot" aria-hidden="true"></span>
-          {hero.showcaseLabel}
-        </p>
-      )}
-      <div class="hero__showcase-grid">
-        {products.items.map((product) => (
-          <a
-            class="hero__product"
-            href={`#${product.id}`}
-            style={`--product-accent: ${product.color};`}
-          >
-            <div class="hero__product-top">
-              <img src={product.markSrc} width="36" height="36" alt="" />
-              <span>{product.eyebrow}</span>
-            </div>
-            <strong>{product.title}</strong>
-            <p>{product.category}</p>
-            <img
-              class="hero__product-shot"
-              src={product.imageSrc}
-              alt={product.imageAlt}
-              width="1288"
-              height="1120"
-              loading="eager"
-              decoding="async"
-            />
-          </a>
+    <nav class="hero__contents" aria-label="Page contents" style="--i: 2">
+      <p class="kicker hero__contents-label">{hero.contentsLabel}</p>
+      <ol class="hero__toc">
+        {hero.contents.map((item: { number: string; label: string; note: string; href: string }) => (
+          <li>
+            <a class="hero__toc-link" href={item.href}>
+              <span class="hero__toc-number">{item.number}</span>
+              <span class="hero__toc-label">{item.label}</span>
+              <span class="hero__toc-note">{item.note}</span>
+            </a>
+          </li>
         ))}
-      </div>
-    </div>
+      </ol>
+    </nav>
   </div>
-</SectionBlock>
+
+  <div class="hero__facts-wrap">
+    <div class="rule-grad" aria-hidden="true"></div>
+    <ul class="hero__facts container" aria-label="Studio at a glance">
+      {hero.facts.map((fact: string) => <li>{fact}</li>)}
+    </ul>
+  </div>
+</section>
 
 <style>
-  :global(.hero) {
+  .hero {
+    position: relative;
     overflow: clip;
-    background:
-      radial-gradient(ellipse 70% 50% at 85% 20%, rgba(58, 91, 255, 0.22), transparent 55%),
-      radial-gradient(ellipse 55% 45% at 10% 80%, rgba(30, 152, 98, 0.18), transparent 50%),
-      var(--bg-dark);
+  }
+
+  /* Faint ruled-paper lines behind the cover page. */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 47px,
+      rgba(14, 18, 22, 0.05) 47px 48px
+    );
+    mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
   }
 
   .hero__inner {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-    gap: clamp(40px, 5vw, 72px);
-    align-items: center;
-    min-height: min(100vh, 900px);
-    padding: 136px 24px 88px;
-  }
-
-  .hero__content {
     position: relative;
-    z-index: 1;
-    max-width: 640px;
-  }
-
-  .hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 22px;
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-semibold);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    opacity: 0;
-    animation: hero-enter 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 1200ms;
-  }
-
-  .hero__eyebrow::before {
-    content: '';
-    width: 28px;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  .hero__title {
-    font-size: var(--fs-display);
-    font-weight: var(--fw-headline);
-    line-height: 1.02;
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    text-wrap: balance;
-    margin-bottom: 26px;
-    opacity: 0;
-    animation: hero-enter 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 1300ms;
-  }
-
-  .hero__text {
     display: grid;
-    gap: 14px;
-    max-width: 520px;
-    margin-bottom: 36px;
-    opacity: 0;
-    animation: hero-enter 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 1500ms;
+    grid-template-columns: 1fr;
+    gap: var(--s-8);
+    padding-block: clamp(56px, 8vw, 120px) clamp(48px, 7vw, 96px);
   }
 
-  .hero__text p {
-    font-size: var(--fs-h5);
-    line-height: 1.45;
-    color: var(--text-on-dark-muted);
+  .hero__copy {
+    display: grid;
+    gap: var(--s-6);
+    max-width: 760px;
   }
 
-  .hero__text p:first-child {
-    color: var(--text-on-dark);
-  }
-
-  .hero__text-highlight {
-    color: var(--brand-primary);
-    font-weight: var(--fw-medium);
-  }
-
-  .hero__intro-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    background: var(--bg-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 clamp(20px, 5vw, 80px);
-    pointer-events: none;
-    animation: intro-overlay-exit 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    animation-delay: 1000ms;
-  }
-
-  .hero__intro-text {
-    font-family: var(--font-title);
-    font-weight: var(--fw-headline);
-    text-transform: uppercase;
-    letter-spacing: -0.03em;
-    color: #fff;
-    text-align: center;
-    line-height: 1.05;
-    font-size: clamp(3rem, 11vw, 10rem);
-    opacity: 0;
-    animation: intro-text-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 80ms;
-  }
-
-  /* One-shot intro blur: resolves to sharp once and never returns. */
-  @keyframes intro-text-enter {
-    from {
-      opacity: 0;
-      filter: blur(24px);
-      transform: scale(0.88);
-    }
-    to {
-      opacity: 1;
-      filter: blur(0);
-      transform: scale(1);
-    }
-  }
-
-  @keyframes intro-overlay-exit {
-    to {
-      opacity: 0;
-      visibility: hidden;
-    }
-  }
-
-  @keyframes hero-enter {
-    from {
-      opacity: 0;
-      transform: translateY(18px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .hero__title em {
+    font-style: italic;
+    font-weight: 400;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-right: 0.04em;
   }
 
   .hero__actions {
     display: flex;
-    gap: 14px;
     flex-wrap: wrap;
-    opacity: 0;
-    animation: hero-enter 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 1700ms;
+    gap: var(--s-3);
   }
 
-  .hero__actions :global(.ds-action-button) {
-    font-weight: var(--fw-semibold);
-    min-width: 200px;
-    text-align: center;
+  /* Contents panel */
+  .hero__contents {
+    align-self: end;
+    border-top: 1px solid var(--ink);
+    padding-top: var(--s-4);
   }
 
-  .hero__showcase {
+  .hero__contents-label {
+    margin-bottom: var(--s-2);
+  }
+
+  .hero__toc li {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero__toc-link {
     display: grid;
-    gap: 14px;
-    opacity: 0;
-    animation: hero-enter 750ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 1850ms;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: baseline;
+    gap: var(--s-3);
+    padding: 14px 0;
+    transition: padding-left 220ms var(--ease-out);
   }
 
-  .hero__showcase-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: var(--fs-xs);
-    font-weight: var(--fw-semibold);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-on-dark-faint);
+  .hero__toc-link:hover {
+    padding-left: var(--s-2);
   }
 
-  .hero__showcase-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--brand-primary);
-    box-shadow: 0 0 0 4px rgba(30, 152, 98, 0.22);
+  .hero__toc-number {
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+    color: var(--ink-3);
   }
 
-  .hero__showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .hero__product {
-    display: grid;
-    gap: 6px;
-    padding: 16px 16px 0;
-    overflow: hidden;
-    border: 1px solid var(--border-on-dark);
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.06), transparent 55%),
-      rgba(20, 28, 23, 0.88);
-    transition: transform 220ms ease, border-color 220ms ease;
-  }
-
-  .hero__product:hover,
-  .hero__product:focus-visible {
-    transform: translateY(-3px);
-    border-color: var(--product-accent);
-  }
-
-  .hero__product-top {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
-  }
-
-  .hero__product-top img {
-    border-radius: 9px;
-  }
-
-  .hero__product-top span {
-    font-size: var(--fs-xs);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--product-accent);
-    font-weight: 600;
-  }
-
-  .hero__product strong {
-    color: var(--text-on-dark);
-    font-family: var(--font-title);
-    font-size: 1.3rem;
-    font-weight: var(--fw-headline);
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
+  .hero__toc-label {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-variation-settings: 'opsz' 36;
   }
 
-  .hero__product p {
-    margin: 0;
-    color: var(--text-on-dark-muted);
-    font-size: 0.9rem;
-    line-height: 1.4;
+  .hero__toc-note {
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    text-align: right;
   }
 
-  .hero__product-shot {
-    width: calc(100% + 16px);
-    max-width: none;
-    height: auto;
-    margin: 14px 0 -1px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: top left;
-    border: 1px solid var(--border-on-dark);
-    border-right: 0;
-    border-bottom: 0;
-    background: #fff;
-  }
-
-  @media (max-width: 900px) {
-    .hero__inner {
-      grid-template-columns: 1fr;
-      gap: 48px;
-      min-height: auto;
-      padding: 112px 20px 64px;
-    }
-
-    .hero__content {
-      max-width: none;
-    }
-
-    .hero__actions {
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .hero__actions :global(.ds-action-button) {
-      width: 100%;
-      min-width: 0;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .hero__product {
-      padding: 14px 16px 16px;
-    }
-
-    /* Keep the hero short on phones; the full screenshots live in Products. */
-    .hero__product-shot {
-      display: none;
-    }
-  }
-
+  /* Narrow phones: keep the label on one line, tuck the note beneath it. */
   @media (max-width: 480px) {
-    .hero__showcase-grid {
-      grid-template-columns: 1fr;
+    .hero__toc-link {
+      grid-template-columns: 2.5rem 1fr;
+      grid-template-areas:
+        'number label'
+        'number note';
+      row-gap: var(--s-1);
+    }
+
+    .hero__toc-number {
+      grid-area: number;
+    }
+
+    .hero__toc-label {
+      grid-area: label;
+    }
+
+    .hero__toc-note {
+      grid-area: note;
+      text-align: left;
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .hero__intro-overlay {
-      display: none;
+  /* Facts strip */
+  .hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-6);
+    padding-block: var(--s-4);
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  .hero__facts li {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+  }
+
+  .hero__facts li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  /* One-shot page load stagger. */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__copy > *,
+    .hero__contents {
+      opacity: 0;
+      animation: rise 700ms var(--ease-out) forwards;
+      animation-delay: calc(80ms + var(--i, 0) * 110ms);
+    }
+  }
+
+  @media (min-width: 900px) {
+    .hero__inner {
+      grid-template-columns: minmax(0, 7fr) minmax(280px, 4fr);
+      gap: clamp(48px, 6vw, 96px);
+      align-items: end;
     }
 
-    .hero__intro-text,
-    .hero__eyebrow,
-    .hero__title,
-    .hero__text,
-    .hero__actions,
-    .hero__showcase {
-      opacity: 1;
-      animation: none;
-      filter: none;
-      transform: none;
+    .hero__toc-label {
+      font-size: 1.65rem;
     }
   }
 </style>
