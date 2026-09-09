@@ -9,9 +9,9 @@ export const contact = {
 };
 
 export const meta = {
-  title: 'DMPResearch — Small studio, agent team, custom software',
+  title: 'DMPResearch — Two people, AI agents, custom software',
   description:
-    'DMPResearch is a small studio with a team of AI agents. Darius and Dorin steer. Agents accelerate. We build almost any software. Book a call.',
+    'Darius and Dorin run a small studio with AI agents. We build almost any custom software. Agents draft, we decide, you get working software.',
 };
 
 export const nav = [
@@ -23,12 +23,12 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: 'Small studio · agent team',
-  titleLead: 'A small studio with a team of agents.',
-  titleAccent: 'Almost any software.',
-  text: 'Two people steer. Agents research, draft and ship in parallel. Sites, products, tools, backends. If it should exist as software, we can build it.',
+  kicker: 'Two builders + AI agents',
+  titleLead: 'Two people and a crew of AI agents.',
+  titleAccent: 'We build your software.',
+  text: 'Darius does product and engineering. Dorin does design. Agents research, draft, and scaffold in parallel while we decide what ships. Sites, products, tools, backends. If you need custom software, we should talk.',
   primary: { label: 'Book a call', href: '#contact' },
-  secondary: { label: 'See what we shipped', href: '#products' },
+  secondary: { label: 'Our products', href: '#products' },
 };
 
 export interface Product {
@@ -57,12 +57,12 @@ export const products: Product[] = [
     imageLight: '/images/flowstarter-site-light.webp',
     imageDark: '/images/flowstarter-site-dark.webp',
     imageAlt: 'Screenshot of the Flowstarter website',
-    title: 'The virtual software factory for service businesses.',
-    text: 'We design and ship a premium site, then hand over a constrained AI editor so the client keeps it current without breaking it.',
+    title: 'A website factory for service businesses.',
+    text: "We design and ship a polished site, then hand over a constrained AI editor so you can keep it current without breaking it. When you hit the editor's limits, we step in.",
     points: [
-      'Discovery to a live site, handled by the studio',
-      'Constrained AI editing for safe ongoing care',
-      'Human escalation when the factory hits its edge',
+      'We handle discovery through launch',
+      "You update content with an AI editor that can't break your site",
+      'We step back in when the editor hits its limits',
     ],
     link: { label: 'Visit flowstarter.net', href: 'https://flowstarter.net' },
     facts: [
@@ -80,12 +80,12 @@ export const products: Product[] = [
     imageLight: '/images/ereno-site-light.webp',
     imageDark: '/images/ereno-site-dark.webp',
     imageAlt: 'Screenshot of the Ereno website',
-    title: 'Trusted planning for trips and base decisions.',
-    text: 'A conversational companion for trip planning and base scouting. Research with sources, compare options, keep trade-offs visible. You book with the provider.',
+    title: 'A planning companion for trips and base scouting.',
+    text: 'Ereno is a conversational tool that pulls research, compares options, and keeps trade-offs where you can see them. It does not book anything. You go to the provider for that.',
     points: [
-      'Trips and base scouting in one conversation',
-      'Evidence and trade-offs kept visible',
-      'No booking promises',
+      'Plan trips and scout bases in one conversation',
+      'Sources and trade-offs stay visible',
+      'No booking layer. You book directly.',
     ],
     link: { label: 'Visit ereno.flowstarter.dev', href: 'https://ereno.flowstarter.dev' },
     facts: [
@@ -97,15 +97,16 @@ export const products: Product[] = [
 ];
 
 export const work = {
-  kicker: 'Also built',
-  title: 'Sites we shipped for real clients.',
-  text: 'Beyond our own products, these are live builds from the Flowstarter practice. Same standard: agents accelerate, we sign off.',
+  kicker: 'Client work',
+  title: 'Sites we shipped for other people.',
+  text: 'Same process as our own products. Agents draft, we decide. These are all live.',
   items: [
     {
       id: 'ux-journey',
       title: 'UX Journey',
       meta: 'Coaching · Live · 2026',
-      kicker: 'A senior UX coaching practice. Copy, calendar and credibility on one domain.',
+      kicker:
+        'Coaching site for a senior UX practitioner. Copy, calendar, and credibility on one domain.',
       image: '/images/work/ux-journey.webp',
       href: 'https://ux-journey.com/',
       hrefLabel: 'ux-journey.com',
@@ -114,7 +115,7 @@ export const work = {
       id: 'lebadusul',
       title: 'Lebădușul',
       meta: 'Retail · Live · 2026',
-      kicker: 'A Danube-side tackle shop. Catalog, checkout and logistics copy for serious anglers.',
+      kicker: 'Tackle shop on the Danube. Catalog and checkout for anglers who know what they want.',
       image: '/images/work/lebadusul.webp',
       href: 'https://lebadusularticoledepescuit.ro/',
       hrefLabel: 'lebadusularticoledepescuit.ro',
@@ -123,7 +124,8 @@ export const work = {
       id: 'dorin-portfolio',
       title: 'Creative Portfolio',
       meta: 'Portfolio · Starter · Live',
-      kicker: "Dorin's portfolio starter. Launch something credible fast from the Flowstarter library.",
+      kicker:
+        "Dorin's portfolio starter from the Flowstarter library. A real starting point, not a demo.",
       image: '/images/work/dorin-portfolio.webp',
       href: 'https://flowstarter.net/library/templates/dorin-portfolio',
       hrefLabel: 'View in Flowstarter library',
@@ -132,71 +134,80 @@ export const work = {
 };
 
 export const ambition = {
-  kicker: 'What we believe',
-  title: 'Make AI work for us. Build products people can feel.',
-  text: 'We use agents to research, draft and scaffold so we can ship faster without lowering the bar. The same setup can build your product. Contact us and tell us what you need.',
+  kicker: 'What we think',
+  title: 'Agents are fast. Taste is ours.',
+  text: "Agents let two people ship at the pace of a bigger team. But they don't know what good looks like. We do. This same setup works for your project too.",
   points: [
-    { title: 'Agents accelerate', text: 'Research, drafts, scaffolding and iteration loops in parallel.' },
-    { title: 'We steer', text: 'Taste, architecture and the last mile stay with Darius and Dorin.' },
-    { title: 'You get a product', text: 'Not a deck. A live surface you can use, own and improve.' },
+    {
+      title: 'Agents do the volume',
+      text: "Research, first drafts, scaffolding, iteration. They run in parallel and they don't stop.",
+    },
+    {
+      title: 'We make the calls',
+      text: 'Architecture, taste, what to cut. Darius and Dorin decide what ships.',
+    },
+    {
+      title: 'You get working software',
+      text: 'Not a slide deck. A live product you can use, own, and change.',
+    },
   ],
 };
 
 export const method = {
-  title: 'Agents do the heavy lifting. We steer.',
-  text: 'Every product here was built the same way. Agents run research, drafts and scaffolding in parallel. We review every material decision and read every line that ships.',
-  loop: ['Agents propose', 'We decide', 'It ships', 'We look again'],
+  title: 'How we actually build things.',
+  text: 'Every project here was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
+  loop: ['Agents draft', 'We review', 'It ships', 'We revisit'],
   columns: [
     {
       heading: 'Agents handle',
       items: [
-        'Parallel research and source gathering',
-        'First drafts of copy, layout and code',
-        'Scaffolding, tests and migrations',
-        'Iteration loops that run overnight',
+        'Research and pulling sources together',
+        'First drafts of copy, layout, and code',
+        'Scaffolding, tests, and migrations',
+        'Overnight iteration while we sleep',
       ],
     },
     {
-      heading: 'We keep',
+      heading: 'We handle',
       items: [
-        'Product shape, and what not to build',
-        'Brand, taste and the last mile',
-        'Architecture and data decisions',
-        'Final review of everything that ships',
+        'What to build and what to skip',
+        'Brand, visual quality, and final polish',
+        'Architecture and data model choices',
+        'Reading everything before it ships',
       ],
     },
   ],
 };
 
 export const team = {
-  title: 'Two people. Every decision has a name on it.',
-  text: 'We met building software for other people and kept seeing the same gap: agents can do in an afternoon what used to take a team, but someone still has to know what good looks like.',
+  title: 'Two people. You know who decided what.',
+  text: 'We met building software for other people and kept noticing the same thing: agents can do in an afternoon what used to take a week, but someone still has to know what good looks like. So we stayed small on purpose.',
   members: [
     {
       name: 'Darius',
       role: 'Product and engineering',
-      bio: 'Owns architecture, shipping and the systems behind Flowstarter and Ereno. Runs the agent workflows and reads what they produce.',
+      bio: 'Runs architecture, shipping, and the agent workflows behind Flowstarter and Ereno. Reads what the agents produce and decides what stays.',
       photo: '/images/team/darius.png',
       photoAlt: 'Portrait of Darius',
     },
     {
       name: 'Dorin',
       role: 'Design and craft',
-      bio: 'Owns interface craft, visual systems and the templates clients feel. Decides what is good enough to ship.',
+      bio: 'Owns the visual systems, interface work, and the templates clients actually use. Nothing ships until it passes his bar.',
       photo: '/images/team/dorin.jpeg',
       photoAlt: 'Portrait of Dorin',
     },
   ],
-  crew: 'AI agents are the rest of the crew. They draft, research and scaffold around us. They do not decide.',
+  crew: "The rest of the team is AI agents. They research, draft, and scaffold. They don't make decisions.",
 };
 
 export const cta = {
-  title: 'We build custom software for you.',
-  text: 'Book a call and tell us what you need. We use AI agents to help ship products faster, with Darius and Dorin steering every material decision.',
-  bookHint: 'Pick a time that works. Thirty minutes is enough to see if we are a fit.',
-  formTitle: 'Prefer to write?',
-  formText: 'Send a short note and we will reply by email.',
-  formSuccess: 'Thanks. We got your message and will reply soon.',
+  title: 'Tell us what you need built.',
+  text: 'We build custom software. Book a call or send us a note. You talk to Darius and Dorin directly, no account managers.',
+  bookHint: "Thirty minutes is enough to figure out if we're a fit.",
+  formTitle: 'Rather write?',
+  formText: 'Send a short note. We reply by email, usually within a day.',
+  formSuccess: "Got it. We'll get back to you soon.",
   fields: {
     name: 'Name',
     email: 'Email',

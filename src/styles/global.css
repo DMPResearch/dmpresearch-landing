@@ -45,8 +45,8 @@ html[data-resolved='dark'] {
   --olive: #b6d12a;
   --grad: linear-gradient(115deg, #5b6cff 0%, #2fd6c8 48%, #b6d12a 100%);
 
-  --header-bg: rgba(7, 10, 14, 0.78);
-  --header-bg-idle: transparent;
+  --header-bg: rgba(7, 10, 14, 0.94);
+  --header-bg-idle: rgba(7, 10, 14, 0.55);
   --aura-a: rgba(91, 108, 255, 0.22);
   --aura-b: rgba(47, 214, 200, 0.14);
   --aura-c: rgba(182, 209, 42, 0.1);
@@ -112,8 +112,8 @@ html[data-resolved='light'] {
   --olive: #7a9410;
   --grad: linear-gradient(115deg, #3a4fd4 0%, #0f9f96 48%, #7a9410 100%);
 
-  --header-bg: rgba(244, 241, 234, 0.86);
-  --header-bg-idle: transparent;
+  --header-bg: rgba(244, 241, 234, 0.96);
+  --header-bg-idle: rgba(244, 241, 234, 0.72);
   --aura-a: rgba(58, 79, 212, 0.14);
   --aura-b: rgba(15, 159, 150, 0.12);
   --aura-c: rgba(122, 148, 16, 0.1);
