@@ -13,9 +13,21 @@ import { team } from '../content/site';
     <ul class="team__grid">
       {team.members.map((member, index) => (
         <li class="team__member" data-reveal style={`--delay: ${index * 100}ms`}>
-          <span class="team__initial" aria-hidden="true">{member.name.slice(0, 1)}</span>
-          <h3 class="team__name">{member.name}</h3>
-          <p class="mono team__role">{member.role}</p>
+          <div class="team__identity">
+            <img
+              class="team__photo"
+              src={member.photo}
+              alt={member.photoAlt}
+              width="160"
+              height="160"
+              loading="lazy"
+              decoding="async"
+            />
+            <div>
+              <h3 class="team__name">{member.name}</h3>
+              <p class="mono team__role">{member.role}</p>
+            </div>
+          </div>
           <p class="team__bio">{member.bio}</p>
         </li>
       ))}
@@ -45,7 +57,7 @@ import { team } from '../content/site';
 
   .team__member {
     display: grid;
-    gap: var(--s-3);
+    gap: var(--s-5);
     padding: clamp(24px, 3vw, 32px);
     border: 1px solid var(--line);
     border-radius: var(--radius);
@@ -60,27 +72,37 @@ import { team } from '../content/site';
     transform: translateY(-3px);
   }
 
-  .team__initial {
-    display: grid;
-    place-items: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: var(--grad);
-    color: #070a0e;
-    font-family: var(--font-display);
-    font-size: 1.4rem;
-    font-weight: 700;
+  .team__identity {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .team__photo {
+    width: 88px;
+    height: 88px;
+    border-radius: 999px;
+    object-fit: cover;
+    object-position: center top;
+    border: 1px solid var(--line-2);
+    box-shadow:
+      0 0 0 3px rgba(7, 10, 14, 0.65),
+      0 0 28px -8px rgba(91, 108, 255, 0.45);
+    flex-shrink: 0;
   }
 
   .team__name {
-    font-size: clamp(2rem, 1.5rem + 1.8vw, 2.8rem);
+    font-size: clamp(1.85rem, 1.4rem + 1.4vw, 2.4rem);
     letter-spacing: -0.04em;
+  }
+
+  .team__role {
+    margin-top: 4px;
   }
 
   .team__bio {
     color: var(--fg-2);
-    max-width: 40ch;
+    max-width: 42ch;
   }
 
   .team__crew {
@@ -96,6 +118,11 @@ import { team } from '../content/site';
     .team__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--s-5);
+    }
+
+    .team__photo {
+      width: 104px;
+      height: 104px;
     }
   }
 </style>
