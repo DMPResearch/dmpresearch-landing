@@ -1,0 +1,69 @@
+---
+/**
+ * Light / dark / auto theme control.
+ * Preference is stored in localStorage under `dmpr-theme`.
+ */
+---
+
+<div class="theme-switch" role="group" aria-label="Color theme">
+  <button class="theme-switch__btn" type="button" data-theme-set="light" aria-label="Light theme" title="Light">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+    </svg>
+  </button>
+  <button class="theme-switch__btn" type="button" data-theme-set="dark" aria-label="Dark theme" title="Dark">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"></path>
+    </svg>
+  </button>
+  <button class="theme-switch__btn" type="button" data-theme-set="auto" aria-label="System theme" title="Auto">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <rect x="3" y="4" width="18" height="14" rx="2"></rect>
+      <path d="M8 20h8"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  type ThemePref = 'light' | 'dark' | 'auto';
+
+  const KEY = 'dmpr-theme';
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-theme-set]'));
+
+  const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const resolve = (pref: ThemePref) => (pref === 'auto' ? (systemDark() ? 'dark' : 'light') : pref);
+
+  const apply = (pref: ThemePref) => {
+    const resolved = resolve(pref);
+    document.documentElement.setAttribute('data-theme', pref);
+    document.documentElement.setAttribute('data-resolved', resolved);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', resolved === 'dark' ? '#070a0e' : '#f4f1ea');
+    buttons.forEach((btn) => {
+      const active = btn.dataset.themeSet === pref;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', String(active));
+    });
+  };
+
+  const read = (): ThemePref => {
+    const raw = localStorage.getItem(KEY);
+    return raw === 'light' || raw === 'dark' || raw === 'auto' ? raw : 'auto';
+  };
+
+  apply(read());
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pref = btn.dataset.themeSet as ThemePref;
+      localStorage.setItem(KEY, pref);
+      apply(pref);
+    });
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (read() === 'auto') apply('auto');
+  });
+</script>

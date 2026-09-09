@@ -1,6 +1,4 @@
-/* DMPResearch — dark cinematic instrument panel.
-   Graphite void + luminous blue/teal/olive gradient from the brand mark.
-   Not editorial cream. Not purple AI slop. */
+/* DMPResearch — cinematic studio site with light / dark / auto themes. */
 
 @font-face {
   font-family: 'Bricolage Grotesque';
@@ -26,7 +24,8 @@
   src: url('/fonts/geist-mono-latin.woff2') format('woff2-variations');
 }
 
-:root {
+:root,
+html[data-resolved='dark'] {
   color-scheme: dark;
 
   --bg: #070a0e;
@@ -36,7 +35,7 @@
   --fg: #eef3ec;
   --fg-2: rgba(238, 243, 236, 0.72);
   --fg-3: rgba(238, 243, 236, 0.45);
-  --on-light: #070a0e;
+  --on-solid: #070a0e;
 
   --line: rgba(238, 243, 236, 0.09);
   --line-2: rgba(238, 243, 236, 0.16);
@@ -44,9 +43,18 @@
   --blue: #5b6cff;
   --teal: #2fd6c8;
   --olive: #b6d12a;
-  --violet: #8b5cf6;
   --grad: linear-gradient(115deg, #5b6cff 0%, #2fd6c8 48%, #b6d12a 100%);
-  --grad-soft: linear-gradient(135deg, rgba(91, 108, 255, 0.35), rgba(47, 214, 200, 0.18), rgba(182, 209, 42, 0.22));
+
+  --header-bg: rgba(7, 10, 14, 0.78);
+  --header-bg-idle: transparent;
+  --aura-a: rgba(91, 108, 255, 0.22);
+  --aura-b: rgba(47, 214, 200, 0.14);
+  --aura-c: rgba(182, 209, 42, 0.1);
+  --grain-opacity: 0.045;
+  --path-text: rgba(238, 243, 236, 0.78);
+  --chip-bg: rgba(14, 20, 27, 0.72);
+  --card-chrome: rgba(255, 255, 255, 0.03);
+  --solid-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 18px 40px -20px rgba(91, 108, 255, 0.55);
 
   --font-display: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
   --font-body: 'Geist', 'Helvetica Neue', Arial, sans-serif;
@@ -70,18 +78,55 @@
   --s-8: 72px;
   --s-9: 112px;
   --section: clamp(96px, 12vw, 168px);
+  --header-h: 68px;
 
   --container: 1180px;
   --gutter: clamp(20px, 4.2vw, 48px);
   --measure: 54ch;
   --radius: 16px;
-  --radius-sm: 10px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --shadow-frame:
     0 1px 0 rgba(255, 255, 255, 0.08) inset,
     0 28px 80px -36px rgba(0, 0, 0, 0.9),
     0 8px 28px -12px rgba(0, 0, 0, 0.55);
+}
+
+html[data-resolved='light'] {
+  color-scheme: light;
+
+  --bg: #f4f1ea;
+  --bg-2: #ebe6dc;
+  --bg-3: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --fg: #12161c;
+  --fg-2: rgba(18, 22, 28, 0.72);
+  --fg-3: rgba(18, 22, 28, 0.48);
+  --on-solid: #f4f1ea;
+
+  --line: rgba(18, 22, 28, 0.1);
+  --line-2: rgba(18, 22, 28, 0.16);
+
+  --blue: #3a4fd4;
+  --teal: #0f9f96;
+  --olive: #7a9410;
+  --grad: linear-gradient(115deg, #3a4fd4 0%, #0f9f96 48%, #7a9410 100%);
+
+  --header-bg: rgba(244, 241, 234, 0.86);
+  --header-bg-idle: transparent;
+  --aura-a: rgba(58, 79, 212, 0.14);
+  --aura-b: rgba(15, 159, 150, 0.12);
+  --aura-c: rgba(122, 148, 16, 0.1);
+  --grain-opacity: 0.03;
+  --path-text: rgba(18, 22, 28, 0.62);
+  --chip-bg: rgba(255, 255, 255, 0.78);
+  --card-chrome: rgba(18, 22, 28, 0.03);
+  --solid-shadow: 0 0 0 1px rgba(18, 22, 28, 0.06), 0 18px 40px -20px rgba(58, 79, 212, 0.35);
+
+  --shadow-frame:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 28px 70px -36px rgba(18, 22, 28, 0.28),
+    0 8px 24px -12px rgba(18, 22, 28, 0.16);
 }
 
 *,
@@ -94,7 +139,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: calc(var(--header-h) + 24px);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -108,9 +153,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+  transition: background-color 220ms var(--ease), color 220ms var(--ease);
 }
 
-/* Ambient field + film grain */
 body::before {
   content: '';
   position: fixed;
@@ -118,9 +163,9 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 70% 50% at 15% -10%, rgba(91, 108, 255, 0.22), transparent 55%),
-    radial-gradient(ellipse 55% 45% at 95% 8%, rgba(47, 214, 200, 0.14), transparent 50%),
-    radial-gradient(ellipse 50% 40% at 70% 100%, rgba(182, 209, 42, 0.1), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 15% -10%, var(--aura-a), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 95% 8%, var(--aura-b), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 70% 100%, var(--aura-c), transparent 55%),
     var(--bg);
 }
 
@@ -130,7 +175,7 @@ body::after {
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  opacity: 0.045;
+  opacity: var(--grain-opacity);
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -194,12 +239,12 @@ p {
 }
 
 ::selection {
-  background: rgba(47, 214, 200, 0.35);
+  background: color-mix(in srgb, var(--teal) 35%, transparent);
   color: var(--fg);
 }
 
 section[id] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: calc(var(--header-h) + 20px);
 }
 
 .container {
@@ -243,7 +288,7 @@ section[id] {
   height: 8px;
   border-radius: 50%;
   background: var(--grad);
-  box-shadow: 0 0 16px rgba(47, 214, 200, 0.55);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--teal) 55%, transparent);
 }
 
 .rule-grad {
@@ -280,13 +325,12 @@ section[id] {
 
 .btn--solid {
   background: var(--fg);
-  color: var(--on-light);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 18px 40px -20px rgba(91, 108, 255, 0.55);
+  color: var(--on-solid);
+  box-shadow: var(--solid-shadow);
 }
 
 .btn--solid:hover {
-  background: #fff;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12), 0 22px 48px -18px rgba(47, 214, 200, 0.45);
+  filter: brightness(1.05);
 }
 
 .btn--ghost {
@@ -296,8 +340,8 @@ section[id] {
 }
 
 .btn--ghost:hover {
-  border-color: rgba(47, 214, 200, 0.55);
-  background: rgba(47, 214, 200, 0.06);
+  border-color: color-mix(in srgb, var(--teal) 55%, transparent);
+  background: color-mix(in srgb, var(--teal) 6%, transparent);
 }
 
 .btn__arrow {
@@ -332,7 +376,7 @@ section[id] {
   z-index: 0;
   pointer-events: none;
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.55;
   filter: blur(70px);
   background: radial-gradient(closest-side, var(--tint, var(--teal)), transparent 72%);
 }
@@ -357,16 +401,30 @@ section[id] {
   opacity: 0.55;
 }
 
-.frame__window img {
+html[data-resolved='light'] .frame__window::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+}
+
+.frame__window img,
+.theme-shot {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top left;
-  transition: transform 700ms var(--ease);
 }
 
-.frame:hover .frame__window img {
+.theme-shot {
+  display: none;
+}
+
+html[data-resolved='light'] .theme-shot--light,
+html[data-resolved='dark'] .theme-shot--dark {
+  display: block;
+}
+
+.frame:hover .theme-shot {
   transform: scale(1.025);
+  transition: transform 700ms var(--ease);
 }
 
 .frame--blue {
@@ -377,7 +435,42 @@ section[id] {
   --tint: var(--olive);
 }
 
-/* Scroll reveal with blur lift */
+/* Theme switcher */
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-2) 80%, transparent);
+}
+
+.theme-switch__btn {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  color: var(--fg-3);
+  transition: color 160ms var(--ease), background 160ms var(--ease);
+}
+
+.theme-switch__btn:hover {
+  color: var(--fg);
+}
+
+.theme-switch__btn.is-active {
+  color: var(--fg);
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.theme-switch__btn svg {
+  width: 16px;
+  height: 16px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
     opacity: 0.35;

@@ -39,7 +39,8 @@ export interface Product {
   name: string;
   tint: 'blue' | 'olive';
   mark: string;
-  image: string;
+  imageLight: string;
+  imageDark: string;
   imageAlt: string;
   title: string;
   text: string;
@@ -55,7 +56,8 @@ export const products: Product[] = [
     name: 'Flowstarter',
     tint: 'blue',
     mark: '/flowstarter.svg',
-    image: '/images/flowstarter-site.webp',
+    imageLight: '/images/flowstarter-site-light.webp',
+    imageDark: '/images/flowstarter-site-dark.webp',
     imageAlt: 'Screenshot of the Flowstarter website',
     title: 'The virtual software factory for service businesses.',
     text: 'We design and ship a premium site, then hand over a constrained AI editor so the client keeps it current without breaking it. Plan first. Assemble from vetted blocks. Escalate when architecture needs a human.',
@@ -77,7 +79,8 @@ export const products: Product[] = [
     name: 'Ereno',
     tint: 'olive',
     mark: '/ereno.svg',
-    image: '/images/ereno-site.webp',
+    imageLight: '/images/ereno-site-light.webp',
+    imageDark: '/images/ereno-site-dark.webp',
     imageAlt: 'Screenshot of the Ereno website',
     title: 'Trusted planning for trips and base decisions.',
     text: 'Ereno is the Ask Sage travel wedge: research with sources, compare options, hold constraints, and help you choose. Transparent assumptions. No booking promises. You book with the provider.',

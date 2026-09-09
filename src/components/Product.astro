@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { product, layout } = Astro.props;
-const { id, index, name, tint, mark, image, imageAlt, title, text, points, link, facts } = product;
+const { id, index, name, tint, mark, imageLight, imageDark, imageAlt, title, text, points, link, facts } = product;
 ---
 
 <section
@@ -42,7 +42,8 @@ const { id, index, name, tint, mark, image, imageAlt, title, text, points, link,
           <i></i><i></i><i></i>
           <span>{link.href.replace(/^https?:\/\//, '')}</span>
         </div>
-        <img src={image} width="1288" height="1120" alt={imageAlt} loading="lazy" decoding="async" />
+        <img class="theme-shot theme-shot--light" src={imageLight} width="1288" height="900" alt={imageAlt} loading="lazy" decoding="async" />
+        <img class="theme-shot theme-shot--dark" src={imageDark} width="1288" height="900" alt={imageAlt} loading="lazy" decoding="async" />
       </div>
     </figure>
 
@@ -184,7 +185,7 @@ const { id, index, name, tint, mark, image, imageAlt, title, text, points, link,
     aspect-ratio: 16 / 10;
   }
 
-  .product__frame .frame__window img {
+  .product__frame .frame__window .theme-shot {
     aspect-ratio: 16 / 10;
   }
 
@@ -208,7 +209,7 @@ const { id, index, name, tint, mark, image, imageAlt, title, text, points, link,
 
   @media (min-width: 900px) {
     .product--wide .product__frame .frame__window,
-    .product--wide .product__frame .frame__window img {
+    .product--wide .product__frame .frame__window .theme-shot {
       aspect-ratio: 21 / 10;
     }
 
@@ -238,7 +239,7 @@ const { id, index, name, tint, mark, image, imageAlt, title, text, points, link,
     }
 
     .product--split .product__frame .frame__window,
-    .product--split .product__frame .frame__window img {
+    .product--split .product__frame .frame__window .theme-shot {
       aspect-ratio: 4 / 3.5;
     }
 

@@ -36,7 +36,18 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     <link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/geist-latin.woff2" crossorigin />
     <script is:inline>
-      document.documentElement.classList.add('js');
+      (function () {
+        document.documentElement.classList.add('js');
+        var key = 'dmpr-theme';
+        var pref = localStorage.getItem(key);
+        if (pref !== 'light' && pref !== 'dark' && pref !== 'auto') pref = 'auto';
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolved = pref === 'auto' ? (dark ? 'dark' : 'light') : pref;
+        document.documentElement.setAttribute('data-theme', pref);
+        document.documentElement.setAttribute('data-resolved', resolved);
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', resolved === 'dark' ? '#070a0e' : '#f4f1ea');
+      })();
     </script>
   </head>
   <body>
@@ -74,7 +85,7 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     z-index: 200;
     padding: 10px 14px;
     background: var(--fg);
-    color: var(--on-light);
+    color: var(--on-solid);
     font-size: var(--t-small);
     border-radius: 999px;
     transform: translateY(-200%);
