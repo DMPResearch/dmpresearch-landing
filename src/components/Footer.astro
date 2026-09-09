@@ -20,7 +20,12 @@ const year = new Date().getFullYear();
       </ul>
     </nav>
 
-    <p class="mono footer__copy">© {year} DMPResearch · Gretly ecosystem</p>
+    <p class="mono footer__copy">
+      © {year} DMPResearch ·{' '}
+      <a class="footer__built" href={footer.builtWith.href} target="_blank" rel="noopener">
+        {footer.builtWith.label}
+      </a>
+    </p>
   </div>
 </footer>
 
@@ -72,6 +77,15 @@ const year = new Date().getFullYear();
     flex-basis: 100%;
     text-transform: none;
     letter-spacing: 0.02em;
+  }
+
+  .footer__built {
+    color: var(--teal);
+    transition: color 160ms var(--ease);
+  }
+
+  .footer__built:hover {
+    color: var(--fg);
   }
 
   @media (min-width: 820px) {

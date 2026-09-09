@@ -21,14 +21,14 @@ import ThemeSwitch from './ThemeSwitch.astro';
           </li>
         ))}
         <li class="header__list-cta">
-          <a class="header__link" href={contact.href}>{contact.label}</a>
+          <a class="header__link" href={contact.sectionHref}>{contact.bookLabel}</a>
         </li>
       </ul>
     </nav>
 
     <div class="header__tools">
       <ThemeSwitch />
-      <a class="btn btn--solid header__cta" href={contact.href}>{contact.label}</a>
+      <a class="btn btn--solid header__cta" href={contact.sectionHref}>{contact.bookLabel}</a>
       <button class="header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="header__toggle-open">Menu</span>
         <span class="header__toggle-close">Close</span>
@@ -95,12 +95,20 @@ import ThemeSwitch from './ThemeSwitch.astro';
     sections.forEach((section) => spy.observe(section));
   }
 
-  // Soft header elevation after scroll.
+  // Soft header elevation after scroll + keep --header-h honest for anchors.
+  const syncHeaderHeight = () => {
+    if (!header) return;
+    const height = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--header-h', `${height}px`);
+  };
+
   const onScroll = () => {
     header?.classList.toggle('is-scrolled', window.scrollY > 12);
   };
   onScroll();
+  syncHeaderHeight();
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', syncHeaderHeight, { passive: true });
 </script>
 
 <style>

@@ -1,14 +1,17 @@
 export const contact = {
   email: 'hello@flowstarter.dev',
   href: 'mailto:hello@flowstarter.dev?subject=Build%20with%20DMPResearch',
+  sectionHref: '#contact',
   github: 'https://github.com/DMPResearch',
   label: 'Build with us',
+  bookLabel: 'Book a call',
+  calendlyUrl: 'https://calendly.com/flowstarter-app/discovery',
 };
 
 export const meta = {
-  title: 'DMPResearch — We make AI work for real products',
+  title: 'DMPResearch — Custom software, built with AI agents',
   description:
-    'DMPResearch is Darius and Dorin. We use AI agents to help build amazing products. Flowstarter, Ereno and client work are live. Tell us what you want built.',
+    'DMPResearch builds custom software for you. Darius and Dorin use AI agents to ship faster. Book a call or write hello@flowstarter.dev.',
 };
 
 export const nav = [
@@ -24,7 +27,7 @@ export const hero = {
   titleLead: 'We make AI work for us.',
   titleAccent: 'You can have that too.',
   text: 'Darius and Dorin ship real products with AI agents in the loop. Agents accelerate the work. We keep the judgment. If you want something built the same way, talk to us.',
-  primary: { label: 'Build with us', href: '#contact' },
+  primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See what we shipped', href: '#products' },
   facts: [
     { value: '2', label: 'Live products' },
@@ -193,8 +196,11 @@ export const team = {
 };
 
 export const cta = {
-  title: 'Want a product built this way?',
-  text: 'Tell us what you are trying to ship. We will say honestly whether agents and a two-person studio are the right fit.',
+  title: 'We build custom software for you.',
+  text: 'Book a call and tell us what you need. We use AI agents to help ship products faster, with Darius and Dorin steering every material decision.',
+  bookHint: 'Pick a time that works. Thirty minutes is enough to see if we are a fit.',
+  formTitle: 'Prefer to write?',
+  formText: 'Send a short note and we will reply by email.',
   formSuccess: 'Thanks. We got your message and will reply soon.',
   fields: {
     name: 'Name',
@@ -206,6 +212,10 @@ export const cta = {
 };
 
 export const footer = {
+  builtWith: {
+    label: 'Built with Flowstarter',
+    href: 'https://flowstarter.net',
+  },
   links: [
     { label: 'Flowstarter', href: 'https://flowstarter.net' },
     { label: 'Ereno', href: 'https://ereno.flowstarter.dev' },
