@@ -6,30 +6,30 @@ export const contact = {
 };
 
 export const meta = {
-  title: 'DMPResearch — Products for the Gretly ecosystem',
+  title: 'DMPResearch — We make AI work for real products',
   description:
-    'DMPResearch is Darius and Dorin. We ship specialized AI products with agents in the loop and humans at the wheel. Flowstarter and Ereno are live. Gretly is the long-term ecosystem.',
+    'DMPResearch is Darius and Dorin. We use AI agents to help build amazing products. Flowstarter, Ereno and client work are live. Tell us what you want built.',
 };
 
 export const nav = [
   { label: 'Products', href: '#products' },
-  { label: 'Gretly', href: '#gretly' },
+  { label: 'Work', href: '#work' },
   { label: 'Method', href: '#method' },
   { label: 'Team', href: '#team' },
   { label: 'Contact', href: '#contact' },
 ];
 
 export const hero = {
-  kicker: 'DMPResearch · Gretly ecosystem',
-  titleLead: 'Specialized AI products.',
-  titleAccent: 'Humans when it matters.',
-  text: 'We are Darius and Dorin. Agents research, draft and scaffold. We decide what ships. Flowstarter and Ereno are live. Gretly is the long bet.',
-  primary: { label: 'Build with us', href: contact.href },
-  secondary: { label: 'See live products', href: '#products' },
+  kicker: 'DMPResearch · two-person studio',
+  titleLead: 'We make AI work for us.',
+  titleAccent: 'You can have that too.',
+  text: 'Darius and Dorin ship real products with AI agents in the loop. Agents accelerate the work. We keep the judgment. If you want something built the same way, talk to us.',
+  primary: { label: 'Build with us', href: '#contact' },
+  secondary: { label: 'See what we shipped', href: '#products' },
   facts: [
     { value: '2', label: 'Live products' },
+    { value: '3+', label: 'Client sites' },
     { value: '2', label: 'People' },
-    { value: '1', label: 'Shared engine vision' },
   ],
 };
 
@@ -60,7 +60,7 @@ export const products: Product[] = [
     imageDark: '/images/flowstarter-site-dark.webp',
     imageAlt: 'Screenshot of the Flowstarter website',
     title: 'The virtual software factory for service businesses.',
-    text: 'We design and ship a premium site, then hand over a constrained AI editor so the client keeps it current without breaking it. Plan first. Assemble from vetted blocks. Escalate when architecture needs a human.',
+    text: 'We design and ship a premium site, then hand over a constrained AI editor so the client keeps it current without breaking it.',
     points: [
       'Discovery to a live site, handled by the studio',
       'Constrained AI editing for safe ongoing care',
@@ -83,55 +83,65 @@ export const products: Product[] = [
     imageDark: '/images/ereno-site-dark.webp',
     imageAlt: 'Screenshot of the Ereno website',
     title: 'Trusted planning for trips and base decisions.',
-    text: 'Ereno is the Ask Sage travel wedge: research with sources, compare options, hold constraints, and help you choose. Transparent assumptions. No booking promises. You book with the provider.',
+    text: 'A conversational companion for trip planning and base scouting. Research with sources, compare options, keep trade-offs visible. You book with the provider.',
     points: [
       'Trips and base scouting in one conversation',
-      'Evidence, trade-offs and uncertainty kept visible',
-      'Structured briefs that other Gretly products can execute later',
+      'Evidence and trade-offs kept visible',
+      'No booking promises',
     ],
     link: { label: 'Visit ereno.flowstarter.dev', href: 'https://ereno.flowstarter.dev' },
     facts: [
       { term: 'Status', detail: 'Live' },
       { term: 'Wedge', detail: 'Travel planning' },
-      { term: 'Family', detail: 'Ask Sage / Gretly' },
+      { term: 'Studio', detail: 'DMPResearch' },
     ],
   },
 ];
 
-export const gretly = {
-  kicker: 'The long game',
-  title: 'Gretly is an ecosystem of specialized smart applications.',
-  text: 'Not one vague super-app. A family of focused products that share a compounding intelligence layer: the Gretly Engine. Each vertical earns the right to exist before the next one launches.',
-  sentence:
-    'Gretly turns user intent into trustworthy plans and actions, and brings in qualified people when automation reaches its safe boundary.',
-  principles: [
+export const work = {
+  kicker: 'Also built',
+  title: 'Sites we shipped for real clients.',
+  text: 'Beyond our own products, these are live builds from the Flowstarter practice. Same standard: agents accelerate, we sign off.',
+  items: [
     {
-      title: 'Vertical excellence first',
-      text: 'Become one of the strongest options in a narrow category before expanding.',
+      id: 'ux-journey',
+      title: 'UX Journey',
+      meta: 'Coaching · Live · 2026',
+      kicker: 'A senior UX coaching practice. Copy, calendar and credibility on one domain.',
+      image: '/images/work/ux-journey.webp',
+      href: 'https://ux-journey.com/',
+      hrefLabel: 'ux-journey.com',
     },
     {
-      title: 'Structured AI',
-      text: 'Schemas, plans, tools, verification. Not unconstrained improvisation.',
+      id: 'lebadusul',
+      title: 'Lebădușul',
+      meta: 'Retail · Live · 2026',
+      kicker: 'A Danube-side tackle shop. Catalog, checkout and logistics copy for serious anglers.',
+      image: '/images/work/lebadusul.webp',
+      href: 'https://lebadusularticoledepescuit.ro/',
+      hrefLabel: 'lebadusularticoledepescuit.ro',
     },
     {
-      title: 'Truthful boundaries',
-      text: 'Show what is known, inferred, uncertain, and when a human is required.',
-    },
-    {
-      title: 'Human expertise as a layer',
-      text: 'Escalation is designed into workflows and pricing, not treated as failure.',
+      id: 'dorin-portfolio',
+      title: 'Creative Portfolio',
+      meta: 'Portfolio · Starter · Live',
+      kicker: "Dorin's portfolio starter. Launch something credible fast from the Flowstarter library.",
+      image: '/images/work/dorin-portfolio.webp',
+      href: 'https://flowstarter.net/library/templates/dorin-portfolio',
+      hrefLabel: 'View in Flowstarter library',
     },
   ],
-  products: [
-    { name: 'Ask Sage / Ereno', status: 'Live wedge', note: 'Trusted planning' },
-    { name: 'Flowstarter', status: 'Live wedge', note: 'Virtual software factory' },
-    { name: 'FeelTunes', status: 'Later', note: 'Adaptive music and wellbeing' },
-    { name: 'Gretly Learning', status: 'Later', note: 'AI-assisted education' },
-    { name: 'Gretly Fitness', status: 'Later', note: 'Coaching with real trainers' },
-    { name: 'Gretly Finance', status: 'Later', note: 'Guidance with licensed experts' },
+};
+
+export const ambition = {
+  kicker: 'What we believe',
+  title: 'Make AI work for us. Build products people can feel.',
+  text: 'We use agents to research, draft and scaffold so we can ship faster without lowering the bar. The same setup can build your product. Contact us and tell us what you need.',
+  points: [
+    { title: 'Agents accelerate', text: 'Research, drafts, scaffolding and iteration loops in parallel.' },
+    { title: 'We steer', text: 'Taste, architecture and the last mile stay with Darius and Dorin.' },
+    { title: 'You get a product', text: 'Not a deck. A live surface you can use, own and improve.' },
   ],
-  engine:
-    'The Gretly Engine extracts only after multiple products prove the same primitives: identity, planning, tools, verification, billing, and human escalation.',
 };
 
 export const method = {
@@ -183,8 +193,16 @@ export const team = {
 };
 
 export const cta = {
-  title: 'Have a product you need built?',
-  text: 'Tell us what you are trying to ship. We will say honestly whether a two-person studio with agents in the loop is the right fit, and how Gretly-shaped thinking would apply.',
+  title: 'Want a product built this way?',
+  text: 'Tell us what you are trying to ship. We will say honestly whether agents and a two-person studio are the right fit.',
+  formSuccess: 'Thanks. We got your message and will reply soon.',
+  fields: {
+    name: 'Name',
+    email: 'Email',
+    company: 'Company (optional)',
+    message: 'What do you want built?',
+    submit: 'Send message',
+  },
 };
 
 export const footer = {

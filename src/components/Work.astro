@@ -1,0 +1,120 @@
+---
+import { work } from '../content/site';
+---
+
+<section class="work section" id="work" aria-labelledby="work-title">
+  <div class="container">
+    <header class="work__head" data-reveal>
+      <p class="kicker">{work.kicker}</p>
+      <h2 id="work-title">{work.title}</h2>
+      <p class="lede">{work.text}</p>
+    </header>
+
+    <ul class="work__grid">
+      {work.items.map((item, index) => (
+        <li class="work__card" data-reveal style={`--delay: ${index * 90}ms`}>
+          <a class="work__link" href={item.href} target="_blank" rel="noopener noreferrer">
+            <figure class="work__frame">
+              <img
+                src={item.image}
+                alt={`Screenshot of ${item.title}`}
+                width="1440"
+                height="900"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="work__copy">
+              <p class="mono work__meta">{item.meta}</p>
+              <h3>{item.title}</h3>
+              <p>{item.kicker}</p>
+              <span class="work__href">{item.hrefLabel} ↗</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .work {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .work__head {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 640px;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+
+  .work__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+
+  .work__card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-2);
+    transition: border-color 200ms var(--ease), transform 200ms var(--ease);
+  }
+
+  .work__card:hover {
+    border-color: var(--line-2);
+    transform: translateY(-3px);
+  }
+
+  .work__link {
+    display: grid;
+  }
+
+  .work__frame {
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-3);
+  }
+
+  .work__frame img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 700ms var(--ease);
+  }
+
+  .work__card:hover .work__frame img {
+    transform: scale(1.03);
+  }
+
+  .work__copy {
+    display: grid;
+    gap: 10px;
+    padding: 22px;
+  }
+
+  .work__copy h3 {
+    font-size: 1.45rem;
+  }
+
+  .work__copy p:not(.work__meta) {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .work__href {
+    margin-top: 4px;
+    font-size: 0.88rem;
+    font-weight: 550;
+    color: var(--teal);
+  }
+
+  @media (min-width: 900px) {
+    .work__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

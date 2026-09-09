@@ -1,0 +1,80 @@
+---
+import { ambition } from '../content/site';
+---
+
+<section class="ambition section" id="ambition" aria-labelledby="ambition-title">
+  <div class="container">
+    <header class="ambition__head" data-reveal>
+      <p class="kicker">{ambition.kicker}</p>
+      <h2 id="ambition-title">{ambition.title}</h2>
+      <p class="lede">{ambition.text}</p>
+    </header>
+
+    <ul class="ambition__grid">
+      {ambition.points.map((item, index) => (
+        <li class="ambition__card" data-reveal style={`--delay: ${index * 80}ms`}>
+          <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ul>
+
+    <p class="ambition__cta" data-reveal>
+      <a class="btn btn--solid" href="#contact">
+        Contact us
+        <span class="btn__arrow" aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .ambition {
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse 55% 40% at 80% 0%, color-mix(in srgb, var(--blue) 14%, transparent), transparent 60%),
+      radial-gradient(ellipse 45% 35% at 10% 100%, color-mix(in srgb, var(--olive) 10%, transparent), transparent 55%);
+  }
+
+  .ambition__head {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 720px;
+    margin-bottom: clamp(40px, 6vw, 64px);
+  }
+
+  .ambition__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  .ambition__card {
+    display: grid;
+    gap: 12px;
+    padding: 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: color-mix(in srgb, var(--bg-2) 88%, transparent);
+  }
+
+  .ambition__card h3 {
+    font-size: 1.25rem;
+  }
+
+  .ambition__card p {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .ambition__cta {
+    margin-top: var(--s-7);
+  }
+
+  @media (min-width: 800px) {
+    .ambition__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
