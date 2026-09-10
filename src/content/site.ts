@@ -20,7 +20,7 @@ export const pages = {
   about: {
     title: 'About | DMPResearch',
     description:
-      'DMPResearch is led by Darius and Dorin, with specialists for testing, marketing, and social, plus AI agents on the grind work. Read who we are and where we are headed.',
+      'DMPResearch is a human team led by Darius and Dorin, with specialists for testing, marketing, and social. AI agents help with the grind. Read who we are and where we are headed.',
   },
   investors: {
     title: 'Investors | DMPResearch',
@@ -233,7 +233,7 @@ export const investors = {
 export const about = {
   kicker: 'About',
   title: 'A small studio with humans in charge.',
-  lead: 'DMPResearch is led by Darius and Dorin, with specialists for testing, marketing, and social, plus AI agents on the grind work. We decide what ships.',
+  lead: 'DMPResearch is a human team: Darius and Dorin lead, with a tester, a digital marketer, and a social media specialist. AI agents help with research, drafts, and scaffolding. People decide what ships.',
   story: [
     {
       title: 'Why we exist',
@@ -286,8 +286,8 @@ export const method = {
 
 export const team = {
   kicker: 'The team',
-  title: 'A small crew. You still know who you are talking to.',
-  text: 'Darius and Dorin lead product, engineering, and design. Alongside them we have a tester, a digital marketer, and a social media specialist. Agents handle volume work. People make the calls.',
+  title: 'A small human crew. Agents help. People decide.',
+  text: 'Darius and Dorin lead product, engineering, and design. The team also includes a human tester, a digital marketer, and a social media specialist. Separately, AI agents research, draft, and scaffold so the humans move faster.',
   members: [
     {
       name: 'Darius',
@@ -312,6 +312,7 @@ export const team = {
       },
     },
   ],
+  specialistsKicker: 'Also human',
   specialists: [
     {
       role: 'Tester',
@@ -326,7 +327,8 @@ export const team = {
       text: 'Owns the public voice across channels so the studio shows up clearly without drowning in content churn.',
     },
   ],
-  crew: "AI agents research, draft, and scaffold. They don't make decisions.",
+  crewKicker: 'Agent help',
+  crew: "AI agents research, draft, and scaffold. They are tools on the floor, not teammates with authority. They don't make product decisions.",
 };
 
 export const cta = {

@@ -43,17 +43,22 @@ import { team } from '../content/site';
       ))}
     </ul>
 
-    <ul class="team__specialists">
-      {team.specialists.map((person, index) => (
-        <li class="team__specialist card" data-reveal style={`--delay: ${200 + index * 60}ms`}>
-          <p class="mono team__specialist-role">{person.role}</p>
-          <p>{person.text}</p>
-        </li>
-      ))}
-      <li class="team__crew" data-reveal style={`--delay: ${200 + team.specialists.length * 60}ms`}>
-        <p>{team.crew}</p>
-      </li>
-    </ul>
+    <div class="team__block" data-reveal style="--delay: 160ms">
+      <p class="kicker team__block-kicker">{team.specialistsKicker}</p>
+      <ul class="team__specialists">
+        {team.specialists.map((person, index) => (
+          <li class="team__specialist card" data-reveal style={`--delay: ${200 + index * 60}ms`}>
+            <p class="mono team__specialist-role">{person.role}</p>
+            <p>{person.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <aside class="team__crew card" data-reveal style={`--delay: ${200 + team.specialists.length * 60}ms`}>
+      <p class="kicker team__block-kicker">{team.crewKicker}</p>
+      <p>{team.crew}</p>
+    </aside>
   </div>
 </section>
 
@@ -69,8 +74,13 @@ import { team } from '../content/site';
     gap: var(--s-4);
   }
 
-  .team__specialists {
-    margin-top: var(--s-4);
+  .team__block,
+  .team__crew {
+    margin-top: var(--s-5);
+  }
+
+  .team__block-kicker {
+    margin-bottom: var(--s-4);
   }
 
   .team__member {
@@ -143,10 +153,9 @@ import { team } from '../content/site';
 
   .team__crew {
     display: grid;
-    align-content: center;
+    gap: 10px;
     padding: 20px 22px;
-    border: 1px dashed var(--line-2);
-    border-radius: var(--radius);
+    border-style: dashed;
     color: var(--fg-2);
     font-size: var(--t-small);
   }
@@ -157,7 +166,7 @@ import { team } from '../content/site';
     }
 
     .team__specialists {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .team__photo {
@@ -168,7 +177,7 @@ import { team } from '../content/site';
 
   @media (min-width: 1024px) {
     .team__specialists {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>
