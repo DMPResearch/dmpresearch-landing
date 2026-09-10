@@ -10,10 +10,10 @@ import { ambition } from '../content/site';
         <h2 id="ambition-title">{ambition.title}</h2>
         <p class="lede">{ambition.text}</p>
         <p class="ambition__cta">
-          <a class="btn btn--solid" href={ambition.cta.href}>
+          <button class="btn btn--solid" type="button" data-calendly-open>
             {ambition.cta.label}
             <span class="btn__arrow" aria-hidden="true">→</span>
-          </a>
+          </button>
         </p>
       </header>
 

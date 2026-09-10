@@ -21,14 +21,16 @@ import ThemeSwitch from './ThemeSwitch.astro';
           </li>
         ))}
         <li class="header__list-cta">
-          <a class="header__link" href={contact.sectionHref}>{contact.bookLabel}</a>
+          <button class="header__link" type="button" data-calendly-open>{contact.bookLabel}</button>
         </li>
       </ul>
     </nav>
 
     <div class="header__tools">
       <ThemeSwitch />
-      <a class="btn btn--solid header__cta" href={contact.sectionHref}>{contact.bookLabel}</a>
+      <button class="btn btn--solid header__cta" type="button" data-calendly-open>
+        {contact.bookLabel}
+      </button>
       <button class="header__toggle" type="button" aria-expanded="false" aria-controls="site-nav">
         <span class="header__toggle-open">Menu</span>
         <span class="header__toggle-close">Close</span>
@@ -189,6 +191,9 @@ import ThemeSwitch from './ThemeSwitch.astro';
     font-weight: 500;
     color: var(--fg-3);
     border-radius: 999px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
     transition: color 160ms var(--ease), background 160ms var(--ease);
   }
 

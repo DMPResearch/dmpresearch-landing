@@ -52,10 +52,10 @@ const [flowstarter, ereno] = products;
       <p class="lede hero__text">{hero.text}</p>
 
       <div class="hero__actions">
-        <a class="btn btn--solid" href={hero.primary.href}>
+        <button class="btn btn--solid" type="button" data-calendly-open>
           {hero.primary.label}
           <span class="btn__arrow" aria-hidden="true">→</span>
-        </a>
+        </button>
         <a class="btn btn--ghost" href={hero.secondary.href}>{hero.secondary.label}</a>
       </div>
 

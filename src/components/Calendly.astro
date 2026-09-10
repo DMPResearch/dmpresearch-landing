@@ -1,0 +1,59 @@
+---
+import { contact } from '../content/site';
+---
+
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script define:vars={{ calendlyUrl: contact.calendlyUrl, bookFallback: contact.bookFallback }}>
+  const themed = {
+    dark: 'background_color=0e141b&text_color=eef3ec&primary_color=2fd6c8',
+    light: 'background_color=ffffff&text_color=12161c&primary_color=0f9f96',
+  };
+
+  const bookingUrl = () => {
+    const resolved =
+      document.documentElement.getAttribute('data-resolved') === 'dark' ? 'dark' : 'light';
+    return `${calendlyUrl}?hide_gdpr_banner=1&${themed[resolved]}`;
+  };
+
+  const openPopup = () => {
+    const calendly = window.Calendly;
+    if (calendly?.initPopupWidget) {
+      calendly.initPopupWidget({ url: bookingUrl() });
+      return true;
+    }
+    return false;
+  };
+
+  const openCalendly = (event) => {
+    event?.preventDefault?.();
+    if (openPopup()) return;
+
+    // Widget.js is async; retry briefly before falling back to a new tab.
+    const started = Date.now();
+    const wait = window.setInterval(() => {
+      if (openPopup() || Date.now() - started > 2500) {
+        window.clearInterval(wait);
+        if (!window.Calendly?.initPopupWidget) {
+          window.open(calendlyUrl, '_blank', 'noopener,noreferrer');
+        }
+      }
+    }, 100);
+  };
+
+  const bind = () => {
+    document.querySelectorAll('[data-calendly-open]').forEach((el) => {
+      if (el.dataset.calendlyBound === '1') return;
+      el.dataset.calendlyBound = '1';
+      el.addEventListener('click', openCalendly);
+    });
+  };
+
+  bind();
+  document.addEventListener('astro:page-load', bind);
+
+  // Expose for late-rendered controls and fallbacks.
+  window.dmprOpenCalendly = openCalendly;
+  window.dmprCalendlyFallback = bookFallback;
+</script>

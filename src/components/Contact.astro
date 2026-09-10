@@ -19,23 +19,7 @@ import { contact, cta } from '../content/site';
       <p class="contact__hint">{cta.bookHint}</p>
     </div>
 
-    <div class="contact__book" data-reveal style="--delay: 80ms">
-      <div
-        class="calendly-inline-widget contact__calendly"
-        data-url={`${contact.calendlyUrl}?hide_gdpr_banner=1`}
-        role="region"
-        aria-label={contact.bookLabel}
-      ></div>
-      <noscript>
-        <p>
-          <a href={contact.calendlyUrl} target="_blank" rel="noopener noreferrer">
-            {contact.bookFallback}
-          </a>
-        </p>
-      </noscript>
-    </div>
-
-    <div class="contact__write" data-reveal style="--delay: 120ms">
+    <div class="contact__write" data-reveal style="--delay: 100ms">
       <div class="contact__write-head">
         <h3>{cta.formTitle}</h3>
         <p>{cta.formText}</p>
@@ -88,21 +72,7 @@ import { contact, cta } from '../content/site';
   </div>
 </section>
 
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-
-<script define:vars={{ calendlyUrl: contact.calendlyUrl }}>
-  // Match the embedded Calendly to the resolved theme before widget.js initializes it.
-  const themed = {
-    dark: 'background_color=0e141b&text_color=eef3ec&primary_color=2fd6c8',
-    light: 'background_color=ffffff&text_color=12161c&primary_color=0f9f96',
-  };
-  const resolved = document.documentElement.getAttribute('data-resolved') === 'dark' ? 'dark' : 'light';
-  const inline = document.querySelector('.calendly-inline-widget');
-  if (inline instanceof HTMLElement) {
-    inline.dataset.url = `${calendlyUrl}?hide_gdpr_banner=1&${themed[resolved]}`;
-  }
-
+<script>
   const params = new URLSearchParams(window.location.search);
   if (params.get('success') === '1') {
     const note = document.querySelector('[data-form-success]');
@@ -110,20 +80,6 @@ import { contact, cta } from '../content/site';
       note.hidden = false;
     }
   }
-
-  const openers = document.querySelectorAll('[data-calendly-open]');
-  const openCalendly = () => {
-    const calendly = window.Calendly;
-    if (calendly?.initPopupWidget) {
-      calendly.initPopupWidget({ url: `${calendlyUrl}?hide_gdpr_banner=1&${themed[resolved]}` });
-      return;
-    }
-    window.open(calendlyUrl, '_blank', 'noopener,noreferrer');
-  };
-
-  openers.forEach((button) => {
-    button.addEventListener('click', openCalendly);
-  });
 </script>
 
 <style>
@@ -184,22 +140,6 @@ import { contact, cta } from '../content/site';
     color: var(--fg-3);
     font-size: var(--t-small);
     max-width: 42ch;
-  }
-
-  .contact__book {
-    min-width: 0;
-    border: 1px solid var(--line-2);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--card-bg-strong);
-    box-shadow: var(--shadow-frame);
-  }
-
-  .contact__calendly {
-    min-width: 320px;
-    min-height: 660px;
-    height: 660px;
-    background: var(--card-bg-strong);
   }
 
   .contact__write {
@@ -289,16 +229,8 @@ import { contact, cta } from '../content/site';
 
   @media (min-width: 900px) {
     .contact__layout {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    }
-
-    .contact__book {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-    }
-
-    .contact__write {
-      grid-column: 1;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      align-items: stretch;
     }
 
     .contact__form {
@@ -309,13 +241,6 @@ import { contact, cta } from '../content/site';
     .contact__submit,
     .contact__success {
       grid-column: 1 / -1;
-    }
-  }
-
-  @media (max-width: 899px) {
-    .contact__calendly {
-      height: 600px;
-      min-height: 600px;
     }
   }
 </style>
