@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/mark.svg" alt="DMPResearch" width="96" height="96" />
+</p>
+
 # DMPResearch landing
 
 Studio marketing site for [DMPResearch](https://github.com/DMPResearch).
@@ -5,6 +9,7 @@ Studio marketing site for [DMPResearch](https://github.com/DMPResearch).
 - **Repo:** [DMPResearch/dmpresearch-landing](https://github.com/DMPResearch/dmpresearch-landing)
 - **Public URL:** [https://dmpresearch.flowstarter.dev](https://dmpresearch.flowstarter.dev)
 - **Stack:** Astro 7 static site, Node 22+, Netlify publish of `dist`
+- **Mark:** `public/mark.svg` (also used as favicon source via `public/favicon.svg`)
 
 Philosophy on the site: automate the mundane, amplify the human. We build premium websites, web apps, and product systems. AI speeds the grind. People keep judgment.
 
