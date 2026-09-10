@@ -48,8 +48,8 @@ export const nav = [
 export const hero = {
   kicker: 'A small studio',
   titleLead: 'Apps and digital products',
-  titleAccent: 'made for people.',
-  text: 'We blend human judgment with AI work. We know the stack we ship on: TypeScript, Next.js, Node, Python, Postgres, and human-centered UX for complex products. Darius and Dorin decide what ships. Agents research, draft, and scaffold so we move faster without losing the craft.',
+  titleAccent: 'made for people',
+  text: 'We blend human judgment with AI work on TypeScript, Next.js, Node, Python, Postgres, and human-centered UX for complex products. Darius and Dorin decide what ships while agents research, draft, and scaffold so we move faster without losing the craft',
   primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See our work', href: '/#products' },
 };
@@ -80,7 +80,7 @@ export const products: Product[] = [
     imageLight: '/images/flowstarter-site-light.webp',
     imageDark: '/images/flowstarter-site-dark.webp',
     imageAlt: 'Screenshot of the Flowstarter website',
-    title: 'A website factory for service businesses.',
+    title: 'A website factory for service businesses',
     text: "We design and ship a polished site, then hand over a constrained AI editor so you can keep it current without breaking it. When you hit the editor's limits, we step in.",
     points: [
       'We handle discovery through launch',
@@ -103,7 +103,7 @@ export const products: Product[] = [
     imageLight: '/images/ereno-app-light.webp',
     imageDark: '/images/ereno-app-dark.webp',
     imageAlt: 'Screenshot of the Ereno web app planning a Lisbon trip',
-    title: 'A trip planner that shows its sources.',
+    title: 'A trip planner that shows its sources',
     text: 'Ereno is a web app for planning trips and scouting places to stay. You describe what you want in plain language. It pulls research, compares options, and keeps the trade-offs visible. It does not book anything. You book with the provider.',
     points: [
       'Plan a trip or compare places to stay in one conversation',
@@ -121,7 +121,7 @@ export const products: Product[] = [
 
 export const work = {
   kicker: 'Client work',
-  title: 'Sites we shipped for other people.',
+  title: 'Sites we shipped for other people',
   text: 'Same process as our own products. Agents draft, we decide. These are all live.',
   items: [
     {
@@ -158,7 +158,7 @@ export const work = {
 
 export const ambition = {
   kicker: 'Long-term vision',
-  title: 'An ecosystem of connected apps that stay human.',
+  title: 'An ecosystem of connected apps that stay human',
   text: 'We are building toward products that talk to each other and take tedious day-to-day work off people’s plates. Automation where it earns its keep. People stay in charge of judgment, taste, and the final call.',
   points: [
     {
@@ -179,10 +179,10 @@ export const ambition = {
 
 export const investors = {
   kicker: 'For investors',
-  title: 'Backing a studio that ships products, then connects them.',
+  title: 'Backing a studio that ships products, then connects them',
   text: 'We are a small team with live products already in market. The long game is an ecosystem of connected apps that automate tedious day-to-day tasks while remaining human-centric. If that thesis interests you, we would like to talk.',
   pageKicker: 'Investors',
-  pageTitle: 'Invest in the next layer of everyday software.',
+  pageTitle: 'Invest in the next layer of everyday software',
   pageLead:
     'Most “AI products” are chat wrappers. We ship real apps people use, then wire them into a coherent ecosystem so the boring parts of life get lighter without people losing control.',
   thesisKicker: 'Thesis',
@@ -220,7 +220,7 @@ export const investors = {
   talkCta: { label: 'Talk with us', href: '/investors#talk' },
   contact: {
     kicker: 'Talk with us',
-    title: 'Interested? Let’s have a conversation.',
+    title: 'Interested? Let’s talk',
     text: 'Book a call or send a note. Say you are reaching out about investment. You will talk with Darius and Dorin.',
     bookHint: 'A short call is enough to see if there is a fit.',
     formTitle: 'Prefer email?',
@@ -239,7 +239,7 @@ export const investors = {
 
 export const about = {
   kicker: 'About',
-  title: 'A small studio with humans in charge.',
+  title: 'A small studio with humans in charge',
   lead: 'DMPResearch is a human team: Darius and Dorin lead, with a tester, a digital marketer, and a social media specialist. AI agents help with research, drafts, and scaffolding. People decide what ships.',
   story: [
     {
@@ -266,14 +266,14 @@ export const about = {
 
 export const method = {
   kicker: 'How we build',
-  title: 'How we build things.',
+  title: 'How we build things',
   loopLabel: 'The loop',
   text: 'Every project on this page was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
   loop: ['Agents draft', 'We review', 'It ships', 'We revisit'],
   stages: [
     {
       step: 'Agents draft',
-      title: 'Agents take the first pass.',
+      title: 'Agents take the first pass',
       text: 'While we sleep or focus elsewhere, agents pull sources, draft copy and layouts, and scaffold the boring parts of the build.',
       points: [
         'Research and pulling sources together',
@@ -284,7 +284,7 @@ export const method = {
     },
     {
       step: 'We review',
-      title: 'Humans keep the judgment.',
+      title: 'Humans keep the judgment',
       text: 'Darius and Dorin decide what ships. Taste, architecture, and risk stay with people. Agents do not get a vote.',
       points: [
         'What to build and what to skip',
@@ -295,7 +295,7 @@ export const method = {
     },
     {
       step: 'It ships',
-      title: 'Working software, not a deck.',
+      title: 'Working software, not a deck',
       text: 'The loop ends in something live: a site, an app, a change users can touch. That is the only deliverable that counts.',
       points: [
         'A URL you can open today',
@@ -306,7 +306,7 @@ export const method = {
     },
     {
       step: 'We revisit',
-      title: 'Then we come back.',
+      title: 'Then we come back',
       text: 'Products and client work keep moving. We reopen the loop when the brief changes, the market shifts, or the agents find a better cut.',
       points: [
         'Re-run research when facts change',
@@ -320,7 +320,7 @@ export const method = {
 
 export const team = {
   kicker: 'The team',
-  title: 'A small human crew. Agents help. People decide.',
+  title: 'A small human crew / agents help / people decide',
   text: 'Darius and Dorin lead product, engineering, and design. The team also includes a human tester, a digital marketer, and a social media specialist. Separately, AI agents research, draft, and scaffold so the humans move faster.',
   members: [
     {
@@ -367,10 +367,10 @@ export const team = {
 
 export const careers = {
   kicker: 'Careers and contracting',
-  title: 'Freelancers who care about new tech.',
+  title: 'Freelancers who care about new tech',
   text: 'We extend the studio with contractors who get excited about modern stacks, agent workflows, and shipping real products. Not endless pitch decks. Working software.',
   pageKicker: 'Careers',
-  pageTitle: 'Contract with us. Bring sharp skills and curiosity.',
+  pageTitle: 'Contract with us / bring sharp skills and curiosity',
   pageLead:
     'DMPResearch is a small human team. When we need more reach, we hire freelancers who want to work with new technology, not fight it. You plug into live products and client work beside people who decide and ship.',
   fitKicker: 'Who thrives here',
@@ -417,7 +417,7 @@ export const careers = {
   applyCta: { label: 'Apply to contract', href: '/careers#apply' },
   contact: {
     kicker: 'Apply',
-    title: 'Tell us what you do well.',
+    title: 'Tell us what you do well',
     text: 'Freelance and contract roles only for now. Write hello@flowstarter.dev or use the form. Mention your stack, availability, and a link to work you are proud of.',
     bookHint: 'No need to book a sales call. A clear note is enough.',
     formTitle: 'Send an application',
@@ -437,7 +437,7 @@ export const careers = {
 
 export const cta = {
   kicker: 'Work with us',
-  title: "Let's talk about what you need.",
+  title: "Let's talk about what you need",
   text: 'We build apps and digital products for people, blending human craft with AI speed. Book a call or write hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
   bookHint: "Thirty minutes is enough to figure out if we're a fit.",
   formTitle: 'Rather write?',

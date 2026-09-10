@@ -317,15 +317,6 @@ section[id] {
   color: var(--teal);
 }
 
-.kicker::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--grad);
-  box-shadow: 0 0 16px color-mix(in srgb, var(--teal) 55%, transparent);
-}
-
 .rule-grad {
   height: 1px;
   width: 100%;
