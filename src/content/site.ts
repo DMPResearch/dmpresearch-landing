@@ -80,7 +80,7 @@ export const products: Product[] = [
     mark: '/ereno.svg',
     imageLight: '/images/ereno-app-light.webp',
     imageDark: '/images/ereno-app-dark.webp',
-    imageAlt: 'Screenshot of the Ereno web app preference onboarding',
+    imageAlt: 'Screenshot of the Ereno web app planning a Lisbon trip',
     title: 'A trip planner that shows its sources.',
     text: 'Ereno is a web app for planning trips and scouting places to stay. You describe what you want in plain language. It pulls research, compares options, and keeps the trade-offs visible. It does not book anything. You book with the provider.',
     points: [
