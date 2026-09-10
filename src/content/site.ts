@@ -232,12 +232,12 @@ export const investors = {
 
 export const about = {
   kicker: 'About',
-  title: 'A two-person studio with agents on the floor.',
-  lead: 'DMPResearch is Darius and Dorin. We build apps and digital products for people. Agents research, draft, and scaffold. We decide what ships.',
+  title: 'A small studio with humans in charge.',
+  lead: 'DMPResearch is led by Darius and Dorin, with specialists for testing, marketing, and social, plus AI agents on the grind work. We decide what ships.',
   story: [
     {
       title: 'Why we exist',
-      text: 'We got tired of teams that balloon headcount and lose the plot. Two senior people plus serious agent help can ship more, with clearer taste, if the work is set up right.',
+      text: 'We got tired of teams that balloon headcount and lose the plot. A tight crew plus serious agent help can ship more, with clearer taste, if the work is set up right.',
     },
     {
       title: 'How we work',
@@ -286,8 +286,8 @@ export const method = {
 
 export const team = {
   kicker: 'The team',
-  title: "Two people. You know who you're working with.",
-  text: 'Eleven-plus years of full-stack engineering and seventeen years of UX for complex products. We stay current on purpose: TypeScript, Next.js, Node, Python, Postgres, agentic AI pipelines, and human-centered design systems.',
+  title: 'A small crew. You still know who you are talking to.',
+  text: 'Darius and Dorin lead product, engineering, and design. Alongside them we have a tester, a digital marketer, and a social media specialist. Agents handle volume work. People make the calls.',
   members: [
     {
       name: 'Darius',
@@ -312,7 +312,21 @@ export const team = {
       },
     },
   ],
-  crew: "The rest of the team is AI agents. They research, draft, and scaffold. They don't make decisions.",
+  specialists: [
+    {
+      role: 'Tester',
+      text: 'Breaks flows before users do. Catches regressions, edge cases, and the quiet bugs that only show up on a real device.',
+    },
+    {
+      role: 'Digital marketer',
+      text: 'Positions the products, runs campaigns, and keeps acquisition tied to what we actually ship.',
+    },
+    {
+      role: 'Social media specialist',
+      text: 'Owns the public voice across channels so the studio shows up clearly without drowning in content churn.',
+    },
+  ],
+  crew: "AI agents research, draft, and scaffold. They don't make decisions.",
 };
 
 export const cta = {

@@ -41,7 +41,16 @@ import { team } from '../content/site';
           <p class="team__bio">{member.bio}</p>
         </li>
       ))}
-      <li class="team__crew" data-reveal style="--delay: 200ms">
+    </ul>
+
+    <ul class="team__specialists">
+      {team.specialists.map((person, index) => (
+        <li class="team__specialist card" data-reveal style={`--delay: ${200 + index * 60}ms`}>
+          <p class="mono team__specialist-role">{person.role}</p>
+          <p>{person.text}</p>
+        </li>
+      ))}
+      <li class="team__crew" data-reveal style={`--delay: ${200 + team.specialists.length * 60}ms`}>
         <p>{team.crew}</p>
       </li>
     </ul>
@@ -53,10 +62,15 @@ import { team } from '../content/site';
     border-bottom: 1px solid var(--line);
   }
 
-  .team__grid {
+  .team__grid,
+  .team__specialists {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--s-4);
+  }
+
+  .team__specialists {
+    margin-top: var(--s-4);
   }
 
   .team__member {
@@ -111,6 +125,22 @@ import { team } from '../content/site';
     max-width: 42ch;
   }
 
+  .team__specialist {
+    display: grid;
+    gap: 10px;
+    padding: 20px 22px;
+    align-content: start;
+  }
+
+  .team__specialist-role {
+    color: var(--teal);
+  }
+
+  .team__specialist p:last-child {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
   .team__crew {
     display: grid;
     align-content: center;
@@ -126,8 +156,8 @@ import { team } from '../content/site';
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .team__crew {
-      grid-column: 1 / -1;
+    .team__specialists {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .team__photo {
@@ -137,12 +167,8 @@ import { team } from '../content/site';
   }
 
   @media (min-width: 1024px) {
-    .team__grid {
-      grid-template-columns: repeat(2, minmax(0, 5fr)) minmax(0, 3fr);
-    }
-
-    .team__crew {
-      grid-column: auto;
+    .team__specialists {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 </style>
