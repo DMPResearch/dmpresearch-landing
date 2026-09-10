@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LegalDoc from '../components/LegalDoc.astro';
+import { pagesLegal, termsPage } from '../content/legal';
+---
+
+<Layout title={pagesLegal.terms.title} description={pagesLegal.terms.description}>
+  <Header />
+  <main id="main">
+    <LegalDoc {...termsPage} />
+  </main>
+  <Footer />
+</Layout>

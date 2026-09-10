@@ -1,5 +1,6 @@
 ---
 import { contact, cta, investors } from '../content/site';
+import { formPrivacyNote } from '../content/legal';
 
 interface Props {
   variant?: 'default' | 'investors';
@@ -12,6 +13,7 @@ const formAction = variant === 'investors' ? '/investors/?success=1#talk' : '/?s
 const emailHref = variant === 'investors' ? contact.investorHref : contact.href;
 const sectionId = variant === 'investors' ? 'talk' : 'contact';
 const titleId = variant === 'investors' ? 'talk-title' : 'contact-title';
+const privacyText = variant === 'investors' ? formPrivacyNote.investors : formPrivacyNote.contact;
 ---
 
 <section class="contact section" id={sectionId} aria-labelledby={titleId}>
@@ -72,6 +74,12 @@ const titleId = variant === 'investors' ? 'talk-title' : 'contact-title';
           <span>{copy.fields.message}</span>
           <textarea name="message" required rows="4" maxlength="4000"></textarea>
         </label>
+
+        <p class="contact__privacy">
+          {privacyText}
+          {' '}
+          <a href={formPrivacyNote.href}>{formPrivacyNote.linkLabel}</a>
+        </p>
 
         <button class="btn btn--ghost contact__submit" type="submit">
           {copy.fields.submit}
@@ -223,6 +231,19 @@ const titleId = variant === 'investors' ? 'talk-title' : 'contact-title';
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 22%, transparent);
   }
 
+  .contact__privacy {
+    grid-column: 1 / -1;
+    color: var(--fg-3);
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .contact__privacy a {
+    color: var(--teal);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   .contact__submit {
     justify-self: start;
     margin-top: 4px;
@@ -250,6 +271,7 @@ const titleId = variant === 'investors' ? 'talk-title' : 'contact-title';
     }
 
     .contact__field--full,
+    .contact__privacy,
     .contact__submit,
     .contact__success {
       grid-column: 1 / -1;

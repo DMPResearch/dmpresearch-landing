@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import LegalDoc from '../components/LegalDoc.astro';
+import { cookiesPage, pagesLegal } from '../content/legal';
+---
+
+<Layout title={pagesLegal.cookies.title} description={pagesLegal.cookies.description}>
+  <Header />
+  <main id="main">
+    <LegalDoc {...cookiesPage} />
+  </main>
+  <Footer />
+</Layout>

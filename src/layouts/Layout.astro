@@ -1,6 +1,7 @@
 ---
 import { meta } from '../content/site';
 import Calendly from '../components/Calendly.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -54,6 +55,7 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <slot />
+    <CookieConsent />
     <Calendly />
     <script>
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
