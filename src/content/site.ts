@@ -10,9 +10,9 @@ export const contact = {
 };
 
 export const meta = {
-  title: 'DMPResearch | Websites and web apps for EU businesses',
+  title: 'DMPResearch | Apps and digital products, human and AI',
   description:
-    'A two-person studio in the EU. We design and build websites, web apps, and custom software for businesses across Europe.',
+    'A small studio that builds apps and digital products for people. Darius and Dorin steer. AI agents help with the heavy lifting.',
 };
 
 export const nav = [
@@ -24,10 +24,10 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: 'A small studio in the EU',
-  titleLead: 'Websites and web apps',
-  titleAccent: 'for EU businesses.',
-  text: 'Darius does product and engineering. Dorin does design. AI agents handle research and first drafts, so two people ship at the pace of a bigger team. Marketing sites, customer portals, internal tools. If you need something built, we should talk.',
+  kicker: 'A small studio',
+  titleLead: 'Apps and digital products',
+  titleAccent: 'made for people.',
+  text: 'We blend human judgment with AI work. Darius and Dorin decide what ships. Agents research, draft, and scaffold so we move faster without losing the craft. Websites, web apps, tools. If you need something built for real users, we should talk.',
   primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See our work', href: '#products' },
 };
