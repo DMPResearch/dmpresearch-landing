@@ -270,10 +270,12 @@ export const method = {
   loopLabel: 'The loop',
   text: 'Every project on this page was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
   loop: ['Agents draft', 'We review', 'It ships', 'We revisit'],
-  columns: [
+  stages: [
     {
-      heading: 'Agents handle',
-      items: [
+      step: 'Agents draft',
+      title: 'Agents take the first pass.',
+      text: 'While we sleep or focus elsewhere, agents pull sources, draft copy and layouts, and scaffold the boring parts of the build.',
+      points: [
         'Research and pulling sources together',
         'First drafts of copy, layout, and code',
         'Scaffolding, tests, and migrations',
@@ -281,12 +283,36 @@ export const method = {
       ],
     },
     {
-      heading: 'We handle',
-      items: [
+      step: 'We review',
+      title: 'Humans keep the judgment.',
+      text: 'Darius and Dorin decide what ships. Taste, architecture, and risk stay with people. Agents do not get a vote.',
+      points: [
         'What to build and what to skip',
         'Brand, visual quality, and final polish',
         'Architecture and data model choices',
         'Reading everything before it ships',
+      ],
+    },
+    {
+      step: 'It ships',
+      title: 'Working software, not a deck.',
+      text: 'The loop ends in something live: a site, an app, a change users can touch. That is the only deliverable that counts.',
+      points: [
+        'A URL you can open today',
+        'Scope tight enough to finish',
+        'No handoff theatre to juniors',
+        'You still talk to the people who built it',
+      ],
+    },
+    {
+      step: 'We revisit',
+      title: 'Then we come back.',
+      text: 'Products and client work keep moving. We reopen the loop when the brief changes, the market shifts, or the agents find a better cut.',
+      points: [
+        'Re-run research when facts change',
+        'Tighten what felt rough in production',
+        'Extend with freelancers when we need reach',
+        'Keep the same people accountable',
       ],
     },
   ],

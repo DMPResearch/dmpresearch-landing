@@ -2,7 +2,7 @@
 import { method } from '../content/site';
 ---
 
-<section class="method section" id="method" aria-labelledby="method-title">
+<section class="method section" id="method" aria-labelledby="method-title" data-method>
   <div class="container">
     <header class="section-head" data-reveal>
       <p class="kicker">{method.kicker}</p>
@@ -10,51 +10,127 @@ import { method } from '../content/site';
       <p class="lede">{method.text}</p>
     </header>
 
-    <div class="method__grid">
-      <div class="method__loop card" data-reveal>
-        <div class="method__loop-wash" aria-hidden="true"></div>
-        <p class="mono method__loop-label">{method.loopLabel}</p>
-        <ol class="method__loop-list">
-          {method.loop.map((step, index) => (
-            <li>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              {step}
-            </li>
-          ))}
-        </ol>
+    <div class="method__track">
+      <div class="method__sticky" data-method-sticky>
+        <div class="method__loop card">
+          <div class="method__loop-wash" aria-hidden="true"></div>
+          <p class="mono method__loop-label">{method.loopLabel}</p>
+          <ol class="method__loop-list" data-method-steps>
+            {method.loop.map((step, index) => (
+              <li data-method-step-label={index} class={index === 0 ? 'is-active' : undefined}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span class="method__loop-name">{step}</span>
+              </li>
+            ))}
+          </ol>
+          <div class="method__progress" aria-hidden="true">
+            <div class="method__progress-bar" data-method-progress></div>
+          </div>
+        </div>
       </div>
 
-      {method.columns.map((column, index) => (
-        <div class="method__cell card" data-reveal style={`--delay: ${120 + index * 80}ms`}>
-          <h3 class="method__cell-title">{column.heading}</h3>
-          <ul class="method__list">
-            {column.items.map((item) => <li>{item}</li>)}
-          </ul>
-        </div>
-      ))}
+      <div class="method__panels">
+        {method.stages.map((stage, index) => (
+          <article
+            class="method__panel card"
+            data-method-panel
+            data-step={index}
+            data-reveal
+            style={`--delay: ${index * 60}ms`}
+            aria-labelledby={`method-stage-${index}`}
+          >
+            <p class="mono method__panel-index">{String(index + 1).padStart(2, '0')}</p>
+            <h3 id={`method-stage-${index}`}>{stage.title}</h3>
+            <p class="method__panel-text">{stage.text}</p>
+            <ul class="method__list">
+              {stage.points.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  (() => {
+    const root = document.querySelector('[data-method]') as HTMLElement | null;
+    if (!root) return;
+
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-method-panel]'));
+    const labels = Array.from(root.querySelectorAll<HTMLElement>('[data-method-step-label]'));
+    const progress = root.querySelector<HTMLElement>('[data-method-progress]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const setActive = (index: number) => {
+      labels.forEach((label, i) => {
+        label.classList.toggle('is-active', i === index);
+      });
+      if (progress) {
+        const ratio = labels.length <= 1 ? 1 : index / (labels.length - 1);
+        progress.style.transform = `scaleX(${Math.max(0.12, ratio)})`;
+      }
+    };
+
+    setActive(0);
+
+    if (reduce || !('IntersectionObserver' in window) || panels.length === 0) {
+      labels.forEach((label) => label.classList.add('is-active'));
+      if (progress) progress.style.transform = 'scaleX(1)';
+      return;
+    }
+
+    const ratios = new Map<number, number>();
+
+    const pick = () => {
+      let bestIndex = 0;
+      let best = -1;
+      for (const [index, ratio] of ratios) {
+        if (ratio > best) {
+          best = ratio;
+          bestIndex = index;
+        }
+      }
+      setActive(bestIndex);
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const step = Number((entry.target as HTMLElement).dataset.step ?? 0);
+          ratios.set(step, entry.isIntersecting ? entry.intersectionRatio : 0);
+        }
+        pick();
+      },
+      {
+        root: null,
+        threshold: [0.15, 0.35, 0.55, 0.75],
+        rootMargin: '-20% 0px -35% 0px',
+      },
+    );
+
+    panels.forEach((panel) => io.observe(panel));
+  })();
+</script>
 
 <style>
   .method {
     border-bottom: 1px solid var(--line);
   }
 
-  .method__grid {
+  .method__track {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--s-4);
+    gap: var(--s-5);
   }
 
   .method__loop {
     position: relative;
     overflow: hidden;
-    padding: clamp(28px, 4vw, 44px);
+    padding: clamp(28px, 4vw, 40px);
     border-color: var(--line-2);
-    min-height: 260px;
     display: grid;
-    align-content: end;
     gap: var(--s-5);
   }
 
@@ -68,16 +144,17 @@ import { method } from '../content/site';
     filter: blur(80px);
   }
 
-  .method__loop-label {
+  .method__loop-label,
+  .method__loop-list,
+  .method__progress {
     position: relative;
   }
 
   .method__loop-list {
-    position: relative;
     display: grid;
-    gap: 12px;
+    gap: 14px;
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
+    font-size: clamp(1.55rem, 1.1rem + 1.8vw, 2.25rem);
     font-weight: 550;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -87,34 +164,77 @@ import { method } from '../content/site';
     display: flex;
     align-items: baseline;
     gap: 16px;
+    color: color-mix(in srgb, var(--fg) 34%, transparent);
+    transition:
+      color 280ms var(--ease),
+      transform 280ms var(--ease);
   }
 
-  .method__loop-list span {
+  .method__loop-list li.is-active {
+    color: var(--fg);
+    transform: translateX(4px);
+  }
+
+  .method__loop-list li > span:first-child {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.08em;
-    color: var(--fg-3);
+    color: inherit;
+    opacity: 0.7;
   }
 
-  .method__loop-list li:nth-child(even) {
-    color: var(--fg-2);
+  .method__loop-list li.is-active > span:first-child {
+    color: var(--teal);
+    opacity: 1;
   }
 
-  .method__cell {
-    padding: clamp(22px, 3vw, 30px);
+  .method__progress {
+    height: 3px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--fg) 10%, transparent);
+    overflow: hidden;
+  }
+
+  .method__progress-bar {
+    height: 100%;
+    width: 100%;
+    transform-origin: left center;
+    transform: scaleX(0.12);
+    border-radius: inherit;
+    background: var(--grad);
+    transition: transform 280ms var(--ease);
+  }
+
+  .method__panels {
     display: grid;
     gap: var(--s-4);
+  }
+
+  .method__panel {
+    display: grid;
+    gap: 12px;
+    padding: clamp(24px, 3vw, 32px);
     align-content: start;
   }
 
-  .method__cell-title {
-    font-size: 1.15rem;
-    font-weight: 600;
+  .method__panel-index {
+    color: var(--teal);
+  }
+
+  .method__panel h3 {
+    font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.7rem);
+  }
+
+  .method__panel-text {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+    max-width: 42ch;
   }
 
   .method__list {
     display: grid;
     gap: var(--s-3);
+    margin-top: 6px;
     color: var(--fg-2);
     font-size: var(--t-small);
   }
@@ -134,24 +254,37 @@ import { method } from '../content/site';
     background: var(--teal);
   }
 
-  @media (min-width: 720px) {
-    .method__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (min-width: 1024px) {
+    .method__track {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: clamp(28px, 4vw, 48px);
+      align-items: start;
     }
 
-    .method__loop {
-      grid-column: 1 / -1;
+    .method__sticky {
+      position: sticky;
+      top: calc(var(--header-h) + 28px);
+    }
+
+    .method__panel {
+      min-height: min(72vh, 560px);
+      padding: clamp(28px, 3.5vw, 40px);
+    }
+
+    .method__panels {
+      gap: clamp(28px, 4vw, 48px);
+      padding-bottom: 12vh;
     }
   }
 
-  @media (min-width: 1024px) {
-    .method__grid {
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  @media (prefers-reduced-motion: reduce) {
+    .method__loop-list li,
+    .method__progress-bar {
+      transition: none;
     }
 
-    .method__loop {
-      grid-column: 1;
-      grid-row: 1 / span 2;
+    .method__panel {
+      min-height: 0;
     }
   }
 </style>
