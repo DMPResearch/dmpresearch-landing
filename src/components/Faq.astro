@@ -1,0 +1,116 @@
+---
+import { faq } from '../content/site';
+---
+
+<section class="faq section" id="faq" aria-labelledby="faq-title">
+  <div class="container faq__layout">
+    <header class="faq__head" data-reveal>
+      <p class="kicker">{faq.kicker}</p>
+      <h2 id="faq-title">{faq.title}</h2>
+      <p class="lede">{faq.text}</p>
+    </header>
+
+    <div class="faq__list" data-reveal style="--delay: 80ms">
+      {faq.items.map((item) => (
+        <details class="faq__item">
+          <summary>
+            <span>{item.question}</span>
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .faq__layout {
+    display: grid;
+    gap: var(--section-head);
+  }
+
+  .faq__head {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 36rem;
+  }
+
+  .faq__list {
+    display: grid;
+    gap: 10px;
+  }
+
+  .faq__item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    overflow: hidden;
+    transition: border-color 200ms var(--ease);
+  }
+
+  .faq__item[open] {
+    border-color: color-mix(in srgb, var(--teal) 35%, var(--line));
+  }
+
+  .faq__item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 550;
+    letter-spacing: -0.02em;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    color: var(--teal);
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: transform 220ms var(--ease), background 220ms var(--ease);
+  }
+
+  .faq__item[open] .faq__icon {
+    transform: rotate(45deg);
+    background: color-mix(in srgb, var(--teal) 12%, transparent);
+  }
+
+  .faq__item p {
+    padding: 0 20px 20px;
+    color: var(--fg-2);
+    font-size: var(--t-small);
+    max-width: 62ch;
+  }
+
+  @media (min-width: 900px) {
+    .faq__layout {
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(40px, 6vw, 80px);
+      align-items: start;
+    }
+
+    .faq__head {
+      position: sticky;
+      top: calc(var(--header-h) + 28px);
+    }
+  }
+</style>

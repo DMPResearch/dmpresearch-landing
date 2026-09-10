@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import About from '../components/About.astro';
 import Team from '../components/Team.astro';
 import Method from '../components/Method.astro';
 import { about, pages } from '../content/site';
@@ -10,28 +11,15 @@ import { about, pages } from '../content/site';
 <Layout title={pages.about.title} description={pages.about.description}>
   <Header />
   <main id="main">
-    <section class="page-hero section" aria-labelledby="about-title">
+    <section class="page-hero section" aria-labelledby="about-page-title">
       <div class="container page-hero__inner" data-reveal>
         <p class="kicker">{about.kicker}</p>
-        <h1 id="about-title">{about.title}</h1>
+        <h1 id="about-page-title">{about.title}</h1>
         <p class="lede">{about.lead}</p>
       </div>
     </section>
 
-    <section class="about-story section" aria-label="Our story">
-      <div class="container">
-        <ul class="about-story__grid">
-          {about.story.map((item, index) => (
-            <li class="about-story__card card" data-reveal style={`--delay: ${index * 80}ms`}>
-              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
-              <h2>{item.title}</h2>
-              <p>{item.text}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-
+    <About showIntro={false} />
     <Team />
     <Method />
 
@@ -77,30 +65,6 @@ import { about, pages } from '../content/site';
     max-width: 16ch;
   }
 
-  .about-story {
-    border-bottom: 1px solid var(--line);
-  }
-
-  .about-story__grid {
-    display: grid;
-    gap: var(--s-4);
-  }
-
-  .about-story__card {
-    display: grid;
-    gap: 10px;
-    padding: clamp(22px, 3vw, 28px);
-  }
-
-  .about-story__card h2 {
-    font-size: 1.35rem;
-  }
-
-  .about-story__card p {
-    color: var(--fg-2);
-    font-size: var(--t-small);
-  }
-
   .about-cta {
     border-bottom: 1px solid var(--line);
   }
@@ -123,10 +87,6 @@ import { about, pages } from '../content/site';
   }
 
   @media (min-width: 900px) {
-    .about-story__grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
     .about-cta__panel {
       grid-template-columns: minmax(0, 1.4fr) auto;
       align-items: end;

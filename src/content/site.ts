@@ -39,9 +39,9 @@ export const nav = [
   { label: 'Products', href: '/#products' },
   { label: 'Work', href: '/#work' },
   { label: 'Vision', href: '/#vision' },
-  { label: 'About', href: '/about' },
-  { label: 'Careers', href: '/careers' },
-  { label: 'Investors', href: '/investors' },
+  { label: 'About', href: '/#about' },
+  { label: 'Investors', href: '/#investors' },
+  { label: 'FAQ', href: '/#faq' },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -216,7 +216,7 @@ export const investors = {
     title: 'Who we want to talk to',
     text: 'Operators and investors who care about durable product craft, not hype cycles. If you want a conversation about the vision, book a call or write us.',
   },
-  teaserCta: { label: 'Read the investor brief', href: '/investors' },
+  teaserCta: { label: 'Full investor brief', href: '/investors' },
   talkCta: { label: 'Talk with us', href: '/investors#talk' },
   contact: {
     kicker: 'Talk with us',
@@ -259,9 +259,47 @@ export const about = {
     title: 'Want to build with us?',
     text: 'Book a call, read the investor brief, or apply to contract if you want to freelance with the team.',
     primary: { label: contact.bookLabel },
-    secondary: { label: 'Investor brief', href: '/investors' },
+    secondary: { label: 'Investor brief', href: '/#investors' },
     tertiary: { label: 'Careers and contracting', href: '/careers' },
   },
+};
+
+export const faq = {
+  kicker: 'Q&A',
+  title: 'Questions people ask us',
+  text: 'Short answers. If yours is not here, write or book a call.',
+  items: [
+    {
+      question: 'What does DMPResearch actually build?',
+      answer:
+        'Apps and digital products for people: our own products like Flowstarter and Ereno, plus client sites and systems. You get working software, not a slide deck.',
+    },
+    {
+      question: 'Are the agents replacing the team?',
+      answer:
+        'No. Agents research, draft, and scaffold. Humans lead: Darius, Dorin, a tester, a digital marketer, and a social media specialist. People decide what ships.',
+    },
+    {
+      question: 'Who do I talk to if I hire you?',
+      answer:
+        'You talk to Darius and Dorin. No account managers in the middle. Book a call or email hello@flowstarter.dev.',
+    },
+    {
+      question: 'Do you take freelance or contract help?',
+      answer:
+        'Yes. We work with freelancers who are excited about new technology. Apply on the careers page with a portfolio link and what you want to work on.',
+    },
+    {
+      question: 'Are you raising or open to investors?',
+      answer:
+        'We are open to conversations with operators and investors who care about durable product craft. Read the investors section or send a note through the investor brief.',
+    },
+    {
+      question: 'Where are you based?',
+      answer:
+        'We build for the EU market and ship online. Reach us anytime at hello@flowstarter.dev.',
+    },
+  ],
 };
 
 export const method = {
@@ -462,9 +500,10 @@ export const footer = {
     href: 'https://flowstarter.net',
   },
   links: [
-    { label: 'About', href: '/about' },
+    { label: 'About', href: '/#about' },
+    { label: 'Investors', href: '/#investors' },
     { label: 'Careers', href: '/careers' },
-    { label: 'Investors', href: '/investors' },
+    { label: 'FAQ', href: '/#faq' },
     { label: 'Flowstarter', href: 'https://flowstarter.net' },
     { label: 'Ereno', href: 'https://ereno.flowstarter.dev' },
     { label: 'GitHub', href: contact.github },
