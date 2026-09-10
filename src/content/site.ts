@@ -12,7 +12,7 @@ export const contact = {
 export const meta = {
   title: 'DMPResearch | Apps and digital products, human and AI',
   description:
-    'A small studio that builds apps and digital products for people. Darius and Dorin steer. AI agents help with the heavy lifting.',
+    'A small studio that builds apps and digital products for people. TypeScript, Next.js, Node, Python, and human-centered UX. Darius and Dorin steer. AI agents help with the heavy lifting.',
 };
 
 export const nav = [
@@ -27,7 +27,7 @@ export const hero = {
   kicker: 'A small studio',
   titleLead: 'Apps and digital products',
   titleAccent: 'made for people.',
-  text: 'We blend human judgment with AI work. Darius and Dorin decide what ships. Agents research, draft, and scaffold so we move faster without losing the craft. Websites, web apps, tools. If you need something built for real users, we should talk.',
+  text: 'We blend human judgment with AI work. We know the stack we ship on: TypeScript, Next.js, Node, Python, Postgres, and human-centered UX for complex products. Darius and Dorin decide what ships. Agents research, draft, and scaffold so we move faster without losing the craft.',
   primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See our work', href: '#products' },
 };
@@ -186,21 +186,29 @@ export const method = {
 export const team = {
   kicker: 'The team',
   title: "Two people. You know who you're working with.",
-  text: 'We met building software for other people and kept noticing the same thing: agents can do in an afternoon what used to take a week. But someone still has to know what good looks like. So we stayed small on purpose.',
+  text: 'Eleven-plus years of full-stack engineering and seventeen years of UX for complex products. We stay current on purpose: TypeScript, Next.js, Node, Python, Postgres, agentic AI pipelines, and human-centered design systems.',
   members: [
     {
       name: 'Darius',
       role: 'Product and engineering',
-      bio: 'Runs architecture, shipping, and the agent workflows behind Flowstarter and Ereno. Reads what the agents produce and decides what stays.',
+      bio: 'Senior full-stack engineer. TypeScript, Next.js, Node, Python, Postgres. Builds SaaS and agentic AI pipelines (routing, embeddings, evaluation). Owns architecture and shipping for Flowstarter and Ereno.',
       photo: '/images/team/darius.png',
       photoAlt: 'Portrait of Darius',
+      linkedin: {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/darius-mihai-popescu-346ab680',
+      },
     },
     {
       name: 'Dorin',
       role: 'Design and craft',
-      bio: 'Owns the visual systems, interface work, and the templates in the Flowstarter library. Nothing ships until it passes his bar.',
+      bio: 'Senior UX designer for complex digital products. Human-centered systems, UX strategy, research, and interface craft. Owns visual quality and the templates people actually use.',
       photo: '/images/team/dorin.jpeg',
       photoAlt: 'Portrait of Dorin',
+      linkedin: {
+        label: 'LinkedIn',
+        href: 'https://www.linkedin.com/in/dorinux',
+      },
     },
   ],
   crew: "The rest of the team is AI agents. They research, draft, and scaffold. They don't make decisions.",
@@ -209,7 +217,7 @@ export const team = {
 export const cta = {
   kicker: 'Work with us',
   title: "Let's talk about what you need.",
-  text: 'We build websites and web apps for businesses in Europe. Book a call or send a note to hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
+  text: 'We build apps and digital products for people, blending human craft with AI speed. Book a call or write hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
   bookHint: "Thirty minutes is enough to figure out if we're a fit.",
   formTitle: 'Rather write?',
   formText: 'Send a short note. We reply by email, usually within a day.',
@@ -227,7 +235,7 @@ export const cta = {
 export const footer = {
   navLabel: 'Footer',
   brand: 'DMPResearch',
-  tagline: 'Websites and web apps for EU businesses',
+  tagline: 'Apps and digital products made for people',
   builtWith: {
     label: 'Built with Flowstarter',
     href: 'https://flowstarter.net',

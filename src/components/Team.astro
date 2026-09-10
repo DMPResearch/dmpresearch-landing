@@ -26,6 +26,16 @@ import { team } from '../content/site';
             <div>
               <h3 class="team__name">{member.name}</h3>
               <p class="mono team__role">{member.role}</p>
+              {member.linkedin && (
+                <a
+                  class="team__linkedin"
+                  href={member.linkedin.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {member.linkedin.label}
+                </a>
+              )}
             </div>
           </div>
           <p class="team__bio">{member.bio}</p>
@@ -81,6 +91,19 @@ import { team } from '../content/site';
 
   .team__role {
     margin-top: 4px;
+  }
+
+  .team__linkedin {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--teal);
+    transition: color 160ms var(--ease);
+  }
+
+  .team__linkedin:hover {
+    color: var(--fg);
   }
 
   .team__bio {
