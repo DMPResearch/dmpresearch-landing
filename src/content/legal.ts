@@ -40,6 +40,8 @@ export const formPrivacyNote = {
   contact: 'By sending this form you agree we may process your details to reply.',
   investors:
     'By sending this form you agree we may process your details to reply about investment conversations.',
+  careers:
+    'By sending this form you agree we may process your details to review a freelance or contract application.',
   linkLabel: 'Read our privacy policy',
   href: '/privacy',
 };
@@ -84,7 +86,7 @@ export const privacyPage = {
       title: 'What we collect',
       paragraphs: ['Depending on how you use the site, we may process:'],
       bullets: [
-        'Identity and contact data you send (name, email, company, message) through our contact or investor forms',
+        'Identity and contact data you send (name, email, company, message, portfolio links) through our contact, investor, or careers forms',
         'Technical data created by hosting and security systems (IP address, browser type, rough location derived from IP, timestamps)',
         'Consent choices stored in your browser so we remember cookie preferences',
         'Theme preference stored locally on your device',
@@ -94,7 +96,7 @@ export const privacyPage = {
       title: 'Why we process data',
       paragraphs: ['We process personal data for these purposes and legal bases:'],
       bullets: [
-        'To reply to enquiries and book calls (legitimate interests, and contract steps when you ask us to work together)',
+        'To reply to enquiries, review freelance applications, and book calls (legitimate interests, and contract steps when you ask us to work together)',
         'To run and secure the website (legitimate interests)',
         'To remember cookie choices and essential preferences (legal obligation / legitimate interests)',
         'To load optional third-party booking tools when you consent (consent)',

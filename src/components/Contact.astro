@@ -1,19 +1,48 @@
 ---
-import { contact, cta, investors } from '../content/site';
+import { careers, contact, cta, investors } from '../content/site';
 import { formPrivacyNote } from '../content/legal';
 
 interface Props {
-  variant?: 'default' | 'investors';
+  variant?: 'default' | 'investors' | 'careers';
 }
 
 const { variant = 'default' } = Astro.props;
-const copy = variant === 'investors' ? investors.contact : cta;
-const formName = variant === 'investors' ? 'investor' : 'contact';
-const formAction = variant === 'investors' ? '/investors/?success=1#talk' : '/?success=1#contact';
-const emailHref = variant === 'investors' ? contact.investorHref : contact.href;
-const sectionId = variant === 'investors' ? 'talk' : 'contact';
-const titleId = variant === 'investors' ? 'talk-title' : 'contact-title';
-const privacyText = variant === 'investors' ? formPrivacyNote.investors : formPrivacyNote.contact;
+
+const variants = {
+  default: {
+    copy: cta,
+    formName: 'contact',
+    formAction: '/?success=1#contact',
+    emailHref: contact.href,
+    sectionId: 'contact',
+    titleId: 'contact-title',
+    privacyText: formPrivacyNote.contact,
+    showCalendly: true,
+  },
+  investors: {
+    copy: investors.contact,
+    formName: 'investor',
+    formAction: '/investors/?success=1#talk',
+    emailHref: contact.investorHref,
+    sectionId: 'talk',
+    titleId: 'talk-title',
+    privacyText: formPrivacyNote.investors,
+    showCalendly: true,
+  },
+  careers: {
+    copy: careers.contact,
+    formName: 'careers',
+    formAction: '/careers/?success=1#apply',
+    emailHref: contact.careersHref,
+    sectionId: 'apply',
+    titleId: 'apply-title',
+    privacyText: formPrivacyNote.careers,
+    showCalendly: careers.contact.showCalendly,
+  },
+} as const;
+
+const { copy, formName, formAction, emailHref, sectionId, titleId, privacyText, showCalendly } =
+  variants[variant];
 ---
 
 <section class="contact section" id={sectionId} aria-labelledby={titleId}>
@@ -24,11 +53,18 @@ const privacyText = variant === 'investors' ? formPrivacyNote.investors : formPr
       <h2 id={titleId}>{copy.title}</h2>
       <p class="lede contact__text">{copy.text}</p>
       <div class="contact__actions">
-        <button class="btn btn--solid" type="button" data-calendly-open>
-          {contact.bookLabel}
-          <span class="btn__arrow" aria-hidden="true">→</span>
-        </button>
-        <a class="link contact__email" href={emailHref}>{contact.email}</a>
+        {showCalendly && (
+          <button class="btn btn--solid" type="button" data-calendly-open>
+            {contact.bookLabel}
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </button>
+        )}
+        <a
+          class:list={['link', 'contact__email', { btn: !showCalendly, 'btn--solid': !showCalendly }]}
+          href={emailHref}
+        >
+          {contact.email}
+        </a>
       </div>
       <p class="contact__hint">{copy.bookHint}</p>
     </div>
@@ -154,6 +190,12 @@ const privacyText = variant === 'investors' ? formPrivacyNote.investors : formPr
     color: var(--fg-2);
     text-transform: none;
     letter-spacing: 0;
+  }
+
+  .contact__email.btn {
+    font-family: var(--font-body);
+    font-size: var(--t-small);
+    color: var(--on-solid);
   }
 
   .contact__hint {

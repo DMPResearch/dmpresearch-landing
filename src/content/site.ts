@@ -2,6 +2,7 @@ export const contact = {
   email: 'hello@flowstarter.dev',
   href: 'mailto:hello@flowstarter.dev?subject=Build%20with%20DMPResearch',
   investorHref: 'mailto:hello@flowstarter.dev?subject=Investor%20conversation%20with%20DMPResearch',
+  careersHref: 'mailto:hello@flowstarter.dev?subject=Freelance%20%2F%20contract%20with%20DMPResearch',
   sectionHref: '#contact',
   github: 'https://github.com/DMPResearch',
   label: 'Build with us',
@@ -27,6 +28,11 @@ export const pages = {
     description:
       'Our long-term vision is an ecosystem of connected apps that take tedious day-to-day work off people’s plates, without replacing human judgment. Talk with us if that thesis fits.',
   },
+  careers: {
+    title: 'Careers and contracting | DMPResearch',
+    description:
+      'Freelance and contract with DMPResearch. We work with people who are excited about new technology and want to extend a small human team shipping real products.',
+  },
 };
 
 export const nav = [
@@ -34,6 +40,7 @@ export const nav = [
   { label: 'Work', href: '/#work' },
   { label: 'Vision', href: '/#vision' },
   { label: 'About', href: '/about' },
+  { label: 'Careers', href: '/careers' },
   { label: 'Investors', href: '/investors' },
   { label: 'Contact', href: '/#contact' },
 ];
@@ -250,9 +257,10 @@ export const about = {
   ],
   cta: {
     title: 'Want to build with us?',
-    text: 'Book a call, or read the investor brief if you are exploring capital.',
+    text: 'Book a call, read the investor brief, or apply to contract if you want to freelance with the team.',
     primary: { label: contact.bookLabel },
     secondary: { label: 'Investor brief', href: '/investors' },
+    tertiary: { label: 'Careers and contracting', href: '/careers' },
   },
 };
 
@@ -331,6 +339,76 @@ export const team = {
   crew: "AI agents research, draft, and scaffold. They are tools on the floor, not teammates with authority. They don't make product decisions.",
 };
 
+export const careers = {
+  kicker: 'Careers and contracting',
+  title: 'Freelancers who care about new tech.',
+  text: 'We extend the studio with contractors who get excited about modern stacks, agent workflows, and shipping real products. Not endless pitch decks. Working software.',
+  pageKicker: 'Careers',
+  pageTitle: 'Contract with us. Bring sharp skills and curiosity.',
+  pageLead:
+    'DMPResearch is a small human team. When we need more reach, we hire freelancers who want to work with new technology, not fight it. You plug into live products and client work beside people who decide and ship.',
+  fitKicker: 'Who thrives here',
+  fitTitle: 'What we look for',
+  fit: [
+    {
+      title: 'Excited by new tools',
+      text: 'TypeScript, modern web stacks, agent-assisted workflows, and whatever comes next. You try things carefully and keep craft high.',
+    },
+    {
+      title: 'Comfortable with ambiguity',
+      text: 'Briefs move. Products evolve. You ask good questions, ship in slices, and leave the codebase clearer than you found it.',
+    },
+    {
+      title: 'Human judgment first',
+      text: 'Agents can draft. You still own taste, testing, and whether something is ready for a user.',
+    },
+  ],
+  rolesKicker: 'Where help lands',
+  rolesTitle: 'Capabilities we often extend',
+  roles: [
+    'Engineering across TypeScript, Next.js, Node, Python, and data work',
+    'UX, interface craft, and design systems',
+    'QA and exploratory testing on real devices',
+    'Digital marketing and social content that matches the product',
+  ],
+  howKicker: 'How it works',
+  howTitle: 'Contracting, not theatre',
+  how: [
+    {
+      title: 'Say hello with proof',
+      text: 'Send a short note, a portfolio or GitHub, and what you want to work on. We reply by email.',
+    },
+    {
+      title: 'Start on a real slice',
+      text: 'Paid contract work on a scoped piece of product or client delivery. Clear owner on our side.',
+    },
+    {
+      title: 'Stay if it fits',
+      text: 'Good collaborators get more work. We do not run a revolving door of unpaid trials.',
+    },
+  ],
+  teaserCta: { label: 'See open contracting', href: '/careers' },
+  applyCta: { label: 'Apply to contract', href: '/careers#apply' },
+  contact: {
+    kicker: 'Apply',
+    title: 'Tell us what you do well.',
+    text: 'Freelance and contract roles only for now. Write hello@flowstarter.dev or use the form. Mention your stack, availability, and a link to work you are proud of.',
+    bookHint: 'No need to book a sales call. A clear note is enough.',
+    formTitle: 'Send an application',
+    formText: 'Keep it short. We read every message ourselves.',
+    formSuccess: 'Got it. We will get back to you if there is a fit.',
+    showCalendly: false,
+    fields: {
+      name: 'Name',
+      email: 'Email',
+      company: 'Portfolio, GitHub, or LinkedIn',
+      message: 'What do you want to work on with us?',
+      submit: 'Send application',
+      honeypot: 'Leave this field empty',
+    },
+  },
+};
+
 export const cta = {
   kicker: 'Work with us',
   title: "Let's talk about what you need.",
@@ -359,6 +437,7 @@ export const footer = {
   },
   links: [
     { label: 'About', href: '/about' },
+    { label: 'Careers', href: '/careers' },
     { label: 'Investors', href: '/investors' },
     { label: 'Flowstarter', href: 'https://flowstarter.net' },
     { label: 'Ereno', href: 'https://ereno.flowstarter.dev' },

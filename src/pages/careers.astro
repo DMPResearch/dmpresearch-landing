@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Contact from '../components/Contact.astro';
+import { careers, pages } from '../content/site';
+---
+
+<Layout title={pages.careers.title} description={pages.careers.description}>
+  <Header />
+  <main id="main">
+    <section class="page-hero section" aria-labelledby="careers-title">
+      <div class="container page-hero__inner" data-reveal>
+        <p class="kicker">{careers.pageKicker}</p>
+        <h1 id="careers-title">{careers.pageTitle}</h1>
+        <p class="lede">{careers.pageLead}</p>
+        <div class="page-hero__actions">
+          <a class="btn btn--solid" href="#apply">
+            {careers.applyCta.label}
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="careers-fit section" aria-labelledby="fit-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">{careers.fitKicker}</p>
+          <h2 id="fit-title">{careers.fitTitle}</h2>
+        </header>
+        <ul class="careers-fit__grid">
+          {careers.fit.map((item, index) => (
+            <li class="careers-fit__card card" data-reveal style={`--delay: ${index * 80}ms`}>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="careers-roles section" aria-labelledby="roles-title">
+      <div class="container careers-roles__layout">
+        <header class="careers-roles__head" data-reveal>
+          <p class="kicker">{careers.rolesKicker}</p>
+          <h2 id="roles-title">{careers.rolesTitle}</h2>
+        </header>
+        <ul class="careers-roles__list card" data-reveal style="--delay: 100ms">
+          {careers.roles.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="careers-how section" aria-labelledby="how-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">{careers.howKicker}</p>
+          <h2 id="how-title">{careers.howTitle}</h2>
+        </header>
+        <ul class="careers-how__grid">
+          {careers.how.map((item, index) => (
+            <li class="careers-how__card card" data-reveal style={`--delay: ${index * 80}ms`}>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <Contact variant="careers" />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    border-bottom: 1px solid var(--line);
+    padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px);
+    background:
+      radial-gradient(ellipse 50% 45% at 20% 0%, color-mix(in srgb, var(--olive) 14%, transparent), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 90% 30%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 55%);
+  }
+
+  .page-hero__inner {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 46rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.4rem, 1.5rem + 3vw, 3.8rem);
+    max-width: 16ch;
+  }
+
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: var(--s-2);
+  }
+
+  .careers-fit,
+  .careers-roles,
+  .careers-how {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .careers-fit__grid,
+  .careers-how__grid {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .careers-fit__card,
+  .careers-how__card {
+    display: grid;
+    gap: 10px;
+    padding: clamp(22px, 3vw, 28px);
+  }
+
+  .careers-fit__card h3,
+  .careers-how__card h3 {
+    font-size: 1.25rem;
+  }
+
+  .careers-fit__card p,
+  .careers-how__card p {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .careers-roles__layout {
+    display: grid;
+    gap: var(--section-head);
+  }
+
+  .careers-roles__head {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 36rem;
+  }
+
+  .careers-roles__list {
+    display: grid;
+    gap: 14px;
+    padding: clamp(22px, 3vw, 28px);
+    list-style: none;
+  }
+
+  .careers-roles__list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .careers-roles__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--olive);
+  }
+
+  @media (min-width: 900px) {
+    .careers-fit__grid,
+    .careers-how__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .careers-roles__layout {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+      gap: clamp(40px, 6vw, 80px);
+    }
+  }
+</style>
