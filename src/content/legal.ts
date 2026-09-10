@@ -27,11 +27,11 @@ export const consentCopy = {
   categories: {
     necessary: {
       title: 'Strictly necessary',
-      text: 'Required for security, consent memory, and basic site function such as your theme choice. Always on.',
+      text: 'Security, consent memory, and theme. Always on.',
     },
     thirdParty: {
       title: 'Third-party embeds',
-      text: 'Loads Calendly when you book a call, so the scheduler can run on this site. If you decline, booking still opens Calendly in a new tab.',
+      text: 'Loads Calendly on this site for booking. Off means booking opens in a new tab.',
     },
   },
 };
