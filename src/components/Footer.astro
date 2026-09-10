@@ -2,13 +2,15 @@
 import { contact, footer } from '../content/site';
 
 const year = new Date().getFullYear();
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = path === '/';
 ---
 
 <footer class="footer">
   <div class="footer__inner container">
     <div class="footer__row">
       <div class="footer__brand-block">
-        <a class="footer__brand" href="#top">
+        <a class="footer__brand" href={isHome ? '#top' : '/'}>
           <img src="/mark.svg" width="22" height="22" alt="" />
           <span>{footer.brand}</span>
         </a>
@@ -17,13 +19,21 @@ const year = new Date().getFullYear();
 
       <nav aria-label={footer.navLabel}>
         <ul class="footer__links">
-          {footer.links.map((link) => (
-            <li>
-              <a class="footer__link" href={link.href} target="_blank" rel="noopener">
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {footer.links.map((link) => {
+            const external = link.href.startsWith('http');
+            return (
+              <li>
+                <a
+                  class="footer__link"
+                  href={link.href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener' : undefined}
+                >
+                  {link.label}
+                </a>
+              </li>
+            );
+          })}
           <li>
             <a class="footer__link footer__link--email" href={contact.href}>{contact.email}</a>
           </li>

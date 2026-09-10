@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Contact from '../components/Contact.astro';
+import { investors, pages } from '../content/site';
+---
+
+<Layout title={pages.investors.title} description={pages.investors.description}>
+  <Header />
+  <main id="main">
+    <section class="page-hero section" aria-labelledby="investors-title">
+      <div class="container page-hero__inner" data-reveal>
+        <p class="kicker">{investors.pageKicker}</p>
+        <h1 id="investors-title">{investors.pageTitle}</h1>
+        <p class="lede">{investors.pageLead}</p>
+        <div class="page-hero__actions">
+          <a class="btn btn--solid" href="#talk">
+            {investors.talkCta.label}
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </a>
+          <button class="btn btn--ghost" type="button" data-calendly-open>
+            Book a call
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="investors-thesis section" aria-labelledby="thesis-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">Thesis</p>
+          <h2 id="thesis-title">What we believe</h2>
+        </header>
+        <ul class="investors-thesis__grid">
+          {investors.thesis.map((item, index) => (
+            <li class="investors-thesis__card card" data-reveal style={`--delay: ${index * 80}ms`}>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="investors-today section" aria-labelledby="today-title">
+      <div class="container investors-today__layout">
+        <header class="investors-today__head" data-reveal>
+          <p class="kicker">Today</p>
+          <h2 id="today-title">{investors.today.title}</h2>
+          <p class="lede">{investors.ask.text}</p>
+        </header>
+        <ul class="investors-today__list card" data-reveal style="--delay: 100ms">
+          {investors.today.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="investors-ask section" aria-labelledby="ask-title">
+      <div class="container">
+        <div class="investors-ask__panel card" data-reveal>
+          <p class="kicker">Fit</p>
+          <h2 id="ask-title">{investors.ask.title}</h2>
+          <p class="lede">{investors.ask.text}</p>
+        </div>
+      </div>
+    </section>
+
+    <Contact variant="investors" />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    border-bottom: 1px solid var(--line);
+    padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px);
+    background:
+      radial-gradient(ellipse 55% 50% at 80% 0%, color-mix(in srgb, var(--blue) 14%, transparent), transparent 60%),
+      radial-gradient(ellipse 40% 35% at 10% 80%, color-mix(in srgb, var(--teal) 10%, transparent), transparent 55%);
+  }
+
+  .page-hero__inner {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 46rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.4rem, 1.5rem + 3vw, 3.8rem);
+    max-width: 16ch;
+  }
+
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: var(--s-2);
+  }
+
+  .investors-thesis,
+  .investors-today,
+  .investors-ask {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .investors-thesis__grid {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .investors-thesis__card {
+    display: grid;
+    gap: 10px;
+    padding: clamp(22px, 3vw, 28px);
+  }
+
+  .investors-thesis__card h3 {
+    font-size: 1.25rem;
+  }
+
+  .investors-thesis__card p {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .investors-today__layout {
+    display: grid;
+    gap: var(--section-head);
+  }
+
+  .investors-today__head {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 40rem;
+  }
+
+  .investors-today__list {
+    display: grid;
+    gap: 14px;
+    padding: clamp(22px, 3vw, 28px);
+    list-style: none;
+  }
+
+  .investors-today__list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .investors-today__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--teal);
+  }
+
+  .investors-ask__panel {
+    display: grid;
+    gap: var(--s-4);
+    padding: clamp(28px, 4vw, 40px);
+    max-width: 48rem;
+  }
+
+  .investors-ask__panel h2 {
+    font-size: clamp(1.7rem, 1.2rem + 1.4vw, 2.4rem);
+  }
+
+  @media (min-width: 900px) {
+    .investors-thesis__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .investors-today__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: start;
+      gap: clamp(40px, 6vw, 80px);
+    }
+  }
+</style>

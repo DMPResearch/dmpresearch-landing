@@ -1,25 +1,52 @@
 ---
 import { contact, nav } from '../content/site';
 import ThemeSwitch from './ThemeSwitch.astro';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isHome = path === '/';
+
+const navHref = (href: string) => {
+  if (!href.startsWith('/#')) return href;
+  return isHome ? href.slice(1) : href;
+};
+
+const navId = (href: string) => {
+  if (href.startsWith('/#')) return href.slice(2);
+  if (href.startsWith('#')) return href.slice(1);
+  return href.replace(/^\//, '');
+};
 ---
 
 <header class="header" data-header>
   <div class="header__glow" aria-hidden="true"></div>
   <div class="header__inner container">
-    <a class="header__brand" href="#top" aria-label="DMPResearch, back to top">
+    <a class="header__brand" href={isHome ? '#top' : '/'} aria-label="DMPResearch, back to top">
       <img src="/mark.svg" width="28" height="28" alt="" />
       <span>DMPResearch</span>
     </a>
 
     <nav class="header__nav" aria-label="Site">
       <ul id="site-nav" class="header__list">
-        {nav.map((link) => (
-          <li>
-            <a class="header__link" href={link.href} data-nav-link={link.href.replace('#', '')}>
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {nav.map((link) => {
+          const href = navHref(link.href);
+          const id = navId(link.href);
+          const current =
+            (!isHome && link.href === path) ||
+            (!isHome && link.href === `${path}/`) ||
+            path === link.href;
+          return (
+            <li>
+              <a
+                class:list={['header__link', { 'is-active': current }]}
+                href={href}
+                data-nav-link={isHome && href.startsWith('#') ? id : undefined}
+                aria-current={current ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
         <li class="header__list-cta">
           <button class="header__link" type="button" data-calendly-open>{contact.bookLabel}</button>
         </li>
@@ -55,12 +82,15 @@ import ThemeSwitch from './ThemeSwitch.astro';
     header.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => setOpen(false));
     });
+    header.querySelectorAll('button[data-calendly-open]').forEach((button) => {
+      button.addEventListener('click', () => setOpen(false));
+    });
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') setOpen(false);
     });
   }
 
-  // Scrollspy: highlight the nav item for the section in view.
+  // Scrollspy: highlight the nav item for the section in view (home only).
   const ids = links.map((link) => link.dataset.navLink).filter(Boolean) as string[];
   const sections = ids
     .map((id) => document.getElementById(id))
@@ -97,7 +127,6 @@ import ThemeSwitch from './ThemeSwitch.astro';
     sections.forEach((section) => spy.observe(section));
   }
 
-  // Soft header elevation after scroll + keep --header-h honest for anchors.
   const syncHeaderHeight = () => {
     if (!header) return;
     const height = Math.ceil(header.getBoundingClientRect().height);
@@ -203,7 +232,7 @@ import ThemeSwitch from './ThemeSwitch.astro';
 
   .header__link.is-active {
     color: var(--fg);
-    background: rgba(238, 243, 236, 0.06);
+    background: color-mix(in srgb, var(--fg) 6%, transparent);
   }
 
   .header__link.is-active::after {

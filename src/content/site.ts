@@ -1,6 +1,7 @@
 export const contact = {
   email: 'hello@flowstarter.dev',
   href: 'mailto:hello@flowstarter.dev?subject=Build%20with%20DMPResearch',
+  investorHref: 'mailto:hello@flowstarter.dev?subject=Investor%20conversation%20with%20DMPResearch',
   sectionHref: '#contact',
   github: 'https://github.com/DMPResearch',
   label: 'Build with us',
@@ -12,15 +13,29 @@ export const contact = {
 export const meta = {
   title: 'DMPResearch | Apps and digital products, human and AI',
   description:
-    'A small studio that builds apps and digital products for people. TypeScript, Next.js, Node, Python, and human-centered UX. Darius and Dorin steer. AI agents help with the heavy lifting.',
+    'A small studio building toward an ecosystem of connected, human-centric apps. TypeScript, Next.js, Node, Python, and UX for complex products. Darius and Dorin steer. Agents handle the grind.',
+};
+
+export const pages = {
+  about: {
+    title: 'About | DMPResearch',
+    description:
+      'DMPResearch is Darius and Dorin: a small studio building human-centric apps, with AI agents on the grind work. Read who we are and where we are headed.',
+  },
+  investors: {
+    title: 'Investors | DMPResearch',
+    description:
+      'Our long-term vision is an ecosystem of connected apps that take tedious day-to-day work off people’s plates, without replacing human judgment. Talk with us if that thesis fits.',
+  },
 };
 
 export const nav = [
-  { label: 'Products', href: '#products' },
-  { label: 'Work', href: '#work' },
-  { label: 'Method', href: '#method' },
-  { label: 'Team', href: '#team' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Products', href: '/#products' },
+  { label: 'Work', href: '/#work' },
+  { label: 'Vision', href: '/#vision' },
+  { label: 'About', href: '/about' },
+  { label: 'Investors', href: '/investors' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const hero = {
@@ -29,7 +44,7 @@ export const hero = {
   titleAccent: 'made for people.',
   text: 'We blend human judgment with AI work. We know the stack we ship on: TypeScript, Next.js, Node, Python, Postgres, and human-centered UX for complex products. Darius and Dorin decide what ships. Agents research, draft, and scaffold so we move faster without losing the craft.',
   primary: { label: 'Book a call', href: '#contact' },
-  secondary: { label: 'See our work', href: '#products' },
+  secondary: { label: 'See our work', href: '/#products' },
 };
 
 export interface Product {
@@ -135,24 +150,110 @@ export const work = {
 };
 
 export const ambition = {
-  kicker: 'How we think',
-  title: 'Small on purpose.',
-  text: 'Most studios grow headcount when they get busy. We added agents instead. Darius and Dorin still make every decision about what ships. The agents do volume work. We do the thinking.',
+  kicker: 'Long-term vision',
+  title: 'An ecosystem of connected apps that stay human.',
+  text: 'We are building toward products that talk to each other and take tedious day-to-day work off people’s plates. Automation where it earns its keep. People stay in charge of judgment, taste, and the final call.',
   points: [
     {
-      title: 'You work with us directly',
-      text: 'No project managers, no handoffs to juniors. When you hire us, you get us.',
+      title: 'Connected, not siloed',
+      text: 'Flowstarter, Ereno, and what comes next should share context so users do not re-enter the same life over and over.',
     },
     {
-      title: 'Agents handle the grind',
-      text: "Research, first drafts, scaffolding, test runs. They work in parallel and overnight. That's how two people keep up.",
+      title: 'Automate the grind',
+      text: 'Research, drafting, booking prep, follow-ups, the chores that eat evenings. Agents handle volume. People decide.',
     },
     {
-      title: 'You get working software',
-      text: 'Not a slide deck. A live site or app you can use, own, and change.',
+      title: 'Human-centric by design',
+      text: 'No black-box magic. Clear sources, visible trade-offs, and interfaces that respect attention instead of harvesting it.',
     },
   ],
   cta: { label: contact.bookLabel, href: contact.sectionHref },
+};
+
+export const investors = {
+  kicker: 'For investors',
+  title: 'Backing a studio that ships products, then connects them.',
+  text: 'We are a small team with live products already in market. The long game is an ecosystem of connected apps that automate tedious day-to-day tasks while remaining human-centric. If that thesis interests you, we would like to talk.',
+  pageKicker: 'Investors',
+  pageTitle: 'Invest in the next layer of everyday software.',
+  pageLead:
+    'Most “AI products” are chat wrappers. We ship real apps people use, then wire them into a coherent ecosystem so the boring parts of life get lighter without people losing control.',
+  thesisKicker: 'Thesis',
+  thesisTitle: 'What we believe',
+  thesis: [
+    {
+      title: 'Products first',
+      text: 'Flowstarter and Ereno are live. Client work funds craft and keeps us honest about what ships.',
+    },
+    {
+      title: 'Ecosystem next',
+      text: 'Shared identity, shared context, and automations that span apps. Users stop copy-pasting their life between tabs.',
+    },
+    {
+      title: 'Human judgment stays',
+      text: 'Agents draft and execute busywork. People keep taste, ethics, and the decisions that matter.',
+    },
+  ],
+  today: {
+    kicker: 'Today',
+    title: 'Where we are today',
+    text: 'Two owned products in market, plus client work that pays for taste and speed. The ecosystem is the direction, not a slide.',
+    items: [
+      'Flowstarter: website factory and constrained AI editor for service businesses',
+      'Ereno: conversational trip and base planning with visible sources',
+      'A studio model that blends paid client work with owned products',
+    ],
+  },
+  ask: {
+    kicker: 'Fit',
+    title: 'Who we want to talk to',
+    text: 'Operators and investors who care about durable product craft, not hype cycles. If you want a conversation about the vision, book a call or write us.',
+  },
+  teaserCta: { label: 'Read the investor brief', href: '/investors' },
+  talkCta: { label: 'Talk with us', href: '/investors#talk' },
+  contact: {
+    kicker: 'Talk with us',
+    title: 'Interested? Let’s have a conversation.',
+    text: 'Book a call or send a note. Say you are reaching out about investment. You will talk with Darius and Dorin.',
+    bookHint: 'A short call is enough to see if there is a fit.',
+    formTitle: 'Prefer email?',
+    formText: 'Tell us who you are and what you want to explore. We reply within a day.',
+    formSuccess: 'Got it. We will get back to you soon.',
+    fields: {
+      name: 'Name',
+      email: 'Email',
+      company: 'Firm or fund (optional)',
+      message: 'What would you like to discuss?',
+      submit: 'Send message',
+      honeypot: 'Leave this field empty',
+    },
+  },
+};
+
+export const about = {
+  kicker: 'About',
+  title: 'A two-person studio with agents on the floor.',
+  lead: 'DMPResearch is Darius and Dorin. We build apps and digital products for people. Agents research, draft, and scaffold. We decide what ships.',
+  story: [
+    {
+      title: 'Why we exist',
+      text: 'We got tired of teams that balloon headcount and lose the plot. Two senior people plus serious agent help can ship more, with clearer taste, if the work is set up right.',
+    },
+    {
+      title: 'How we work',
+      text: 'Client projects and our own products run the same loop: agents draft, we review, it ships, we revisit. You always talk to the people who build.',
+    },
+    {
+      title: 'Where we are going',
+      text: 'Toward an ecosystem of connected apps that automate tedious day-to-day tasks and stay human-centric. Flowstarter and Ereno are early pieces of that picture.',
+    },
+  ],
+  cta: {
+    title: 'Want to build with us?',
+    text: 'Book a call, or read the investor brief if you are exploring capital.',
+    primary: { label: contact.bookLabel },
+    secondary: { label: 'Investor brief', href: '/investors' },
+  },
 };
 
 export const method = {
@@ -241,6 +342,8 @@ export const footer = {
     href: 'https://flowstarter.net',
   },
   links: [
+    { label: 'About', href: '/about' },
+    { label: 'Investors', href: '/investors' },
     { label: 'Flowstarter', href: 'https://flowstarter.net' },
     { label: 'Ereno', href: 'https://ereno.flowstarter.dev' },
     { label: 'GitHub', href: contact.github },

@@ -1,72 +1,84 @@
 ---
-import { contact, cta } from '../content/site';
+import { contact, cta, investors } from '../content/site';
+
+interface Props {
+  variant?: 'default' | 'investors';
+}
+
+const { variant = 'default' } = Astro.props;
+const copy = variant === 'investors' ? investors.contact : cta;
+const formName = variant === 'investors' ? 'investor' : 'contact';
+const formAction = variant === 'investors' ? '/investors/?success=1#talk' : '/?success=1#contact';
+const emailHref = variant === 'investors' ? contact.investorHref : contact.href;
+const sectionId = variant === 'investors' ? 'talk' : 'contact';
+const titleId = variant === 'investors' ? 'talk-title' : 'contact-title';
 ---
 
-<section class="contact section" id="contact" aria-labelledby="contact-title">
+<section class="contact section" id={sectionId} aria-labelledby={titleId}>
   <div class="contact__wash" aria-hidden="true"></div>
   <div class="contact__layout container">
     <div class="contact__intro" data-reveal>
-      <p class="kicker">{cta.kicker}</p>
-      <h2 id="contact-title">{cta.title}</h2>
-      <p class="lede contact__text">{cta.text}</p>
+      <p class="kicker">{copy.kicker}</p>
+      <h2 id={titleId}>{copy.title}</h2>
+      <p class="lede contact__text">{copy.text}</p>
       <div class="contact__actions">
         <button class="btn btn--solid" type="button" data-calendly-open>
           {contact.bookLabel}
           <span class="btn__arrow" aria-hidden="true">→</span>
         </button>
-        <a class="link contact__email" href={contact.href}>{contact.email}</a>
+        <a class="link contact__email" href={emailHref}>{contact.email}</a>
       </div>
-      <p class="contact__hint">{cta.bookHint}</p>
+      <p class="contact__hint">{copy.bookHint}</p>
     </div>
 
     <div class="contact__write" data-reveal style="--delay: 100ms">
       <div class="contact__write-head">
-        <h3>{cta.formTitle}</h3>
-        <p>{cta.formText}</p>
+        <h3>{copy.formTitle}</h3>
+        <p>{copy.formText}</p>
       </div>
 
       <form
         class="contact__form"
-        name="contact"
+        name={formName}
         method="POST"
-        action="/?success=1#contact"
+        action={formAction}
         data-netlify="true"
         netlify-honeypot="bot-field"
       >
-        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="form-name" value={formName} />
         <p class="contact__honey" hidden>
           <label>
-            {cta.fields.honeypot}
+            {copy.fields.honeypot}
             <input name="bot-field" tabindex="-1" autocomplete="off" />
           </label>
         </p>
 
         <label class="contact__field">
-          <span>{cta.fields.name}</span>
+          <span>{copy.fields.name}</span>
           <input type="text" name="name" required autocomplete="name" maxlength="120" />
         </label>
 
         <label class="contact__field">
-          <span>{cta.fields.email}</span>
+          <span>{copy.fields.email}</span>
           <input type="email" name="email" required autocomplete="email" maxlength="160" />
         </label>
 
         <label class="contact__field">
-          <span>{cta.fields.company}</span>
+          <span>{copy.fields.company}</span>
           <input type="text" name="company" autocomplete="organization" maxlength="160" />
         </label>
 
         <label class="contact__field contact__field--full">
-          <span>{cta.fields.message}</span>
+          <span>{copy.fields.message}</span>
           <textarea name="message" required rows="4" maxlength="4000"></textarea>
         </label>
 
         <button class="btn btn--ghost contact__submit" type="submit">
-          {cta.fields.submit}
+          {copy.fields.submit}
           <span class="btn__arrow" aria-hidden="true">→</span>
         </button>
 
-        <p class="contact__success" hidden data-form-success>{cta.formSuccess}</p>
+        <p class="contact__success" hidden data-form-success>{copy.formSuccess}</p>
       </form>
     </div>
   </div>

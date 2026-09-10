@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Team from '../components/Team.astro';
+import Method from '../components/Method.astro';
+import { about, pages } from '../content/site';
+---
+
+<Layout title={pages.about.title} description={pages.about.description}>
+  <Header />
+  <main id="main">
+    <section class="page-hero section" aria-labelledby="about-title">
+      <div class="container page-hero__inner" data-reveal>
+        <p class="kicker">{about.kicker}</p>
+        <h1 id="about-title">{about.title}</h1>
+        <p class="lede">{about.lead}</p>
+      </div>
+    </section>
+
+    <section class="about-story section" aria-label="Our story">
+      <div class="container">
+        <ul class="about-story__grid">
+          {about.story.map((item, index) => (
+            <li class="about-story__card card" data-reveal style={`--delay: ${index * 80}ms`}>
+              <span class="mono">{String(index + 1).padStart(2, '0')}</span>
+              <h2>{item.title}</h2>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <Team />
+    <Method />
+
+    <section class="about-cta section" aria-labelledby="about-cta-title">
+      <div class="container">
+        <div class="about-cta__panel card" data-reveal>
+          <div>
+            <h2 id="about-cta-title">{about.cta.title}</h2>
+            <p class="lede">{about.cta.text}</p>
+          </div>
+          <div class="about-cta__actions">
+            <button class="btn btn--solid" type="button" data-calendly-open>
+              {about.cta.primary.label}
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </button>
+            <a class="btn btn--ghost" href={about.cta.secondary.href}>{about.cta.secondary.label}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    border-bottom: 1px solid var(--line);
+    padding-block: clamp(48px, 8vw, 96px) clamp(40px, 6vw, 72px);
+    background:
+      radial-gradient(ellipse 50% 45% at 15% 0%, color-mix(in srgb, var(--olive) 14%, transparent), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 90% 20%, color-mix(in srgb, var(--teal) 10%, transparent), transparent 55%);
+  }
+
+  .page-hero__inner {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 44rem;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.4rem, 1.5rem + 3vw, 3.8rem);
+    max-width: 16ch;
+  }
+
+  .about-story {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-story__grid {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .about-story__card {
+    display: grid;
+    gap: 10px;
+    padding: clamp(22px, 3vw, 28px);
+  }
+
+  .about-story__card h2 {
+    font-size: 1.35rem;
+  }
+
+  .about-story__card p {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .about-cta {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-cta__panel {
+    display: grid;
+    gap: clamp(20px, 3vw, 28px);
+    padding: clamp(28px, 4vw, 40px);
+  }
+
+  .about-cta__panel h2 {
+    font-size: clamp(1.7rem, 1.2rem + 1.4vw, 2.3rem);
+    margin-bottom: 10px;
+  }
+
+  .about-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  @media (min-width: 900px) {
+    .about-story__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .about-cta__panel {
+      grid-template-columns: minmax(0, 1.4fr) auto;
+      align-items: end;
+    }
+  }
+</style>
