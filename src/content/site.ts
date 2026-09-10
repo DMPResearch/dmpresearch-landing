@@ -20,7 +20,7 @@ export const pages = {
   about: {
     title: 'About | DMPResearch',
     description:
-      'DMPResearch is Darius and Dorin: a small studio building human-centric apps, with AI agents on the grind work. Read who we are and where we are headed.',
+      'DMPResearch is led by Darius and Dorin, with specialists for testing, marketing, and social, plus AI agents on the grind work. Read who we are and where we are headed.',
   },
   investors: {
     title: 'Investors | DMPResearch',
