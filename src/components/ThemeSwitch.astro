@@ -40,7 +40,7 @@
     document.documentElement.setAttribute('data-theme', pref);
     document.documentElement.setAttribute('data-resolved', resolved);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', resolved === 'dark' ? '#070a0e' : '#f4f1ea');
+    if (meta) meta.setAttribute('content', resolved === 'dark' ? '#070a0e' : '#f3f2ed');
     buttons.forEach((btn) => {
       const active = btn.dataset.themeSet === pref;
       btn.classList.toggle('is-active', active);

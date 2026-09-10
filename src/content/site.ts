@@ -12,26 +12,26 @@ export const contact = {
 };
 
 export const meta = {
-  title: 'DMPResearch | Apps and digital products, human and AI',
+  title: 'DMPResearch | Premium apps and digital products',
   description:
-    'A small studio building toward an ecosystem of connected, human-centric apps. TypeScript, Next.js, Node, Python, and UX for complex products. Darius and Dorin steer. Agents handle the grind.',
+    'Automate the mundane. Amplify the human. Premium websites, web apps, and product systems that give people leverage, not a replacement.',
 };
 
 export const pages = {
   about: {
     title: 'About | DMPResearch',
     description:
-      'DMPResearch is a human team led by Darius and Dorin, with specialists for testing, marketing, and social. AI agents help with the grind. Read who we are and where we are headed.',
+      'We build the apps and websites we wished existed: an easier way to create with AI, without losing human judgment. Led by Darius and Dorin.',
   },
   investors: {
     title: 'Investors | DMPResearch',
     description:
-      'Our long-term vision is an ecosystem of connected apps that take tedious day-to-day work off people’s plates, without replacing human judgment. Talk with us if that thesis fits.',
+      'Live products first, then a connected ecosystem that takes tedious day-to-day work off people’s plates without replacing human judgment. Talk with us if that thesis fits.',
   },
   careers: {
     title: 'Careers and contracting | DMPResearch',
     description:
-      'Freelance and contract with DMPResearch. We work with people who are excited about new technology and want to extend a small human team shipping real products.',
+      'Freelance and contract with DMPResearch. Extend a focused human team shipping real products, not pitch decks.',
   },
 };
 
@@ -46,10 +46,10 @@ export const nav = [
 ];
 
 export const hero = {
-  kicker: 'A small studio',
-  titleLead: 'Apps and digital products',
+  kicker: 'Product studio',
+  titleLead: 'Premium apps and digital products',
   titleAccent: 'made for people',
-  text: 'We blend human judgment with AI work on TypeScript, Next.js, Node, Python, Postgres, and human-centered UX for complex products. Darius and Dorin decide what ships while agents research, draft, and scaffold so we move faster without losing the craft',
+  text: 'Websites, web apps, and the systems behind them. We built what we wished existed: an easy way to create with AI, with people still deciding what ships.',
   primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See our work', href: '/#products' },
 };
@@ -81,17 +81,17 @@ export const products: Product[] = [
     imageDark: '/images/flowstarter-site-dark.webp',
     imageAlt: 'Screenshot of the Flowstarter website',
     title: 'A website factory for service businesses',
-    text: "We design and ship a polished site, then hand over a constrained AI editor so you can keep it current without breaking it. When you hit the editor's limits, we step in.",
+    text: 'Mostly self-serve: service businesses start in Flowstarter and shape their site with AI. We step in for polish, clearer wording when messages are ambiguous, and the moments a constrained editor should not decide alone.',
     points: [
-      'We handle discovery through launch',
-      "You update content with an AI editor that can't break your site",
-      'We step back in when the editor hits its limits',
+      'Self-serve from first draft through a live site',
+      'AI helps you update content without breaking the build',
+      'We join for polish, ambiguous copy, and hard edges',
     ],
     link: { label: 'Visit flowstarter.net', href: 'https://flowstarter.net' },
     facts: [
       { term: 'Status', detail: 'Live' },
       { term: 'Wedge', detail: 'Professional websites' },
-      { term: 'Model', detail: 'Build once, then a care plan' },
+      { term: 'Model', detail: 'Self-serve, with human polish' },
     ],
   },
   {
@@ -122,7 +122,7 @@ export const products: Product[] = [
 export const work = {
   kicker: 'Client work',
   title: 'Sites we shipped for other people',
-  text: 'Same process as our own products. Agents draft, we decide. These are all live.',
+  text: 'Same bar as our own products. Agents draft. We decide. Every link below is live.',
   items: [
     {
       id: 'ux-journey',
@@ -157,21 +157,21 @@ export const work = {
 };
 
 export const ambition = {
-  kicker: 'Long-term vision',
-  title: 'An ecosystem of connected apps that stay human',
-  text: 'We are building toward products that talk to each other and take tedious day-to-day work off people’s plates. Automation where it earns its keep. People stay in charge of judgment, taste, and the final call.',
+  kicker: 'Philosophy',
+  title: 'Automate the mundane. Amplify the human.',
+  text: 'We build technology that amplifies human capability. We automate the repetitive, the logistical, and the computationally heavy so people can focus on judgment, creativity, relationships, and building what matters.',
   points: [
     {
-      title: 'Connected, not siloed',
-      text: 'Flowstarter, Ereno, and what comes next should share context so users do not re-enter the same life over and over.',
+      title: 'Leverage, not replacement',
+      text: 'AI should not remove humans from the equation. It should give them leverage.',
     },
     {
-      title: 'Automate the grind',
-      text: 'Research, drafting, booking prep, follow-ups, the chores that eat evenings. Agents handle volume. People decide.',
+      title: 'Automate the mundane',
+      text: 'Research, drafting, logistics, and the computationally heavy work. Agents handle volume so people keep the parts that need taste.',
     },
     {
-      title: 'Human-centric by design',
-      text: 'No black-box magic. Clear sources, visible trade-offs, and interfaces that respect attention instead of harvesting it.',
+      title: 'Connected, still human',
+      text: 'Flowstarter, Ereno, and what comes next should share context and take tedious day-to-day work off people’s plates, without handing judgment to a model.',
     },
   ],
   cta: { label: contact.bookLabel, href: contact.sectionHref },
@@ -180,14 +180,14 @@ export const ambition = {
 export const investors = {
   kicker: 'For investors',
   title: 'Backing a studio that ships products, then connects them',
-  text: 'We are a small team with live products already in market. The long game is an ecosystem of connected apps that automate tedious day-to-day tasks while remaining human-centric. If that thesis interests you, we would like to talk.',
+  text: 'Live products are already in market. The long game is a connected ecosystem that automates tedious day-to-day work while people keep control. If that thesis fits, we would like to talk.',
   summary:
-    'Live products first, then a connected ecosystem. Human judgment stays in charge. Talk with us if that thesis fits.',
-  highlights: ['Products first', 'Ecosystem next', 'Human judgment stays'],
+    'Live products first, then a connected ecosystem. Automate the mundane. Amplify the human. Talk with us if that thesis fits.',
+  highlights: ['Products first', 'Ecosystem next', 'Amplify the human'],
   pageKicker: 'Investors',
   pageTitle: 'Invest in the next layer of everyday software',
   pageLead:
-    'Most “AI products” are chat wrappers. We ship real apps people use, then wire them into a coherent ecosystem so the boring parts of life get lighter without people losing control.',
+    'Most “AI products” are chat wrappers. We ship real apps people use, then wire them into a coherent ecosystem so the boring parts of life get lighter. AI should not remove humans from the equation. It should give them leverage.',
   thesisKicker: 'Thesis',
   thesisTitle: 'What we believe',
   thesis: [
@@ -200,8 +200,8 @@ export const investors = {
       text: 'Shared identity, shared context, and automations that span apps. Users stop copy-pasting their life between tabs.',
     },
     {
-      title: 'Human judgment stays',
-      text: 'Agents draft and execute busywork. People keep taste, ethics, and the decisions that matter.',
+      title: 'Amplify the human',
+      text: 'We automate the repetitive and computationally heavy. People keep judgment, creativity, relationships, and the decisions that matter.',
     },
   ],
   today: {
@@ -209,7 +209,7 @@ export const investors = {
     title: 'Where we are today',
     text: 'Two owned products in market, plus client work that pays for taste and speed. The ecosystem is the direction, not a slide.',
     items: [
-      'Flowstarter: website factory and constrained AI editor for service businesses',
+      'Flowstarter: mostly self-serve website factory for service businesses, with human polish when it counts',
       'Ereno: conversational trip and base planning with visible sources',
       'A studio model that blends paid client work with owned products',
     ],
@@ -242,25 +242,25 @@ export const investors = {
 
 export const about = {
   kicker: 'About',
-  title: 'A small studio with humans in charge',
-  lead: 'DMPResearch is a human team: Darius and Dorin lead, with a tester, a digital marketer, and a social media specialist. AI agents help with research, drafts, and scaffolding. People decide what ships.',
+  title: 'Built for what was missing',
+  lead: 'We build technology that amplifies human capability. Darius and Dorin lead product, engineering, and design, with a tester, a digital marketer, and a social media specialist. AI speeds the grind. People keep judgment, creativity, and what ships.',
   summary:
-    'A human crew building apps and digital products. Agents help with the grind. People decide what ships.',
-  highlights: ['Why we exist', 'How we work', 'Where we are going'],
+    'Automate the mundane. Amplify the human. We build the products we wished existed, and leave people in charge of what matters.',
+  highlights: ['Our philosophy', 'How we work', 'Where we are going'],
   teaserCta: { label: 'More about us', href: '/about' },
   teamCta: { label: 'Meet the team', href: '/#team' },
   story: [
     {
-      title: 'Why we exist',
-      text: 'We got tired of teams that balloon headcount and lose the plot. A tight crew plus serious agent help can ship more, with clearer taste, if the work is set up right.',
+      title: 'Our philosophy',
+      text: 'We automate the repetitive, the logistical, and the computationally heavy so people can focus on judgment, creativity, relationships, and building what matters. AI should not remove humans from the equation. It should give them leverage.',
     },
     {
       title: 'How we work',
-      text: 'Client projects and our own products run the same loop: agents draft, we review, it ships, we revisit. You always talk to the people who build.',
+      text: 'We wanted an easy, trustworthy way to build apps and websites with AI and could not find it done right. So we built Flowstarter, Ereno, and a studio loop: agents draft, we review, it ships, we revisit. You always talk to the people who build.',
     },
     {
       title: 'Where we are going',
-      text: 'Toward an ecosystem of connected apps that automate tedious day-to-day tasks and stay human-centric. Flowstarter and Ereno are early pieces of that picture.',
+      text: 'Toward an ecosystem of connected apps that take tedious day-to-day work off people’s plates and still leave humans in charge. Flowstarter and Ereno are early pieces of that picture.',
     },
   ],
   cta: {
@@ -280,12 +280,12 @@ export const faq = {
     {
       question: 'What does DMPResearch actually build?',
       answer:
-        'Apps and digital products for people: our own products like Flowstarter and Ereno, plus client sites and systems. You get working software, not a slide deck.',
+        'Premium websites, web apps, and product systems for businesses, plus our own products like Flowstarter and Ereno. You get working software you can open today, not a slide deck.',
     },
     {
       question: 'Are the agents replacing the team?',
       answer:
-        'No. Agents research, draft, and scaffold. Humans lead: Darius, Dorin, a tester, a digital marketer, and a social media specialist. People decide what ships.',
+        'No. AI should not remove humans from the equation. It should give them leverage. Agents research, draft, and scaffold. Humans lead. People keep judgment, creativity, and what ships.',
     },
     {
       question: 'Who do I talk to if I hire you?',
@@ -295,7 +295,7 @@ export const faq = {
     {
       question: 'Do you take freelance or contract help?',
       answer:
-        'Yes. We work with freelancers who are excited about new technology. Apply on the careers page with a portfolio link and what you want to work on.',
+        'Yes. We work with freelancers who care about modern stacks and shipping. Apply on the careers page with a portfolio link and what you want to work on.',
     },
     {
       question: 'Are you raising or open to investors?',
@@ -314,7 +314,7 @@ export const method = {
   kicker: 'How we build',
   title: 'How we build things',
   loopLabel: 'The loop',
-  text: 'Every project on this page was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
+  text: 'Every project on this page follows the same human-centric loop. Agents research, draft, and scaffold. We own the decisions that matter and read the work before it goes live.',
   loop: ['Agents draft', 'We review', 'It ships', 'We revisit'],
   stages: [
     {
@@ -366,8 +366,8 @@ export const method = {
 
 export const team = {
   kicker: 'The team',
-  title: 'A small human crew / agents help / people decide',
-  text: 'Darius and Dorin lead product, engineering, and design. The team also includes a human tester, a digital marketer, and a social media specialist. Separately, AI agents research, draft, and scaffold so the humans move faster.',
+  title: 'A focused crew / agents help / people decide',
+  text: 'Darius and Dorin lead product, engineering, and design, with a tester, a digital marketer, and a social media specialist. Agents research, draft, and scaffold so the people move faster.',
   members: [
     {
       name: 'Darius',
@@ -414,11 +414,11 @@ export const team = {
 export const careers = {
   kicker: 'Careers and contracting',
   title: 'Freelancers who care about new tech',
-  text: 'We extend the studio with contractors who get excited about modern stacks, agent workflows, and shipping real products. Not endless pitch decks. Working software.',
+  text: 'We extend the team with contractors who care about modern stacks, agent workflows, and shipping real products. Not endless pitch decks. Working software.',
   pageKicker: 'Careers',
   pageTitle: 'Contract with us / bring sharp skills and curiosity',
   pageLead:
-    'DMPResearch is a small human team. When we need more reach, we hire freelancers who want to work with new technology, not fight it. You plug into live products and client work beside people who decide and ship.',
+    'DMPResearch is a focused human team. When we need more reach, we hire freelancers who want to work with new technology, not fight it. You plug into live products and client work beside people who decide and ship.',
   fitKicker: 'Who thrives here',
   fitTitle: 'What we look for',
   fit: [
@@ -484,7 +484,7 @@ export const careers = {
 export const cta = {
   kicker: 'Work with us',
   title: "Let's talk about what you need",
-  text: 'We build apps and digital products for people, blending human craft with AI speed. Book a call or write hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
+  text: 'Need a website, a web app, or a product system your team can actually run? We build with AI speed and human judgment. Book a call or write hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
   bookHint: "Thirty minutes is enough to figure out if we're a fit.",
   formTitle: 'Rather write?',
   formText: 'Send a short note. We reply by email, usually within a day.',
@@ -502,7 +502,7 @@ export const cta = {
 export const footer = {
   navLabel: 'Footer',
   brand: 'DMPResearch',
-  tagline: 'Apps and digital products made for people',
+  tagline: 'Automate the mundane. Amplify the human.',
   builtWith: {
     label: 'Built with Flowstarter',
     href: 'https://flowstarter.net',

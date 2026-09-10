@@ -14,24 +14,24 @@ export const legalNav = [
 ];
 
 export const consentCopy = {
-  title: 'Cookies and privacy',
-  text: 'We use strictly necessary storage to run this site. Optional third-party tools (like Calendly for booking) only load if you allow them. You can change your mind anytime.',
-  acceptAll: 'Accept all',
-  reject: 'Necessary only',
+  title: 'Cookies',
+  text: 'Necessary storage runs the site. Calendly only if you allow it.',
+  acceptAll: 'Accept',
+  reject: 'Necessary',
   customize: 'Customize',
-  save: 'Save choices',
+  save: 'Save',
   close: 'Close',
   settings: 'Cookie settings',
-  privacyLink: { label: 'Privacy policy', href: '/privacy' },
-  cookiesLink: { label: 'Cookie policy', href: '/cookies' },
+  privacyLink: { label: 'Privacy', href: '/privacy' },
+  cookiesLink: { label: 'Cookies', href: '/cookies' },
   categories: {
     necessary: {
-      title: 'Strictly necessary',
-      text: 'Security, consent memory, and theme. Always on.',
+      title: 'Necessary',
+      text: 'Always on',
     },
     thirdParty: {
-      title: 'Third-party embeds',
-      text: 'Loads Calendly on this site for booking. Off means booking opens in a new tab.',
+      title: 'Calendly',
+      text: 'Embed here, or open in a new tab',
     },
   },
 };

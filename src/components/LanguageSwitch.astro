@@ -1,0 +1,66 @@
+---
+import { defaultLocale, getChrome, localeLabels, locales, upcomingLocales } from '../i18n/config';
+
+const locale = defaultLocale;
+const copy = getChrome(locale);
+---
+
+<div class="lang-switch">
+  <label class="visually-hidden" for="site-language">{copy.language}</label>
+  <select
+    id="site-language"
+    class="lang-switch__select"
+    name="language"
+    data-language-switch
+    aria-label={copy.language}
+  >
+    {locales.map((code) => (
+      <option value={code} selected={code === locale}>
+        {localeLabels[code]}
+      </option>
+    ))}
+    {upcomingLocales.map((item) => (
+      <option value={item.code} disabled>
+        {item.label} · {copy.moreLanguagesSoon}
+      </option>
+    ))}
+  </select>
+</div>
+
+<style>
+  .lang-switch {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .lang-switch__select {
+    appearance: none;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--fg-2);
+    background:
+      linear-gradient(45deg, transparent 50%, var(--fg-3) 50%) calc(100% - 14px) / 5px 5px no-repeat,
+      linear-gradient(135deg, var(--fg-3) 50%, transparent 50%) calc(100% - 9px) / 5px 5px no-repeat,
+      color-mix(in srgb, var(--bg-2) 72%, transparent);
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    min-height: 34px;
+    padding: 0 28px 0 12px;
+    cursor: pointer;
+    transition:
+      color 160ms var(--ease),
+      border-color 160ms var(--ease),
+      background-color 160ms var(--ease);
+  }
+
+  .lang-switch__select:hover {
+    color: var(--fg);
+    border-color: color-mix(in srgb, var(--teal) 40%, var(--line-2));
+  }
+
+  .lang-switch__select:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--teal) 55%, transparent);
+    outline-offset: 2px;
+  }
+</style>

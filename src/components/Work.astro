@@ -46,8 +46,17 @@ import { work } from '../content/site';
   .work__head {
     display: grid;
     gap: var(--s-4);
-    max-width: 640px;
+    max-width: 720px;
     margin-bottom: var(--section-head);
+  }
+
+  @media (max-width: 820px) {
+    .work__head {
+      max-width: none;
+      width: 100%;
+      text-align: left;
+      justify-items: stretch;
+    }
   }
 
   .work__grid {

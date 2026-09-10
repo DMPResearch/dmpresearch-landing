@@ -118,6 +118,7 @@ import { method } from '../content/site';
 <style>
   .method {
     border-bottom: 1px solid var(--line);
+    overflow: hidden;
   }
 
   .method__track {
@@ -140,8 +141,8 @@ import { method } from '../content/site';
     height: 130%;
     pointer-events: none;
     background: var(--grad);
-    opacity: 0.26;
-    filter: blur(80px);
+    opacity: 0.2;
+    filter: blur(72px);
   }
 
   .method__loop-label,
@@ -215,6 +216,7 @@ import { method } from '../content/site';
     gap: 12px;
     padding: clamp(24px, 3vw, 32px);
     align-content: start;
+    min-height: min(58vh, 420px);
   }
 
   .method__panel-index {
@@ -252,6 +254,44 @@ import { method } from '../content/site';
     width: 7px;
     height: 1px;
     background: var(--teal);
+  }
+
+  /* Compact sticky loop on phones/tablets so step changes read while you scroll. */
+  @media (max-width: 1023px) {
+    .method__sticky {
+      position: sticky;
+      top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+      z-index: 4;
+      margin-bottom: var(--s-3);
+    }
+
+    .method__loop {
+      padding: 14px 16px;
+      gap: 12px;
+      border-radius: 14px;
+      background: color-mix(in srgb, var(--card-bg) 88%, transparent);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      backdrop-filter: blur(16px) saturate(160%);
+    }
+
+    .method__loop-wash {
+      opacity: 0.14;
+      filter: blur(56px);
+    }
+
+    .method__loop-list {
+      font-size: 1.05rem;
+      gap: 8px;
+    }
+
+    .method__loop-list li {
+      gap: 10px;
+    }
+
+    .method__panels {
+      gap: var(--s-5);
+      padding-bottom: 8vh;
+    }
   }
 
   @media (min-width: 1024px) {

@@ -38,7 +38,7 @@ import { investors } from '../content/site';
     position: relative;
     overflow: hidden;
     background:
-      linear-gradient(145deg, color-mix(in srgb, var(--teal) 10%, transparent), transparent 50%),
+      linear-gradient(145deg, color-mix(in srgb, var(--teal) 6%, transparent), transparent 55%),
       linear-gradient(160deg, var(--card-sheen), transparent 55%),
       var(--card-bg);
     transition: transform 400ms var(--ease), border-color 400ms var(--ease);
@@ -62,7 +62,7 @@ import { investors } from '../content/site';
   }
 
   .investors-teaser__panel.is-inview::after {
-    opacity: 0.18;
+    opacity: 0.1;
   }
 
   .investors-teaser__copy {
@@ -72,8 +72,26 @@ import { investors } from '../content/site';
   }
 
   .investors-teaser__copy h2 {
-    font-size: clamp(1.8rem, 1.2rem + 1.8vw, 2.6rem);
+    font-size: clamp(2.05rem, 1.3rem + 2.2vw, 2.9rem);
     max-width: 18ch;
+  }
+
+  @media (max-width: 820px) {
+    .investors-teaser__copy {
+      max-width: none;
+      width: 100%;
+      text-align: left;
+      justify-items: stretch;
+    }
+
+    .investors-teaser__copy h2 {
+      max-width: none;
+    }
+
+    .investors-teaser__highlights,
+    .investors-teaser__actions {
+      justify-content: flex-start;
+    }
   }
 
   .investors-teaser__highlights {

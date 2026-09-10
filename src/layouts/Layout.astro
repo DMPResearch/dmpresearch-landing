@@ -1,5 +1,6 @@
 ---
 import { meta } from '../content/site';
+import { defaultLocale, getChrome } from '../i18n/config';
 import Calendly from '../components/Calendly.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import Motion from '../components/Motion.astro';
@@ -11,16 +12,17 @@ interface Props {
 }
 
 const { title = meta.title, description = meta.description } = Astro.props;
+const chrome = getChrome(defaultLocale);
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.href;
 const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={defaultLocale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#070a0e" />
@@ -49,12 +51,12 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
         document.documentElement.setAttribute('data-theme', pref);
         document.documentElement.setAttribute('data-resolved', resolved);
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', resolved === 'dark' ? '#070a0e' : '#f4f1ea');
+        if (meta) meta.setAttribute('content', resolved === 'dark' ? '#070a0e' : '#f3f2ed');
       })();
     </script>
   </head>
   <body>
-    <a class="skip" href="#main">Skip to content</a>
+    <a class="skip" href="#main">{chrome.skipToContent}</a>
     <slot />
     <CookieConsent />
     <Calendly />

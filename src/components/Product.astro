@@ -82,6 +82,7 @@ const { id, index, name, tint, mark, imageLight, imageDark, imageAlt, title, tex
 <style>
   .product {
     position: relative;
+    overflow: hidden;
     border-bottom: 1px solid var(--line);
   }
 
@@ -115,7 +116,36 @@ const { id, index, name, tint, mark, imageLight, imageDark, imageAlt, title, tex
   .product__head {
     display: grid;
     gap: var(--s-4);
-    max-width: 640px;
+    max-width: 720px;
+  }
+
+  .product__head h2 {
+    font-size: clamp(2.35rem, 1.4rem + 3.2vw, 3.55rem);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+  }
+
+  @media (max-width: 820px) {
+    .product__head {
+      max-width: none;
+      width: 100%;
+      text-align: left;
+      justify-items: stretch;
+    }
+
+    .product__text,
+    .product__points {
+      max-width: none;
+      width: 100%;
+    }
+
+    .product__cta {
+      justify-self: start;
+    }
+
+    .product__facts {
+      grid-template-columns: 1fr;
+    }
   }
 
   .product__meta {
