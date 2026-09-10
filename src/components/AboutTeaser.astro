@@ -1,0 +1,83 @@
+---
+import { about } from '../content/site';
+---
+
+<section class="about-teaser section" id="about" aria-labelledby="about-teaser-title">
+  <div class="container">
+    <div class="about-teaser__panel card" data-reveal data-inview>
+      <div class="about-teaser__copy">
+        <p class="kicker">{about.kicker}</p>
+        <h2 id="about-teaser-title">{about.title}</h2>
+        <p class="lede">{about.summary}</p>
+        <ul class="about-teaser__highlights">
+          {about.highlights.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="about-teaser__actions">
+        <a class="btn btn--solid" href={about.teaserCta.href}>
+          {about.teaserCta.label}
+          <span class="btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn--ghost" href={about.teamCta.href}>{about.teamCta.label}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-teaser {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .about-teaser__panel {
+    display: grid;
+    gap: clamp(22px, 3vw, 32px);
+    padding: clamp(28px, 4vw, 40px);
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(145deg, color-mix(in srgb, var(--olive) 12%, transparent), transparent 52%),
+      linear-gradient(160deg, var(--card-sheen), transparent 55%),
+      var(--card-bg);
+    transition: transform 400ms var(--ease), border-color 400ms var(--ease);
+  }
+
+  .about-teaser__panel.is-inview {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--olive) 35%, var(--line));
+  }
+
+  .about-teaser__copy {
+    display: grid;
+    gap: var(--s-4);
+    max-width: 46rem;
+  }
+
+  .about-teaser__copy h2 {
+    font-size: clamp(1.8rem, 1.2rem + 1.8vw, 2.6rem);
+    max-width: 16ch;
+  }
+
+  .about-teaser__highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .about-teaser__highlights li {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    font-size: 0.82rem;
+    color: var(--fg-2);
+  }
+
+  .about-teaser__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>

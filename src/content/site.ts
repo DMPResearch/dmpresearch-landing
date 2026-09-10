@@ -181,6 +181,9 @@ export const investors = {
   kicker: 'For investors',
   title: 'Backing a studio that ships products, then connects them',
   text: 'We are a small team with live products already in market. The long game is an ecosystem of connected apps that automate tedious day-to-day tasks while remaining human-centric. If that thesis interests you, we would like to talk.',
+  summary:
+    'Live products first, then a connected ecosystem. Human judgment stays in charge. Talk with us if that thesis fits.',
+  highlights: ['Products first', 'Ecosystem next', 'Human judgment stays'],
   pageKicker: 'Investors',
   pageTitle: 'Invest in the next layer of everyday software',
   pageLead:
@@ -216,7 +219,7 @@ export const investors = {
     title: 'Who we want to talk to',
     text: 'Operators and investors who care about durable product craft, not hype cycles. If you want a conversation about the vision, book a call or write us.',
   },
-  teaserCta: { label: 'Full investor brief', href: '/investors' },
+  teaserCta: { label: 'Read the investor brief', href: '/investors' },
   talkCta: { label: 'Talk with us', href: '/investors#talk' },
   contact: {
     kicker: 'Talk with us',
@@ -241,6 +244,11 @@ export const about = {
   kicker: 'About',
   title: 'A small studio with humans in charge',
   lead: 'DMPResearch is a human team: Darius and Dorin lead, with a tester, a digital marketer, and a social media specialist. AI agents help with research, drafts, and scaffolding. People decide what ships.',
+  summary:
+    'A human crew building apps and digital products. Agents help with the grind. People decide what ships.',
+  highlights: ['Why we exist', 'How we work', 'Where we are going'],
+  teaserCta: { label: 'More about us', href: '/about' },
+  teamCta: { label: 'Meet the team', href: '/#team' },
   story: [
     {
       title: 'Why we exist',
@@ -259,7 +267,7 @@ export const about = {
     title: 'Want to build with us?',
     text: 'Book a call, read the investor brief, or apply to contract if you want to freelance with the team.',
     primary: { label: contact.bookLabel },
-    secondary: { label: 'Investor brief', href: '/#investors' },
+    secondary: { label: 'Investor brief', href: '/investors' },
     tertiary: { label: 'Careers and contracting', href: '/careers' },
   },
 };
@@ -500,8 +508,8 @@ export const footer = {
     href: 'https://flowstarter.net',
   },
   links: [
-    { label: 'About', href: '/#about' },
-    { label: 'Investors', href: '/#investors' },
+    { label: 'About', href: '/about' },
+    { label: 'Investors', href: '/investors' },
     { label: 'Careers', href: '/careers' },
     { label: 'FAQ', href: '/#faq' },
     { label: 'Flowstarter', href: 'https://flowstarter.net' },
