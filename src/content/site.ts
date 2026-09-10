@@ -5,13 +5,14 @@ export const contact = {
   github: 'https://github.com/DMPResearch',
   label: 'Build with us',
   bookLabel: 'Book a call',
+  bookFallback: 'Open Calendly in a new tab',
   calendlyUrl: 'https://calendly.com/flowstarter-app/discovery',
 };
 
 export const meta = {
-  title: 'DMPResearch — Websites and web apps for EU businesses',
+  title: 'DMPResearch | Websites and web apps for EU businesses',
   description:
-    'A two-person studio in Europe. We build websites, web apps, and custom software. AI agents help us ship faster.',
+    'A two-person studio in the EU. We design and build websites, web apps, and custom software for businesses across Europe.',
 };
 
 export const nav = [
@@ -26,7 +27,7 @@ export const hero = {
   kicker: 'A small studio in the EU',
   titleLead: 'Websites and web apps',
   titleAccent: 'for EU businesses.',
-  text: 'Darius does product and engineering. Dorin does design. AI agents handle research and first drafts, so two people ship at the pace of a bigger team. Websites, web apps, custom software. If you need something built, we should talk.',
+  text: 'Darius does product and engineering. Dorin does design. AI agents handle research and first drafts, so two people ship at the pace of a bigger team. Marketing sites, customer portals, internal tools. If you need something built, we should talk.',
   primary: { label: 'Book a call', href: '#contact' },
   secondary: { label: 'See our work', href: '#products' },
 };
@@ -68,7 +69,7 @@ export const products: Product[] = [
     facts: [
       { term: 'Status', detail: 'Live' },
       { term: 'Wedge', detail: 'Professional websites' },
-      { term: 'Model', detail: 'Build + care subscription' },
+      { term: 'Model', detail: 'Build once, then a care plan' },
     ],
   },
   {
@@ -77,21 +78,21 @@ export const products: Product[] = [
     name: 'Ereno',
     tint: 'olive',
     mark: '/ereno.svg',
-    imageLight: '/images/ereno-site-light.webp',
-    imageDark: '/images/ereno-site-dark.webp',
-    imageAlt: 'Screenshot of the Ereno website',
-    title: 'A planning companion for trips and base scouting.',
-    text: 'Ereno is a conversational tool that pulls research, compares options, and keeps trade-offs where you can see them. It does not book anything. You go to the provider for that.',
+    imageLight: '/images/ereno-app-light.webp',
+    imageDark: '/images/ereno-app-dark.webp',
+    imageAlt: 'Screenshot of the Ereno web app preference onboarding',
+    title: 'A trip planner that shows its sources.',
+    text: 'Ereno is a web app for planning trips and scouting places to stay. You describe what you want in plain language. It pulls research, compares options, and keeps the trade-offs visible. It does not book anything. You book with the provider.',
     points: [
-      'Plan trips and scout bases in one conversation',
-      'Sources and trade-offs stay visible',
-      'No booking layer. You book directly.',
+      'Plan a trip or compare places to stay in one conversation',
+      'Every suggestion links back to its sources',
+      'No booking layer. You book directly with the provider.',
     ],
-    link: { label: 'Visit ereno.flowstarter.dev', href: 'https://ereno.flowstarter.dev' },
+    link: { label: 'Open the Ereno app', href: 'https://ereno.flowstarter.dev/app' },
     facts: [
       { term: 'Status', detail: 'Live' },
       { term: 'Wedge', detail: 'Travel planning' },
-      { term: 'Studio', detail: 'DMPResearch' },
+      { term: 'Type', detail: 'Web app, built in-house' },
     ],
   },
 ];
@@ -144,17 +145,20 @@ export const ambition = {
     },
     {
       title: 'Agents handle the grind',
-      text: "Research, first drafts, scaffolding, iteration. They run in parallel and they don't stop. That's how two people keep up.",
+      text: "Research, first drafts, scaffolding, test runs. They work in parallel and overnight. That's how two people keep up.",
     },
     {
       title: 'You get working software',
       text: 'Not a slide deck. A live site or app you can use, own, and change.',
     },
   ],
+  cta: { label: contact.bookLabel, href: contact.sectionHref },
 };
 
 export const method = {
+  kicker: 'How we build',
   title: 'How we build things.',
+  loopLabel: 'The loop',
   text: 'Every project on this page was built the same way. Agents run research, write first drafts, and scaffold code. We review every decision that matters and read every line before it goes live.',
   loop: ['Agents draft', 'We review', 'It ships', 'We revisit'],
   columns: [
@@ -180,6 +184,7 @@ export const method = {
 };
 
 export const team = {
+  kicker: 'The team',
   title: "Two people. You know who you're working with.",
   text: 'We met building software for other people and kept noticing the same thing: agents can do in an afternoon what used to take a week. But someone still has to know what good looks like. So we stayed small on purpose.',
   members: [
@@ -202,6 +207,7 @@ export const team = {
 };
 
 export const cta = {
+  kicker: 'Work with us',
   title: "Let's talk about what you need.",
   text: 'We build websites and web apps for businesses in Europe. Book a call or send a note to hello@flowstarter.dev. You talk to Darius and Dorin, not account managers.',
   bookHint: "Thirty minutes is enough to figure out if we're a fit.",
@@ -214,10 +220,14 @@ export const cta = {
     company: 'Company (optional)',
     message: 'What do you want built?',
     submit: 'Send message',
+    honeypot: 'Leave this field empty',
   },
 };
 
 export const footer = {
+  navLabel: 'Footer',
+  brand: 'DMPResearch',
+  tagline: 'Websites and web apps for EU businesses',
   builtWith: {
     label: 'Built with Flowstarter',
     href: 'https://flowstarter.net',

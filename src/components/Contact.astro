@@ -6,7 +6,7 @@ import { contact, cta } from '../content/site';
   <div class="contact__wash" aria-hidden="true"></div>
   <div class="contact__layout container">
     <div class="contact__intro" data-reveal>
-      <p class="kicker">Work with us</p>
+      <p class="kicker">{cta.kicker}</p>
       <h2 id="contact-title">{cta.title}</h2>
       <p class="lede contact__text">{cta.text}</p>
       <div class="contact__actions">
@@ -22,14 +22,14 @@ import { contact, cta } from '../content/site';
     <div class="contact__book" data-reveal style="--delay: 80ms">
       <div
         class="calendly-inline-widget contact__calendly"
-        data-url={`${contact.calendlyUrl}?hide_gdpr_banner=1&primary_color=1e9862`}
+        data-url={`${contact.calendlyUrl}?hide_gdpr_banner=1`}
         role="region"
         aria-label={contact.bookLabel}
       ></div>
       <noscript>
         <p>
           <a href={contact.calendlyUrl} target="_blank" rel="noopener noreferrer">
-            {contact.bookLabel} on Calendly
+            {contact.bookFallback}
           </a>
         </p>
       </noscript>
@@ -52,7 +52,7 @@ import { contact, cta } from '../content/site';
         <input type="hidden" name="form-name" value="contact" />
         <p class="contact__honey" hidden>
           <label>
-            Do not fill this out
+            {cta.fields.honeypot}
             <input name="bot-field" tabindex="-1" autocomplete="off" />
           </label>
         </p>
@@ -92,6 +92,17 @@ import { contact, cta } from '../content/site';
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 <script define:vars={{ calendlyUrl: contact.calendlyUrl }}>
+  // Match the embedded Calendly to the resolved theme before widget.js initializes it.
+  const themed = {
+    dark: 'background_color=0e141b&text_color=eef3ec&primary_color=2fd6c8',
+    light: 'background_color=ffffff&text_color=12161c&primary_color=0f9f96',
+  };
+  const resolved = document.documentElement.getAttribute('data-resolved') === 'dark' ? 'dark' : 'light';
+  const inline = document.querySelector('.calendly-inline-widget');
+  if (inline instanceof HTMLElement) {
+    inline.dataset.url = `${calendlyUrl}?hide_gdpr_banner=1&${themed[resolved]}`;
+  }
+
   const params = new URLSearchParams(window.location.search);
   if (params.get('success') === '1') {
     const note = document.querySelector('[data-form-success]');
@@ -104,7 +115,7 @@ import { contact, cta } from '../content/site';
   const openCalendly = () => {
     const calendly = window.Calendly;
     if (calendly?.initPopupWidget) {
-      calendly.initPopupWidget({ url: calendlyUrl });
+      calendly.initPopupWidget({ url: `${calendlyUrl}?hide_gdpr_banner=1&${themed[resolved]}` });
       return;
     }
     window.open(calendlyUrl, '_blank', 'noopener,noreferrer');
@@ -118,21 +129,20 @@ import { contact, cta } from '../content/site';
 <style>
   .contact {
     position: relative;
-    /* Keep overflow visible so sticky-header scroll-margin works. */
-    overflow: visible;
+    overflow: clip;
   }
 
   .contact__wash {
     position: absolute;
     left: 50%;
-    bottom: -45%;
-    width: min(980px, 130vw);
-    height: 75%;
+    bottom: -20%;
+    width: min(980px, 100%);
+    height: 60%;
     transform: translateX(-50%);
     pointer-events: none;
     background: var(--grad);
-    opacity: 0.18;
-    filter: blur(110px);
+    opacity: 0.12;
+    filter: blur(90px);
     border-radius: 50%;
     z-index: -1;
   }
@@ -181,15 +191,15 @@ import { contact, cta } from '../content/site';
     border: 1px solid var(--line-2);
     border-radius: var(--radius);
     overflow: hidden;
-    background: var(--bg-2);
+    background: var(--card-bg-strong);
     box-shadow: var(--shadow-frame);
   }
 
   .contact__calendly {
     min-width: 320px;
-    min-height: 680px;
-    height: 680px;
-    background: var(--bg-3);
+    min-height: 660px;
+    height: 660px;
+    background: var(--card-bg-strong);
   }
 
   .contact__write {
@@ -198,7 +208,10 @@ import { contact, cta } from '../content/site';
     padding: clamp(22px, 3vw, 28px);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    background: color-mix(in srgb, var(--bg-2) 90%, transparent);
+    background:
+      linear-gradient(160deg, var(--card-sheen), transparent 55%),
+      var(--card-bg);
+    box-shadow: var(--card-shadow);
   }
 
   .contact__write-head {
@@ -301,7 +314,8 @@ import { contact, cta } from '../content/site';
 
   @media (max-width: 899px) {
     .contact__calendly {
-      height: 620px;
+      height: 600px;
+      min-height: 600px;
     }
   }
 </style>

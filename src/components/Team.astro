@@ -4,15 +4,15 @@ import { team } from '../content/site';
 
 <section class="team section" id="team" aria-labelledby="team-title">
   <div class="container">
-    <header class="team__head" data-reveal>
-      <p class="kicker">The team</p>
+    <header class="section-head" data-reveal>
+      <p class="kicker">{team.kicker}</p>
       <h2 id="team-title">{team.title}</h2>
       <p class="lede">{team.text}</p>
     </header>
 
     <ul class="team__grid">
       {team.members.map((member, index) => (
-        <li class="team__member" data-reveal style={`--delay: ${index * 100}ms`}>
+        <li class="team__member card card--hover" data-reveal style={`--delay: ${index * 100}ms`}>
           <div class="team__identity">
             <img
               class="team__photo"
@@ -31,9 +31,10 @@ import { team } from '../content/site';
           <p class="team__bio">{member.bio}</p>
         </li>
       ))}
+      <li class="team__crew" data-reveal style="--delay: 200ms">
+        <p>{team.crew}</p>
+      </li>
     </ul>
-
-    <p class="team__crew" data-reveal>{team.crew}</p>
   </div>
 </section>
 
@@ -42,34 +43,16 @@ import { team } from '../content/site';
     border-bottom: 1px solid var(--line);
   }
 
-  .team__head {
-    display: grid;
-    gap: var(--s-4);
-    max-width: 720px;
-    margin-bottom: var(--s-8);
-  }
-
   .team__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--s-5);
+    gap: var(--s-4);
   }
 
   .team__member {
     display: grid;
     gap: var(--s-5);
-    padding: clamp(24px, 3vw, 32px);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background:
-      linear-gradient(160deg, rgba(255, 255, 255, 0.04), transparent 50%),
-      rgba(14, 20, 27, 0.7);
-    transition: border-color 200ms var(--ease), transform 200ms var(--ease);
-  }
-
-  .team__member:hover {
-    border-color: var(--line-2);
-    transform: translateY(-3px);
+    padding: clamp(22px, 3vw, 30px);
   }
 
   .team__identity {
@@ -79,20 +62,20 @@ import { team } from '../content/site';
   }
 
   .team__photo {
-    width: 88px;
-    height: 88px;
+    width: 84px;
+    height: 84px;
     border-radius: 999px;
     object-fit: cover;
     object-position: center top;
     border: 1px solid var(--line-2);
     box-shadow:
-      0 0 0 3px rgba(7, 10, 14, 0.65),
-      0 0 28px -8px rgba(91, 108, 255, 0.45);
+      0 0 0 3px var(--photo-ring),
+      0 0 28px -8px var(--photo-glow);
     flex-shrink: 0;
   }
 
   .team__name {
-    font-size: clamp(1.85rem, 1.4rem + 1.4vw, 2.4rem);
+    font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.2rem);
     letter-spacing: -0.04em;
   }
 
@@ -106,23 +89,37 @@ import { team } from '../content/site';
   }
 
   .team__crew {
-    margin-top: var(--s-7);
+    display: grid;
+    align-content: center;
     padding: 20px 22px;
     border: 1px dashed var(--line-2);
     border-radius: var(--radius);
     color: var(--fg-2);
-    max-width: 64ch;
+    font-size: var(--t-small);
   }
 
   @media (min-width: 760px) {
     .team__grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--s-5);
+    }
+
+    .team__crew {
+      grid-column: 1 / -1;
     }
 
     .team__photo {
-      width: 104px;
-      height: 104px;
+      width: 96px;
+      height: 96px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .team__grid {
+      grid-template-columns: repeat(2, minmax(0, 5fr)) minmax(0, 3fr);
+    }
+
+    .team__crew {
+      grid-column: auto;
     }
   }
 </style>

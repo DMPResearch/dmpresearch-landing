@@ -4,16 +4,16 @@ import { method } from '../content/site';
 
 <section class="method section" id="method" aria-labelledby="method-title">
   <div class="container">
-    <header class="method__head" data-reveal>
-      <p class="kicker">How we build</p>
+    <header class="section-head" data-reveal>
+      <p class="kicker">{method.kicker}</p>
       <h2 id="method-title">{method.title}</h2>
       <p class="lede">{method.text}</p>
     </header>
 
     <div class="method__grid">
-      <div class="method__loop" data-reveal>
+      <div class="method__loop card" data-reveal>
         <div class="method__loop-wash" aria-hidden="true"></div>
-        <p class="mono method__loop-label">The loop</p>
+        <p class="mono method__loop-label">{method.loopLabel}</p>
         <ol class="method__loop-list">
           {method.loop.map((step, index) => (
             <li>
@@ -25,7 +25,7 @@ import { method } from '../content/site';
       </div>
 
       {method.columns.map((column, index) => (
-        <div class="method__cell" data-reveal style={`--delay: ${120 + index * 80}ms`}>
+        <div class="method__cell card" data-reveal style={`--delay: ${120 + index * 80}ms`}>
           <h3 class="method__cell-title">{column.heading}</h3>
           <ul class="method__list">
             {column.items.map((item) => <li>{item}</li>)}
@@ -41,13 +41,6 @@ import { method } from '../content/site';
     border-bottom: 1px solid var(--line);
   }
 
-  .method__head {
-    display: grid;
-    gap: var(--s-4);
-    max-width: 640px;
-    margin-bottom: var(--s-7);
-  }
-
   .method__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -57,11 +50,9 @@ import { method } from '../content/site';
   .method__loop {
     position: relative;
     overflow: hidden;
-    padding: clamp(28px, 4vw, 48px);
-    border: 1px solid var(--line-2);
-    border-radius: var(--radius);
-    background: var(--bg-2);
-    min-height: 340px;
+    padding: clamp(28px, 4vw, 44px);
+    border-color: var(--line-2);
+    min-height: 260px;
     display: grid;
     align-content: end;
     gap: var(--s-5);
@@ -73,7 +64,7 @@ import { method } from '../content/site';
     height: 130%;
     pointer-events: none;
     background: var(--grad);
-    opacity: 0.28;
+    opacity: 0.26;
     filter: blur(80px);
   }
 
@@ -84,9 +75,9 @@ import { method } from '../content/site';
   .method__loop-list {
     position: relative;
     display: grid;
-    gap: 14px;
+    gap: 12px;
     font-family: var(--font-display);
-    font-size: clamp(1.7rem, 1.15rem + 2.2vw, 2.6rem);
+    font-size: clamp(1.6rem, 1.1rem + 2vw, 2.4rem);
     font-weight: 550;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -110,17 +101,14 @@ import { method } from '../content/site';
   }
 
   .method__cell {
-    padding: clamp(24px, 3vw, 32px);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: rgba(14, 20, 27, 0.75);
+    padding: clamp(22px, 3vw, 30px);
     display: grid;
     gap: var(--s-4);
     align-content: start;
   }
 
   .method__cell-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
   }
 
