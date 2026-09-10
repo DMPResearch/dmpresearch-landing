@@ -4,7 +4,7 @@ import { careers } from '../content/site';
 
 <section class="careers-teaser section" id="careers" aria-labelledby="careers-teaser-title">
   <div class="container">
-    <div class="careers-teaser__panel card" data-reveal>
+    <div class="careers-teaser__panel card" data-reveal data-inview>
       <div class="careers-teaser__copy">
         <p class="kicker">{careers.kicker}</p>
         <h2 id="careers-teaser-title">{careers.title}</h2>
@@ -30,10 +30,34 @@ import { careers } from '../content/site';
     display: grid;
     gap: clamp(22px, 3vw, 32px);
     padding: clamp(28px, 4vw, 40px);
+    position: relative;
+    overflow: hidden;
     background:
       linear-gradient(145deg, color-mix(in srgb, var(--olive) 12%, transparent), transparent 52%),
       linear-gradient(160deg, var(--card-sheen), transparent 55%),
       var(--card-bg);
+    transition: transform 400ms var(--ease), border-color 400ms var(--ease);
+  }
+
+  .careers-teaser__panel.is-inview {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--olive) 35%, var(--line));
+  }
+
+  .careers-teaser__panel::after {
+    content: '';
+    position: absolute;
+    inset: auto -20% -40%;
+    height: 70%;
+    background: var(--grad);
+    opacity: 0;
+    filter: blur(48px);
+    transition: opacity 700ms var(--ease);
+    pointer-events: none;
+  }
+
+  .careers-teaser__panel.is-inview::after {
+    opacity: 0.16;
   }
 
   .careers-teaser__copy {

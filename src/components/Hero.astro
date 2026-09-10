@@ -5,7 +5,13 @@ const [flowstarter, ereno] = products;
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <svg class="hero__ribbon hero__ribbon--left" viewBox="0 0 420 520" fill="none" aria-hidden="true">
+  <svg
+    class="hero__ribbon hero__ribbon--left"
+    viewBox="0 0 420 520"
+    fill="none"
+    aria-hidden="true"
+    data-parallax="0.08"
+  >
     <path
       class="hero__ribbon-stroke"
       d="M48 40c72 48 94 118 78 176-18 66-92 92-74 168 14 58 86 96 156 118"
@@ -21,7 +27,13 @@ const [flowstarter, ereno] = products;
     </defs>
   </svg>
 
-  <svg class="hero__ribbon hero__ribbon--right" viewBox="0 0 460 540" fill="none" aria-hidden="true">
+  <svg
+    class="hero__ribbon hero__ribbon--right"
+    viewBox="0 0 460 540"
+    fill="none"
+    aria-hidden="true"
+    data-parallax="0.14"
+  >
     <path
       id="ribbon-path"
       d="M380 60c-90 36-150 96-138 168 14 82 118 98 96 188-16 64-96 108-180 132"
@@ -73,7 +85,7 @@ const [flowstarter, ereno] = products;
     </div>
 
     <div class="hero__peek" data-rise style="--i: 2" aria-label="Product previews">
-      <a class="hero__card hero__card--back" href="#ereno">
+      <a class="hero__card hero__card--back" href="#ereno" data-float style="--float-delay: 400ms">
         <div class="hero__card-chrome">
           <span class="hero__dot"></span>
           <span class="hero__dot"></span>
@@ -83,7 +95,7 @@ const [flowstarter, ereno] = products;
         <img class="theme-shot theme-shot--light" src={ereno.imageLight} width="960" height="720" alt={ereno.imageAlt} loading="eager" decoding="async" />
         <img class="theme-shot theme-shot--dark" src={ereno.imageDark} width="960" height="720" alt={ereno.imageAlt} loading="eager" decoding="async" />
       </a>
-      <a class="hero__card hero__card--front" href="#flowstarter">
+      <a class="hero__card hero__card--front" href="#flowstarter" data-float style="--float-delay: 0ms">
         <div class="hero__card-chrome">
           <span class="hero__dot"></span>
           <span class="hero__dot"></span>

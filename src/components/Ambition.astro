@@ -17,9 +17,14 @@ import { ambition } from '../content/site';
         </p>
       </header>
 
-      <ul class="ambition__grid">
+      <ul class="ambition__grid" data-spotlight-group>
         {ambition.points.map((item, index) => (
-          <li class="ambition__card card" data-reveal style={`--delay: ${index * 80}ms`}>
+          <li
+            class="ambition__card card"
+            data-reveal
+            data-spotlight
+            style={`--delay: ${index * 80}ms`}
+          >
             <span class="mono">{String(index + 1).padStart(2, '0')}</span>
             <h3>{item.title}</h3>
             <p>{item.text}</p>
@@ -91,6 +96,15 @@ import { ambition } from '../content/site';
     .ambition__head {
       position: sticky;
       top: calc(var(--header-h) + 32px);
+    }
+
+    .ambition__grid {
+      gap: clamp(18px, 2vw, 28px);
+      padding-block: 8vh 18vh;
+    }
+
+    .ambition__card {
+      min-height: 160px;
     }
   }
 </style>

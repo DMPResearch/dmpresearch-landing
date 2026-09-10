@@ -35,15 +35,36 @@ const { id, index, name, tint, mark, imageLight, imageDark, imageAlt, title, tex
       </a>
     </header>
 
-    <figure class:list={['frame', `frame--${tint}`, 'product__frame']} data-reveal style="--delay: 120ms">
+    <figure
+      class:list={['frame', `frame--${tint}`, 'product__frame']}
+      data-reveal
+      data-inview
+      style="--delay: 120ms"
+    >
       <div class="frame__glow" aria-hidden="true"></div>
       <div class="frame__window">
         <div class="product__chrome" aria-hidden="true">
           <i></i><i></i><i></i>
           <span>{link.href.replace(/^https?:\/\//, '')}</span>
         </div>
-        <img class="theme-shot theme-shot--light" src={imageLight} width="1288" height="900" alt={imageAlt} loading="lazy" decoding="async" />
-        <img class="theme-shot theme-shot--dark" src={imageDark} width="1288" height="900" alt={imageAlt} loading="lazy" decoding="async" />
+        <img
+          class="theme-shot theme-shot--light data-inview-media"
+          src={imageLight}
+          width="1288"
+          height="900"
+          alt={imageAlt}
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          class="theme-shot theme-shot--dark data-inview-media"
+          src={imageDark}
+          width="1288"
+          height="900"
+          alt={imageAlt}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </figure>
 
@@ -235,7 +256,9 @@ const { id, index, name, tint, mark, imageLight, imageDark, imageAlt, title, tex
 
     .product--split .product__frame {
       grid-area: frame;
-      align-self: center;
+      position: sticky;
+      top: calc(var(--header-h) + 28px);
+      align-self: start;
     }
 
     .product--split .product__frame .frame__window,

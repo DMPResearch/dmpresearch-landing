@@ -12,10 +12,11 @@ import { work } from '../content/site';
 
     <ul class="work__grid">
       {work.items.map((item, index) => (
-        <li class="work__card" data-reveal style={`--delay: ${index * 90}ms`}>
+        <li class="work__card" data-reveal data-inview style={`--delay: ${index * 90}ms`}>
           <a class="work__link" href={item.href} target="_blank" rel="noopener noreferrer">
             <figure class="work__frame">
               <img
+                class="data-inview-media"
                 src={item.image}
                 alt={`Screenshot of ${item.title}`}
                 width="1440"
@@ -110,6 +111,12 @@ import { work } from '../content/site';
     font-size: 0.88rem;
     font-weight: 550;
     color: var(--teal);
+    transition: transform 200ms var(--ease);
+    display: inline-block;
+  }
+
+  .work__card:hover .work__href {
+    transform: translateX(3px);
   }
 
   @media (min-width: 900px) {

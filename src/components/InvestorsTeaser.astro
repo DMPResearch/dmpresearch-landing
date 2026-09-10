@@ -4,7 +4,7 @@ import { investors } from '../content/site';
 
 <section class="investors section" id="investors" aria-labelledby="investors-teaser-title">
   <div class="container">
-    <div class="investors__panel card" data-reveal>
+    <div class="investors__panel card" data-reveal data-inview>
       <div class="investors__copy">
         <p class="kicker">{investors.kicker}</p>
         <h2 id="investors-teaser-title">{investors.title}</h2>
@@ -30,10 +30,34 @@ import { investors } from '../content/site';
     display: grid;
     gap: clamp(22px, 3vw, 32px);
     padding: clamp(28px, 4vw, 40px);
+    position: relative;
+    overflow: hidden;
     background:
       linear-gradient(145deg, color-mix(in srgb, var(--teal) 10%, transparent), transparent 50%),
       linear-gradient(160deg, var(--card-sheen), transparent 55%),
       var(--card-bg);
+    transition: transform 400ms var(--ease), border-color 400ms var(--ease);
+  }
+
+  .investors__panel.is-inview {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--teal) 35%, var(--line));
+  }
+
+  .investors__panel::after {
+    content: '';
+    position: absolute;
+    inset: auto -20% -40%;
+    height: 70%;
+    background: var(--grad);
+    opacity: 0;
+    filter: blur(48px);
+    transition: opacity 700ms var(--ease);
+    pointer-events: none;
+  }
+
+  .investors__panel.is-inview::after {
+    opacity: 0.18;
   }
 
   .investors__copy {
