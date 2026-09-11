@@ -63,23 +63,58 @@ const ogImage = Astro.site ? new URL('/mark.png', Astro.site).href : '/mark.png'
     <Motion />
     <script>
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const targets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
 
       if (reduce || !('IntersectionObserver' in window)) {
         targets.forEach((el) => el.classList.add('is-in'));
       } else {
+        const reveal = (el: Element) => {
+          if (el.classList.contains('is-in')) return;
+          el.classList.add('is-in');
+          io.unobserve(el);
+        };
+
         const io = new IntersectionObserver(
           (entries) => {
             for (const entry of entries) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('is-in');
-                io.unobserve(entry.target);
-              }
+              if (entry.isIntersecting) reveal(entry.target);
             }
           },
-          { rootMargin: '0px 0px -8% 0px', threshold: 0.1 },
+          // Fire while the block is still entering, so the travel finishes
+          // around the time it is fully on screen rather than after.
+          { rootMargin: '0px 0px -6% 0px', threshold: 0.04 },
         );
+
         targets.forEach((el) => io.observe(el));
+
+        // A jump that clears a whole section in one frame (hash link, scrollbar
+        // drag, fling) never reports an intersection, and a reveal that never
+        // fires now means invisible content rather than faint content. Anything
+        // the reader has already scrolled past gets shown outright.
+        let ticking = false;
+        let rest = targets;
+        const sweep = () => {
+          ticking = false;
+          // Keeping only what is still hidden means the measuring stops as the
+          // page fills in rather than costing a rect read per element per frame.
+          rest = rest.filter((el) => {
+            if (el.classList.contains('is-in')) return false;
+            if (el.getBoundingClientRect().bottom < 0) {
+              reveal(el);
+              return false;
+            }
+            return true;
+          });
+          if (!rest.length) window.removeEventListener('scroll', onScroll);
+        };
+        const onScroll = () => {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(sweep);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        // The reader can scroll before this module runs, so catch up once.
+        sweep();
       }
     </script>
   </body>

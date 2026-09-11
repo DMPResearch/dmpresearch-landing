@@ -265,11 +265,11 @@ const navId = (href: string) => {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--fg-3);
-    border-radius: 999px;
+    border-radius: 0;
     border: 0;
     background: transparent;
     cursor: pointer;
-    transition: color 160ms var(--ease), background 160ms var(--ease);
+    transition: color 160ms var(--ease);
   }
 
   .header__link:hover {
@@ -278,7 +278,7 @@ const navId = (href: string) => {
 
   .header__link.is-active {
     color: var(--fg);
-    background: color-mix(in srgb, var(--fg) 6%, transparent);
+    background: transparent;
   }
 
   .header__link.is-active::after {

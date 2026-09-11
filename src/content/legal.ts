@@ -169,8 +169,8 @@ export const cookiesPage = {
         'These are needed for the site to work securely and to respect your choices. They do not require opt-in under the ePrivacy rules when they are strictly necessary.',
       ],
       bullets: [
-        'dmpr-consent — stores your cookie choice and version so we do not ask on every visit',
-        'dmpr-theme — stores light, dark, or auto theme preference',
+        'dmpr-consent stores your cookie choice and version so we do not ask on every visit',
+        'dmpr-theme stores light, dark, or auto theme preference',
       ],
     },
     {

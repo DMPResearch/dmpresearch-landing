@@ -145,6 +145,23 @@ import { method } from '../content/site';
     filter: blur(72px);
   }
 
+  /* The wash drifts inside the clipped card so the loop panel never looks
+     frozen while the steps advance. */
+  @media (prefers-reduced-motion: no-preference) {
+    .method__loop-wash {
+      animation: method-wash 38s ease-in-out infinite alternate;
+    }
+
+    @keyframes method-wash {
+      from {
+        transform: translate3d(-4%, -2%, 0) scale(1);
+      }
+      to {
+        transform: translate3d(5%, 3%, 0) scale(1.1);
+      }
+    }
+  }
+
   .method__loop-label,
   .method__loop-list,
   .method__progress {
