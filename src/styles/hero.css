@@ -15,15 +15,15 @@
     opacity: 0.72;
   }
 
-  /* Anchored to the middle, not to the edges: the title font-size stops growing
-     around 1465px, so holding a fixed channel either side of centre frames it
-     the same way at 1280 and on wide screens. max() keeps the tail on screen
-     when the viewport is narrower than the channel.
+  /* Anchored to the viewport edges and hung partly off them, so the pair frames
+     the copy instead of crossing it. The percentage does the framing; the pixel
+     term caps how far out a wide viewport can drag them, which is what keeps a
+     usable length of stroke on screen at any width.
      --rot is the resting tilt; the sway keyframes in motion.css read it. */
   .hero__ribbon--left {
     --rot: -10deg;
     width: min(340px, 36vw);
-    left: max(-6%, calc(50% - 560px));
+    left: max(-9%, -120px);
     top: 8%;
     transform: rotate(var(--rot));
   }
@@ -31,17 +31,9 @@
   .hero__ribbon--right {
     --rot: 8deg;
     width: min(370px, 40vw);
-    right: max(-6%, calc(50% - 630px));
+    right: max(-10%, -140px);
     top: 4%;
     transform: rotate(var(--rot));
-  }
-
-  .hero__path-text {
-    fill: var(--path-text);
-    font-family: var(--font-mono);
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
   }
 
   .hero__inner {
