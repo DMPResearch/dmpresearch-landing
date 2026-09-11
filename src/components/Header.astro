@@ -312,7 +312,12 @@ const navId = (href: string) => {
     display: none;
   }
 
-  @media (max-width: 860px) {
+  /*
+    Compact header until there is room for brand + 7 links + theme + CTA.
+    Fold landscape (~880–1000px CSS) sits above the old 860px cut and clipped
+    the Book a call button; keep the menu through mid tablet widths.
+  */
+  @media (max-width: 1100px) {
     .header__inner {
       height: 64px;
       gap: var(--s-3);
