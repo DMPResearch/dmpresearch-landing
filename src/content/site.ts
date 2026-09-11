@@ -54,6 +54,15 @@ export const hero = {
   secondary: { label: 'See our work', href: '/#products' },
 };
 
+export interface ProductScreen {
+  id: string;
+  label: string;
+  imageLight: string;
+  imageDark: string;
+  imageAlt: string;
+  chrome: string;
+}
+
 export interface Product {
   id: string;
   index: string;
@@ -68,6 +77,8 @@ export interface Product {
   points: string[];
   link: { label: string; href: string };
   facts: { term: string; detail: string }[];
+  screens: ProductScreen[];
+  screensLabel: string;
 }
 
 export const products: Product[] = [
@@ -93,6 +104,33 @@ export const products: Product[] = [
       { term: 'Wedge', detail: 'Professional websites' },
       { term: 'Model', detail: 'Self-serve, with human polish' },
     ],
+    screensLabel: 'More from Flowstarter',
+    screens: [
+      {
+        id: 'site',
+        label: 'Marketing site',
+        imageLight: '/images/flowstarter-site-light.webp',
+        imageDark: '/images/flowstarter-site-dark.webp',
+        imageAlt: 'Flowstarter marketing site hero',
+        chrome: 'flowstarter.net',
+      },
+      {
+        id: 'process',
+        label: 'Preview-first process',
+        imageLight: '/images/flowstarter-process-light.webp',
+        imageDark: '/images/flowstarter-process-dark.webp',
+        imageAlt: 'Flowstarter preview-first process section',
+        chrome: 'flowstarter.net/#process',
+      },
+      {
+        id: 'editor',
+        label: 'Smart editor',
+        imageLight: '/images/flowstarter-editor-light.webp',
+        imageDark: '/images/flowstarter-editor-dark.webp',
+        imageAlt: 'Flowstarter dashboard and smart editor',
+        chrome: 'flowstarter.net/#editor-showcase',
+      },
+    ],
   },
   {
     id: 'ereno',
@@ -115,6 +153,25 @@ export const products: Product[] = [
       { term: 'Status', detail: 'Live' },
       { term: 'Wedge', detail: 'Travel planning' },
       { term: 'Type', detail: 'Web app, built in-house' },
+    ],
+    screensLabel: 'More from Ereno',
+    screens: [
+      {
+        id: 'app',
+        label: 'App home',
+        imageLight: '/images/ereno-app-light.webp',
+        imageDark: '/images/ereno-app-dark.webp',
+        imageAlt: 'Ereno app home with trip, base, and ask modes',
+        chrome: 'ereno.flowstarter.dev/app',
+      },
+      {
+        id: 'site',
+        label: 'Marketing site',
+        imageLight: '/images/ereno-site-light.webp',
+        imageDark: '/images/ereno-site-dark.webp',
+        imageAlt: 'Ereno marketing site hero',
+        chrome: 'ereno.flowstarter.dev',
+      },
     ],
   },
 ];
