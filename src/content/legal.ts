@@ -41,7 +41,7 @@ export const formPrivacyNote = {
   investors:
     'By sending this form you agree we may process your details to reply about investment conversations.',
   careers:
-    'By sending this form you agree we may process your details to review a freelance or contract application.',
+    'By sending this form you agree we may process your details and CV to review a freelance or contract application.',
   linkLabel: 'Read our privacy policy',
   href: '/privacy',
 };
@@ -86,7 +86,7 @@ export const privacyPage = {
       title: 'What we collect',
       paragraphs: ['Depending on how you use the site, we may process:'],
       bullets: [
-        'Identity and contact data you send (name, email, company, message, portfolio links) through our contact, investor, or careers forms',
+        'Identity and contact data you send (name, email, company, message, portfolio links, and CV uploads) through our contact, investor, or careers forms',
         'Technical data created by hosting and security systems (IP address, browser type, rough location derived from IP, timestamps)',
         'Consent choices stored in your browser so we remember cookie preferences',
         'Theme preference stored locally on your device',
@@ -105,7 +105,7 @@ export const privacyPage = {
     {
       title: 'Forms and email',
       paragraphs: [
-        'Messages sent through Netlify Forms are delivered to us by email so we can respond. Do not send special-category data (health, politics, religion, and similar) through these forms.',
+        'Messages and file uploads sent through Netlify Forms are delivered to us by email so we can respond. Do not send special-category data (health, politics, religion, and similar) through these forms.',
         'We keep enquiry emails only as long as needed to handle the conversation and ordinary business records, then delete or archive them under our normal retention practice.',
       ],
     },

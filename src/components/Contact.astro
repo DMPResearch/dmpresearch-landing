@@ -43,6 +43,10 @@ const variants = {
 
 const { copy, formName, formAction, emailHref, sectionId, titleId, privacyText, showCalendly } =
   variants[variant];
+
+const acceptsFiles = variant === 'careers';
+const cvLabel = 'cv' in copy.fields ? copy.fields.cv : null;
+const cvHint = 'cvHint' in copy.fields ? copy.fields.cvHint : null;
 ---
 
 <section class="contact section" id={sectionId} aria-labelledby={titleId}>
@@ -82,8 +86,12 @@ const { copy, formName, formAction, emailHref, sectionId, titleId, privacyText, 
         action={formAction}
         data-netlify="true"
         netlify-honeypot="bot-field"
+        enctype={acceptsFiles ? 'multipart/form-data' : undefined}
       >
         <input type="hidden" name="form-name" value={formName} />
+        {acceptsFiles && (
+          <input type="hidden" name="subject" value="DMPResearch contract application" />
+        )}
         <p class="contact__honey" hidden>
           <label>
             {copy.fields.honeypot}
@@ -110,6 +118,19 @@ const { copy, formName, formAction, emailHref, sectionId, titleId, privacyText, 
           <span>{copy.fields.message}</span>
           <textarea name="message" required rows="4" maxlength="4000"></textarea>
         </label>
+
+        {acceptsFiles && cvLabel && (
+          <label class="contact__field contact__field--full contact__field--file">
+            <span>{cvLabel}</span>
+            <input
+              type="file"
+              name="cv"
+              required
+              accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            />
+            {cvHint && <span class="contact__file-hint">{cvHint}</span>}
+          </label>
+        )}
 
         <p class="contact__privacy">
           {privacyText}
@@ -282,6 +303,17 @@ const { copy, formName, formAction, emailHref, sectionId, titleId, privacyText, 
     resize: vertical;
     scroll-margin-top: calc(var(--header-h) + 28px);
     transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease);
+  }
+
+  .contact__field--file input[type='file'] {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .contact__file-hint {
+    color: var(--fg-3);
+    font-size: 0.78rem;
+    font-weight: 400;
   }
 
   .contact__field input:focus,
