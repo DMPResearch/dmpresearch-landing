@@ -66,7 +66,7 @@ html[data-resolved='dark'] {
   --aura-sky: rgba(16, 34, 50, 0.46);
   --aura-floor: rgba(0, 0, 0, 0.5);
   --grain-opacity: 0.05;
-  --path-text: rgba(238, 243, 236, 0.78);
+  --path-text: rgba(244, 248, 242, 0.92);
   --chip-bg: rgba(14, 20, 27, 0.72);
   --card-chrome: rgba(255, 255, 255, 0.03);
   --solid-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08), 0 18px 40px -20px rgba(91, 108, 255, 0.55);
@@ -151,7 +151,7 @@ html[data-resolved='light'] {
   --aura-sky: rgba(255, 255, 255, 0.68);
   --aura-floor: rgba(34, 50, 64, 0.035);
   --grain-opacity: 0.04;
-  --path-text: rgba(18, 22, 28, 0.62);
+  --path-text: rgba(12, 18, 22, 0.82);
   --chip-bg: rgba(255, 255, 255, 0.78);
   --card-chrome: rgba(18, 22, 28, 0.03);
   --solid-shadow: 0 0 0 1px rgba(18, 22, 28, 0.06), 0 18px 40px -20px rgba(58, 79, 212, 0.35);

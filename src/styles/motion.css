@@ -65,23 +65,50 @@
   @keyframes ribbon-in {
     from {
       opacity: 0;
+      filter: saturate(1.15) blur(6px);
+    }
+    to {
+      filter: saturate(1.15) blur(0);
     }
   }
 
   @keyframes ribbon-sway {
     0%,
     100% {
-      transform: rotate(var(--rot, 0deg));
+      transform: rotate(var(--rot, 0deg)) translate3d(0, 0, 0);
     }
-    50% {
-      transform: rotate(calc(var(--rot, 0deg) * 0.8)) translateY(-10px);
+    33% {
+      transform: rotate(calc(var(--rot, 0deg) * 0.72)) translate3d(1.4%, -18px, 0);
     }
+    66% {
+      transform: rotate(calc(var(--rot, 0deg) * 1.12)) translate3d(-1.2%, 10px, 0);
+    }
+  }
+
+  @keyframes pattern-drift {
+    from {
+      background-position: 0 0, 14px 14px;
+      opacity: 0.42;
+    }
+    to {
+      background-position: 28px 18px, 42px 32px;
+      opacity: 0.62;
+    }
+  }
+
+  .hero__pattern {
+    animation: pattern-drift 22s ease-in-out infinite alternate;
   }
 
   .hero__ribbon {
     animation:
-      ribbon-in 1200ms var(--ease) 120ms both,
-      ribbon-sway 26s ease-in-out 1300ms infinite;
+      ribbon-in 1100ms var(--ease) 80ms both,
+      ribbon-sway 16s ease-in-out 1100ms infinite;
+  }
+
+  .hero__ribbon--right {
+    animation-duration: 1100ms, 19s;
+    animation-delay: 80ms, 1400ms;
   }
 
   /* Ambient aura. The wash is a fixed painted layer, so a slow transform drift
@@ -198,6 +225,7 @@
   [data-rise],
   .hero__card,
   .hero__ribbon,
+  .hero__pattern,
   body::before {
     animation: none !important;
   }

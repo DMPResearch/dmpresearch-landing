@@ -1,28 +1,39 @@
 ---
 import { hero, products } from '../content/site';
+import '../styles/hero.css';
 
 const [flowstarter, ereno] = products;
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__pattern" aria-hidden="true"></div>
+
   <svg
     class="hero__ribbon hero__ribbon--left"
     viewBox="0 0 420 520"
     fill="none"
     aria-hidden="true"
-    data-parallax="0.08"
+    data-parallax="0.12"
   >
+    <path
+      class="hero__ribbon-glow"
+      d="M48 40c72 48 94 118 78 176-18 66-92 92-74 168 14 58 86 96 156 118"
+      stroke="url(#ribbon-left)"
+      stroke-width="64"
+      stroke-linecap="round"
+    />
     <path
       class="hero__ribbon-stroke"
       d="M48 40c72 48 94 118 78 176-18 66-92 92-74 168 14 58 86 96 156 118"
       stroke="url(#ribbon-left)"
-      stroke-width="42"
+      stroke-width="46"
       stroke-linecap="round"
     />
     <defs>
       <linearGradient id="ribbon-left" x1="40" y1="40" x2="280" y2="500" gradientUnits="userSpaceOnUse">
         <stop style="stop-color: var(--olive)" />
-        <stop offset="1" style="stop-color: var(--teal)" />
+        <stop offset="0.55" style="stop-color: var(--teal)" />
+        <stop offset="1" style="stop-color: var(--blue)" />
       </linearGradient>
     </defs>
   </svg>
@@ -32,24 +43,39 @@ const [flowstarter, ereno] = products;
     viewBox="0 0 460 540"
     fill="none"
     aria-hidden="true"
-    data-parallax="0.14"
+    data-parallax="0.18"
   >
     <path
-      id="ribbon-path"
+      class="hero__ribbon-glow"
       d="M380 60c-90 36-150 96-138 168 14 82 118 98 96 188-16 64-96 108-180 132"
       stroke="url(#ribbon-right)"
-      stroke-width="38"
+      stroke-width="58"
+      stroke-linecap="round"
+    />
+    <path
+      id="ribbon-path"
+      class="hero__ribbon-stroke"
+      d="M380 60c-90 36-150 96-138 168 14 82 118 98 96 188-16 64-96 108-180 132"
+      stroke="url(#ribbon-right)"
+      stroke-width="42"
       stroke-linecap="round"
     />
     <text class="hero__path-text">
-      <textPath href="#ribbon-path" xlink:href="#ribbon-path" startOffset="4%">
-        human judgment · AI speed · products for people ·
+      <textPath href="#ribbon-path" xlink:href="#ribbon-path" startOffset="0%">
+        human judgment · AI speed · products for people · human judgment · AI speed · products for people ·
+        <animate
+          attributeName="startOffset"
+          values="0%;-50%"
+          dur="28s"
+          repeatCount="indefinite"
+        />
       </textPath>
     </text>
     <defs>
       <linearGradient id="ribbon-right" x1="380" y1="40" x2="80" y2="520" gradientUnits="userSpaceOnUse">
         <stop style="stop-color: var(--blue)" />
-        <stop offset="1" style="stop-color: var(--teal)" />
+        <stop offset="0.5" style="stop-color: var(--teal)" />
+        <stop offset="1" style="stop-color: var(--olive)" />
       </linearGradient>
     </defs>
   </svg>
@@ -134,357 +160,8 @@ const [flowstarter, ereno] = products;
   </div>
 </section>
 
-<style>
-  .hero {
-    position: relative;
-    overflow: clip;
-    border-bottom: 1px solid var(--line);
-    /* Header is fixed out of flow; body padding-top already clears it. */
-    padding-top: clamp(16px, 2.5vw, 40px);
+<script>
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.hero__path-text animate').forEach((node) => node.remove());
   }
-
-  .hero__ribbon {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.72;
-  }
-
-  /* --rot is the resting tilt; the sway keyframes in motion.css read it. */
-  .hero__ribbon--left {
-    --rot: -10deg;
-    width: min(320px, 36vw);
-    left: -8%;
-    top: 8%;
-    transform: rotate(var(--rot));
-  }
-
-  .hero__ribbon--right {
-    --rot: 8deg;
-    width: min(360px, 40vw);
-    right: -10%;
-    top: 4%;
-    transform: rotate(var(--rot));
-  }
-
-  .hero__path-text {
-    fill: var(--path-text);
-    font-family: var(--font-mono);
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .hero__inner {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: clamp(28px, 4vw, 56px);
-    padding-bottom: 0;
-  }
-
-  .hero__stage {
-    display: grid;
-    justify-items: center;
-    text-align: center;
-    gap: var(--s-4);
-    max-width: 920px;
-    margin-inline: auto;
-  }
-
-  .hero__title {
-    max-width: 18ch;
-    font-size: clamp(2.55rem, 1.45rem + 3.6vw, 4.75rem);
-    line-height: 1.04;
-  }
-
-  .hero__title-lead {
-    display: block;
-  }
-
-  .hero__accent {
-    display: block;
-    margin-top: 0.06em;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .hero__text {
-    max-width: 46ch;
-    margin-inline: auto;
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--s-3);
-    margin-top: 2px;
-  }
-
-  .hero__chips {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 2px;
-  }
-
-  .hero__chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 34px;
-    padding: 0 14px;
-    border-radius: 999px;
-    border: 1px solid var(--line-2);
-    background: var(--chip-bg);
-    backdrop-filter: blur(10px);
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--fg-2);
-  }
-
-  .hero__chip img {
-    border-radius: 5px;
-  }
-
-  .hero__chip--blue {
-    border-color: color-mix(in srgb, var(--blue) 35%, transparent);
-    box-shadow: 0 0 24px -12px color-mix(in srgb, var(--blue) 70%, transparent);
-  }
-
-  .hero__chip--olive {
-    border-color: color-mix(in srgb, var(--olive) 35%, transparent);
-    box-shadow: 0 0 24px -12px color-mix(in srgb, var(--olive) 55%, transparent);
-  }
-
-  .hero__chip--ghost {
-    color: var(--fg-3);
-  }
-
-  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .hero__chip {
-      transition:
-        transform 240ms var(--ease),
-        border-color 240ms var(--ease),
-        box-shadow 240ms var(--ease),
-        color 240ms var(--ease);
-    }
-
-    .hero__chip:hover {
-      transform: translateY(-2px);
-      color: var(--fg);
-    }
-
-    .hero__chip.hero__chip--blue:hover {
-      border-color: color-mix(in srgb, var(--blue) 60%, transparent);
-      box-shadow: 0 0 30px -10px color-mix(in srgb, var(--blue) 85%, transparent);
-    }
-
-    .hero__chip.hero__chip--olive:hover {
-      border-color: color-mix(in srgb, var(--olive) 60%, transparent);
-      box-shadow: 0 0 30px -10px color-mix(in srgb, var(--olive) 70%, transparent);
-    }
-  }
-
-  .hero__peek {
-    position: relative;
-    height: clamp(260px, 38vw, 400px);
-    margin-inline: auto;
-    width: min(100%, 980px);
-    mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
-  }
-
-  .hero__card {
-    position: absolute;
-    overflow: hidden;
-    border-radius: 18px;
-    border: 1px solid var(--line-2);
-    background: var(--bg-3);
-    box-shadow: var(--shadow-frame);
-    transform: rotate(var(--rot, 0deg));
-    transition: transform 320ms var(--ease);
-  }
-
-  .hero__card:hover {
-    transform: rotate(var(--rot, 0deg)) translateY(-8px) scale(1.012);
-  }
-
-  .hero__card-chrome {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--line);
-    background: var(--card-chrome);
-  }
-
-  .hero__dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--fg) 20%, transparent);
-  }
-
-  .hero__dot:nth-child(1) {
-    background: #ff5f57;
-  }
-  .hero__dot:nth-child(2) {
-    background: #febc2e;
-  }
-  .hero__dot:nth-child(3) {
-    background: #28c840;
-  }
-
-  .hero__card-chrome .mono {
-    margin-left: 6px;
-    text-transform: none;
-    letter-spacing: 0;
-  }
-
-  .hero__card .theme-shot {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    object-position: top center;
-  }
-
-  .hero__card--back {
-    --rot: 3deg;
-    width: min(72%, 620px);
-    right: 0;
-    top: 18%;
-    opacity: 0.94;
-  }
-
-  .hero__card--front {
-    --rot: -2deg;
-    width: min(78%, 680px);
-    left: 0;
-    top: 0;
-  }
-
-  @media (max-width: 820px) {
-    .hero {
-      padding-top: 20px;
-      padding-bottom: 18px;
-    }
-
-    .hero__ribbon--left,
-    .hero__ribbon--right {
-      display: none;
-    }
-
-    .hero__inner {
-      gap: 18px;
-    }
-
-    .hero__stage {
-      gap: 14px;
-      justify-items: center;
-      text-align: center;
-      max-width: none;
-      width: 100%;
-    }
-
-    .hero__kicker {
-      font-size: 0.74rem;
-      letter-spacing: 0.14em;
-    }
-
-    .hero__title {
-      max-width: none;
-      width: 100%;
-      font-size: clamp(2.7rem, 9vw, 3.45rem);
-      letter-spacing: -0.048em;
-      line-height: 1.01;
-    }
-
-    .hero__text {
-      margin-inline: auto;
-      max-width: none;
-      width: 100%;
-      font-size: 1.05rem;
-      line-height: 1.5;
-    }
-
-    .hero__actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      width: 100%;
-      margin-top: 4px;
-    }
-
-    .hero__actions .btn {
-      width: 100%;
-      justify-content: center;
-      min-height: 52px;
-      padding-inline: 14px;
-      font-size: 1rem;
-      font-weight: 550;
-    }
-
-    .hero__chips {
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-    }
-
-    .hero__chip {
-      min-height: 36px;
-      padding: 0 14px;
-      font-size: 0.86rem;
-      gap: 9px;
-    }
-
-    .hero__chip img {
-      width: 20px;
-      height: 20px;
-    }
-
-    .hero__chip--ghost {
-      display: none;
-    }
-
-    /* Product section already shows the same shots; peek duplicates them on phones. */
-    .hero__peek {
-      display: none;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .hero {
-      padding-top: 14px;
-      padding-bottom: 14px;
-    }
-
-    .hero__stage {
-      gap: 12px;
-    }
-
-    .hero__actions {
-      grid-template-columns: 1fr;
-    }
-
-    .hero__title {
-      font-size: clamp(2.35rem, 9vw, 2.85rem);
-    }
-
-    .hero__text {
-      font-size: 1rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero__card,
-    .hero__card:hover {
-      --rot: 0deg;
-      transition: none;
-      transform: none;
-    }
-  }
-</style>
+</script>

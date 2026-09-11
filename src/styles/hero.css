@@ -1,0 +1,404 @@
+/* Hero stage: ribbons, pattern field, peek cards. */
+
+.hero {
+    position: relative;
+    overflow: clip;
+    border-bottom: 1px solid var(--line);
+    /* Header is fixed out of flow; body padding-top already clears it. */
+    padding-top: clamp(16px, 2.5vw, 40px);
+  }
+
+  .hero__pattern {
+    position: absolute;
+    inset: -10% -6% 8%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.55;
+    background:
+      radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--teal) 55%, transparent) 1.1px, transparent 0),
+      radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--blue) 40%, transparent) 1px, transparent 0);
+    background-size: 28px 28px, 56px 56px;
+    background-position: 0 0, 14px 14px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 28%, #000 20%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 28%, #000 20%, transparent 78%);
+  }
+
+  .hero__ribbon {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.92;
+    filter: saturate(1.15);
+  }
+
+  .hero__ribbon-glow {
+    opacity: 0.28;
+    filter: blur(10px);
+  }
+
+  .hero__ribbon-stroke {
+    opacity: 0.88;
+  }
+
+  /* --rot is the resting tilt; the sway keyframes in motion.css read it. */
+  .hero__ribbon--left {
+    --rot: -12deg;
+    width: min(420px, 44vw);
+    left: -10%;
+    top: 2%;
+    transform: rotate(var(--rot));
+  }
+
+  .hero__ribbon--right {
+    --rot: 10deg;
+    width: min(460px, 48vw);
+    right: -12%;
+    top: -2%;
+    transform: rotate(var(--rot));
+  }
+
+  .hero__path-text {
+    fill: var(--path-text);
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(28px, 4vw, 56px);
+    padding-bottom: 0;
+  }
+
+  .hero__stage {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: var(--s-4);
+    max-width: 920px;
+    margin-inline: auto;
+  }
+
+  .hero__title {
+    max-width: 18ch;
+    font-size: clamp(2.55rem, 1.45rem + 3.6vw, 4.75rem);
+    line-height: 1.04;
+  }
+
+  .hero__title-lead {
+    display: block;
+  }
+
+  .hero__accent {
+    display: block;
+    margin-top: 0.06em;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero__text {
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s-3);
+    margin-top: 2px;
+  }
+
+  .hero__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .hero__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line-2);
+    background: var(--chip-bg);
+    backdrop-filter: blur(10px);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--fg-2);
+  }
+
+  .hero__chip img {
+    border-radius: 5px;
+  }
+
+  .hero__chip--blue {
+    border-color: color-mix(in srgb, var(--blue) 35%, transparent);
+    box-shadow: 0 0 24px -12px color-mix(in srgb, var(--blue) 70%, transparent);
+  }
+
+  .hero__chip--olive {
+    border-color: color-mix(in srgb, var(--olive) 35%, transparent);
+    box-shadow: 0 0 24px -12px color-mix(in srgb, var(--olive) 55%, transparent);
+  }
+
+  .hero__chip--ghost {
+    color: var(--fg-3);
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .hero__chip {
+      transition:
+        transform 240ms var(--ease),
+        border-color 240ms var(--ease),
+        box-shadow 240ms var(--ease),
+        color 240ms var(--ease);
+    }
+
+    .hero__chip:hover {
+      transform: translateY(-2px);
+      color: var(--fg);
+    }
+
+    .hero__chip.hero__chip--blue:hover {
+      border-color: color-mix(in srgb, var(--blue) 60%, transparent);
+      box-shadow: 0 0 30px -10px color-mix(in srgb, var(--blue) 85%, transparent);
+    }
+
+    .hero__chip.hero__chip--olive:hover {
+      border-color: color-mix(in srgb, var(--olive) 60%, transparent);
+      box-shadow: 0 0 30px -10px color-mix(in srgb, var(--olive) 70%, transparent);
+    }
+  }
+
+  .hero__peek {
+    position: relative;
+    height: clamp(260px, 38vw, 400px);
+    margin-inline: auto;
+    width: min(100%, 980px);
+    mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+  }
+
+  .hero__card {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 18px;
+    border: 1px solid var(--line-2);
+    background: var(--bg-3);
+    box-shadow: var(--shadow-frame);
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 320ms var(--ease);
+  }
+
+  .hero__card:hover {
+    transform: rotate(var(--rot, 0deg)) translateY(-8px) scale(1.012);
+  }
+
+  .hero__card-chrome {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: var(--card-chrome);
+  }
+
+  .hero__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--fg) 20%, transparent);
+  }
+
+  .hero__dot:nth-child(1) {
+    background: #ff5f57;
+  }
+  .hero__dot:nth-child(2) {
+    background: #febc2e;
+  }
+  .hero__dot:nth-child(3) {
+    background: #28c840;
+  }
+
+  .hero__card-chrome .mono {
+    margin-left: 6px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .hero__card .theme-shot {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .hero__card--back {
+    --rot: 3deg;
+    width: min(72%, 620px);
+    right: 0;
+    top: 18%;
+    opacity: 0.94;
+  }
+
+  .hero__card--front {
+    --rot: -2deg;
+    width: min(78%, 680px);
+    left: 0;
+    top: 0;
+  }
+
+  @media (max-width: 820px) {
+    .hero {
+      padding-top: 20px;
+      padding-bottom: 18px;
+    }
+
+    .hero__pattern {
+      opacity: 0.4;
+      inset: -6% -10% 18%;
+    }
+
+    .hero__ribbon--left,
+    .hero__ribbon--right {
+      opacity: 0.55;
+      width: min(260px, 58vw);
+    }
+
+    .hero__ribbon--left {
+      left: -18%;
+      top: 0;
+    }
+
+    .hero__ribbon--right {
+      right: -22%;
+      top: -4%;
+    }
+
+    .hero__path-text {
+      font-size: 13px;
+    }
+
+    .hero__inner {
+      gap: 18px;
+    }
+
+    .hero__stage {
+      gap: 14px;
+      justify-items: center;
+      text-align: center;
+      max-width: none;
+      width: 100%;
+    }
+
+    .hero__kicker {
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+    }
+
+    .hero__title {
+      max-width: none;
+      width: 100%;
+      font-size: clamp(2.7rem, 9vw, 3.45rem);
+      letter-spacing: -0.048em;
+      line-height: 1.01;
+    }
+
+    .hero__text {
+      margin-inline: auto;
+      max-width: none;
+      width: 100%;
+      font-size: 1.05rem;
+      line-height: 1.5;
+    }
+
+    .hero__actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .hero__actions .btn {
+      width: 100%;
+      justify-content: center;
+      min-height: 52px;
+      padding-inline: 14px;
+      font-size: 1rem;
+      font-weight: 550;
+    }
+
+    .hero__chips {
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .hero__chip {
+      min-height: 36px;
+      padding: 0 14px;
+      font-size: 0.86rem;
+      gap: 9px;
+    }
+
+    .hero__chip img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero__chip--ghost {
+      display: none;
+    }
+
+    /* Product section already shows the same shots; peek duplicates them on phones. */
+    .hero__peek {
+      display: none;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .hero {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .hero__stage {
+      gap: 12px;
+    }
+
+    .hero__actions {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__title {
+      font-size: clamp(2.35rem, 9vw, 2.85rem);
+    }
+
+    .hero__text {
+      font-size: 1rem;
+    }
+  }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__card,
+  .hero__card:hover {
+    --rot: 0deg;
+    transition: none;
+    transform: none;
+  }
+
+  .hero__pattern {
+    opacity: 0.35;
+  }
+}
