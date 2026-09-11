@@ -6,34 +6,24 @@ const [flowstarter, ereno] = products;
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
-  <div class="hero__pattern" aria-hidden="true"></div>
-
   <svg
     class="hero__ribbon hero__ribbon--left"
     viewBox="0 0 420 520"
     fill="none"
     aria-hidden="true"
-    data-parallax="0.12"
+    data-parallax="0.08"
   >
-    <path
-      class="hero__ribbon-glow"
-      d="M48 40c72 48 94 118 78 176-18 66-92 92-74 168 14 58 86 96 156 118"
-      stroke="url(#ribbon-left)"
-      stroke-width="64"
-      stroke-linecap="round"
-    />
     <path
       class="hero__ribbon-stroke"
       d="M48 40c72 48 94 118 78 176-18 66-92 92-74 168 14 58 86 96 156 118"
       stroke="url(#ribbon-left)"
-      stroke-width="46"
+      stroke-width="42"
       stroke-linecap="round"
     />
     <defs>
       <linearGradient id="ribbon-left" x1="40" y1="40" x2="280" y2="500" gradientUnits="userSpaceOnUse">
         <stop style="stop-color: var(--olive)" />
-        <stop offset="0.55" style="stop-color: var(--teal)" />
-        <stop offset="1" style="stop-color: var(--blue)" />
+        <stop offset="1" style="stop-color: var(--teal)" />
       </linearGradient>
     </defs>
   </svg>
@@ -43,39 +33,24 @@ const [flowstarter, ereno] = products;
     viewBox="0 0 460 540"
     fill="none"
     aria-hidden="true"
-    data-parallax="0.18"
+    data-parallax="0.14"
   >
     <path
-      class="hero__ribbon-glow"
-      d="M380 60c-90 36-150 96-138 168 14 82 118 98 96 188-16 64-96 108-180 132"
-      stroke="url(#ribbon-right)"
-      stroke-width="58"
-      stroke-linecap="round"
-    />
-    <path
       id="ribbon-path"
-      class="hero__ribbon-stroke"
       d="M380 60c-90 36-150 96-138 168 14 82 118 98 96 188-16 64-96 108-180 132"
       stroke="url(#ribbon-right)"
-      stroke-width="42"
+      stroke-width="38"
       stroke-linecap="round"
     />
     <text class="hero__path-text">
-      <textPath href="#ribbon-path" xlink:href="#ribbon-path" startOffset="0%">
-        human judgment · AI speed · products for people · human judgment · AI speed · products for people ·
-        <animate
-          attributeName="startOffset"
-          values="0%;-50%"
-          dur="28s"
-          repeatCount="indefinite"
-        />
+      <textPath href="#ribbon-path" xlink:href="#ribbon-path" startOffset="4%">
+        human judgment · AI speed · products for people ·
       </textPath>
     </text>
     <defs>
       <linearGradient id="ribbon-right" x1="380" y1="40" x2="80" y2="520" gradientUnits="userSpaceOnUse">
         <stop style="stop-color: var(--blue)" />
-        <stop offset="0.5" style="stop-color: var(--teal)" />
-        <stop offset="1" style="stop-color: var(--olive)" />
+        <stop offset="1" style="stop-color: var(--teal)" />
       </linearGradient>
     </defs>
   </svg>
@@ -159,9 +134,3 @@ const [flowstarter, ereno] = products;
     </div>
   </div>
 </section>
-
-<script>
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.hero__path-text animate').forEach((node) => node.remove());
-  }
-</script>
