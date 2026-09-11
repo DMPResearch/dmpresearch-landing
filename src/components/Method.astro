@@ -118,7 +118,9 @@ import { method } from '../content/site';
 <style>
   .method {
     border-bottom: 1px solid var(--line);
-    overflow: hidden;
+    /* Do not set overflow:hidden here. It breaks position:sticky on the loop
+       rail, so stages scroll past as a flat stack instead of pinning. The wash
+       stays clipped by .method__loop's own overflow:hidden. */
   }
 
   .method__track {
