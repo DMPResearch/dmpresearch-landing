@@ -142,10 +142,19 @@
 
 .product__frame .frame__window {
   aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
 .product__frame .frame__window .theme-shot {
   aspect-ratio: 16 / 10;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.product__gallery-frame {
+  box-shadow: var(--card-shadow);
 }
 
 .product__gallery {
@@ -172,10 +181,15 @@
 
 .product__gallery-frame .frame__window {
   aspect-ratio: 16 / 10;
+  overflow: hidden;
 }
 
 .product__gallery-frame .frame__window .theme-shot {
   aspect-ratio: 16 / 10;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .product__gallery-caption {
