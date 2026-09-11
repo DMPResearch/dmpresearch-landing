@@ -236,11 +236,16 @@ export const ambition = {
 
 export const investors = {
   kicker: 'For investors',
-  title: 'Backing a studio that ships products, then connects them',
+  title: 'Ship products first. Connect them next.',
   text: 'Live products are already in market. The long game is a connected ecosystem that automates tedious day-to-day work while people keep control. If that thesis fits, we would like to talk.',
   summary:
-    'Two live products, client work that funds craft, and a clear path toward a connected ecosystem. Automate the mundane. Amplify the human. Talk with us if that thesis fits.',
-  highlights: ['Products in market', 'Ecosystem thesis', 'Humans keep judgment'],
+    'Flowstarter and Ereno are live. Client work funds craft. The long game is a connected ecosystem that automates tedious work while people keep judgment. Open to operators and investors who prefer product over narrative.',
+  highlights: [
+    'Two owned products in market',
+    'Client work that pays for taste',
+    'Ecosystem after the wedge',
+    'Humans keep the decisions',
+  ],
   pageKicker: 'Investors',
   pageTitle: 'Invest in software that ships, then compounds',
   pageLead:
