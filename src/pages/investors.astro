@@ -59,6 +59,21 @@ import { contact, investors, pages } from '../content/site';
       </div>
     </section>
 
+    <section class="investors-use section" aria-labelledby="use-title">
+      <div class="container investors-use__layout">
+        <header class="investors-use__head" data-reveal>
+          <p class="kicker">{investors.use.kicker}</p>
+          <h2 id="use-title">{investors.use.title}</h2>
+          <p class="lede">{investors.use.text}</p>
+        </header>
+        <ul class="investors-use__list card" data-reveal style="--delay: 100ms">
+          {investors.use.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
     <section class="investors-ask section" aria-labelledby="ask-title">
       <div class="container">
         <div class="investors-ask__panel card" data-reveal>
@@ -103,6 +118,7 @@ import { contact, investors, pages } from '../content/site';
 
   .investors-thesis,
   .investors-today,
+  .investors-use,
   .investors-ask {
     border-bottom: 1px solid var(--line);
   }
@@ -127,32 +143,37 @@ import { contact, investors, pages } from '../content/site';
     font-size: var(--t-small);
   }
 
-  .investors-today__layout {
+  .investors-today__layout,
+  .investors-use__layout {
     display: grid;
     gap: var(--section-head);
   }
 
-  .investors-today__head {
+  .investors-today__head,
+  .investors-use__head {
     display: grid;
     gap: var(--s-4);
     max-width: 40rem;
   }
 
-  .investors-today__list {
+  .investors-today__list,
+  .investors-use__list {
     display: grid;
     gap: 14px;
     padding: clamp(22px, 3vw, 28px);
     list-style: none;
   }
 
-  .investors-today__list li {
+  .investors-today__list li,
+  .investors-use__list li {
     position: relative;
     padding-left: 1.1rem;
     color: var(--fg-2);
     font-size: var(--t-small);
   }
 
-  .investors-today__list li::before {
+  .investors-today__list li::before,
+  .investors-use__list li::before {
     content: '';
     position: absolute;
     left: 0;
@@ -179,7 +200,8 @@ import { contact, investors, pages } from '../content/site';
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
-    .investors-today__layout {
+    .investors-today__layout,
+    .investors-use__layout {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       align-items: start;
       gap: clamp(40px, 6vw, 80px);

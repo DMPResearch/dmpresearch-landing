@@ -26,7 +26,7 @@ export const pages = {
   investors: {
     title: 'Investors | DMPResearch',
     description:
-      'Live products first, then a connected ecosystem that takes tedious day-to-day work off people’s plates without replacing human judgment. Talk with us if that thesis fits.',
+      'A product studio with live apps in market, building toward a connected ecosystem that automates tedious work while people keep judgment. Open to operators and investors who care about durable craft.',
   },
   careers: {
     title: 'Careers and contracting | DMPResearch',
@@ -239,42 +239,53 @@ export const investors = {
   title: 'Backing a studio that ships products, then connects them',
   text: 'Live products are already in market. The long game is a connected ecosystem that automates tedious day-to-day work while people keep control. If that thesis fits, we would like to talk.',
   summary:
-    'Live products first, then a connected ecosystem. Automate the mundane. Amplify the human. Talk with us if that thesis fits.',
-  highlights: ['Products first', 'Ecosystem next', 'Amplify the human'],
+    'Two live products, client work that funds craft, and a clear path toward a connected ecosystem. Automate the mundane. Amplify the human. Talk with us if that thesis fits.',
+  highlights: ['Products in market', 'Ecosystem thesis', 'Humans keep judgment'],
   pageKicker: 'Investors',
-  pageTitle: 'Invest in the next layer of everyday software',
+  pageTitle: 'Invest in software that ships, then compounds',
   pageLead:
-    'Most “AI products” are chat wrappers. We ship real apps people use, then wire them into a coherent ecosystem so the boring parts of life get lighter. AI should not remove humans from the equation. It should give them leverage.',
+    'Most AI products today are thin chat wrappers with a landing page. We take the opposite bet: ship real apps people open more than once, prove the wedge, then connect those apps so context and automation travel with the user. Flowstarter and Ereno are live. Client work keeps us paid and honest. The long game is a portfolio of specialized tools that take tedious day-to-day work off people’s plates without handing judgment to a model.',
   thesisKicker: 'Thesis',
   thesisTitle: 'What we believe',
   thesis: [
     {
       title: 'Products first',
-      text: 'Flowstarter and Ereno are live. Client work funds craft and keeps us honest about what ships.',
+      text: 'Platform stories without users are fiction. Flowstarter and Ereno are in market now. Client sites pay for taste and speed, and they force us to ship something a stranger will open. Vertical excellence comes before horizontal expansion.',
     },
     {
       title: 'Ecosystem next',
-      text: 'Shared identity, shared context, and automations that span apps. Users stop copy-pasting their life between tabs.',
+      text: 'Once a few products work, shared identity and shared context matter more than another isolated app. Users should not re-explain their life in every tab. We extract the repeated machinery later, after the products earn it.',
     },
     {
       title: 'Amplify the human',
-      text: 'We automate the repetitive and computationally heavy. People keep judgment, creativity, relationships, and the decisions that matter.',
+      text: 'AI should not remove people from the equation. It should give them leverage. We automate the repetitive, the logistical, and the computationally heavy. People keep creativity, relationships, accountability, and the decisions that matter.',
     },
   ],
   today: {
     kicker: 'Today',
     title: 'Where we are today',
-    text: 'Two owned products in market, plus client work that pays for taste and speed. The ecosystem is the direction, not a slide.',
+    text: 'A small studio with live owned products and paid client work. The ecosystem is the direction. The proof is what you can click today.',
     items: [
-      'Flowstarter: mostly self-serve website factory for service businesses, with human polish when it counts',
-      'Ereno: conversational trip and base planning with visible sources',
-      'A studio model that blends paid client work with owned products',
+      'Flowstarter: a mostly self-serve website factory for service businesses. Preview first, deposit to build, human polish when copy or design gets ambiguous.',
+      'Ereno: conversational trip and base planning with research you can check. No booking layer. You book with the provider.',
+      'Client work: live sites for other people, same bar as our own products. Agents draft. We decide.',
+      'Team: Darius and Dorin lead product, engineering, and design, with a tester, a digital marketer, and a social media specialist. Contractors join when a product needs more hands.',
+    ],
+  },
+  use: {
+    kicker: 'Capital',
+    title: 'What a conversation is about',
+    text: 'We are not posting a raise size on this page. If there is a fit, here is how capital would matter.',
+    items: [
+      'Speed up the owned products without starving craft: more iterations on Flowstarter and Ereno, clearer distribution, tighter retention loops.',
+      'Hire carefully around the core. Keep Darius and Dorin on product decisions. Add hands where shipping is the bottleneck.',
+      'Build the shared layer only after products prove the need: identity, context, and automations that span apps instead of a premature platform.',
     ],
   },
   ask: {
     kicker: 'Fit',
     title: 'Who we want to talk to',
-    text: 'Operators and investors who care about durable product craft, not hype cycles. If you want a conversation about the vision, book a call or write us.',
+    text: 'Operators and investors who prefer durable product craft over narrative. People who have shipped software, sat with users, and know the difference between a demo and a habit. If you want a deck-only story, we are the wrong room. If you want a conversation about products that compound into an ecosystem, book a call or write us.',
   },
   teaserCta: { label: 'Read the investor brief', href: '/investors' },
   talkCta: { label: 'Talk with us', href: '/investors#talk' },
@@ -357,7 +368,7 @@ export const faq = {
     {
       question: 'Are you raising or open to investors?',
       answer:
-        'We are open to conversations with operators and investors who care about durable product craft. Read the investors section or send a note through the investor brief.',
+        'We are open to conversations with operators and investors who care about durable product craft. Read the investor brief for the thesis, where we are today, and what a fit looks like, or send a note through that page.',
     },
     {
       question: 'Where are you based?',
