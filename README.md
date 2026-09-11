@@ -116,6 +116,7 @@ Contact, investor, and careers forms use **Netlify Forms** (`data-netlify="true"
 - Careers uses `multipart/form-data` with a required `cv` file field (PDF / DOC / DOCX, Netlify limit about 8 MB).
 - Submissions appear under the Netlify site → Forms.
 - Email to `hello@flowstarter.dev` is a Form submission notification hook on the site (not `mailto:`). Without that hook, submissions are stored but nothing lands in the inbox.
+- Site processing must keep `ignore_html_forms` off, or Netlify never registers the forms.
 
 Manual deploy when needed:
 
