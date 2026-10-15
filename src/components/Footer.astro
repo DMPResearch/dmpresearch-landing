@@ -1,6 +1,7 @@
 ---
 import { contact, footer } from '../content/site';
 import { consentCopy, legalNav } from '../content/legal';
+import { gretlybotLink } from '../content/gretlybot';
 import { defaultLocale, getChrome } from '../i18n/config';
 import LanguageSwitch from './LanguageSwitch.astro';
 
@@ -53,6 +54,9 @@ const chrome = getChrome(defaultLocale);
               <a class="footer__link" href={link.href}>{link.label}</a>
             </li>
           ))}
+          <li>
+            <a class="footer__link" href={gretlybotLink.href}>{gretlybotLink.label}</a>
+          </li>
           <li>
             <button class="footer__link footer__cookie-btn" type="button" data-cookie-settings>
               {consentCopy.settings}
@@ -154,7 +158,8 @@ const chrome = getChrome(defaultLocale);
     padding: 0;
     border: 0;
     background: transparent;
-    font: inherit;
+    font-family: inherit;
+    line-height: inherit;
     cursor: pointer;
   }
 
