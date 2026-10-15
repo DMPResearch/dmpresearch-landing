@@ -1,0 +1,311 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { gretlybot, gretlybotLink, gretlybotPage } from '../content/gretlybot';
+
+const { hero, posts, never, apart, maintainers } = gretlybot;
+const index = (i: number) => String(i + 1).padStart(2, '0');
+
+// Repository and model names read as one word; keep them off a line break.
+const names = ['gretly-builder', 'ollama-cloud/kimi-k3', 'glm-5.2'];
+const pattern = new RegExp(`(${names.map((n) => n.replace(/[.\/-]/g, '\\$&')).join('|')})`);
+const parts = (text: string) => text.split(pattern).filter(Boolean);
+---
+
+<Layout title={gretlybotPage.title} description={gretlybotPage.description}>
+  <Header />
+  <main id="main">
+    <section class="gb-hero section" aria-labelledby="gb-title">
+      <div class="container gb-hero__layout">
+        <div class="gb-hero__copy" data-reveal>
+          <p class="kicker">{hero.kicker}</p>
+          <h1 id="gb-title">{hero.title}</h1>
+          <p class="lede">
+            {parts(hero.lead).map((part) => (names.includes(part) ? <span class="gb-name">{part}</span> : part))}
+          </p>
+          <div class="gb-hero__actions">
+            <a class="btn btn--ghost" href={hero.appLink.href} target="_blank" rel="noopener">
+              {hero.appLink.label}
+              <span class="btn__arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <figure class="gb-comment card" data-reveal>
+          <p class="mono gb-comment__label">{hero.example.label}</p>
+          <div class="gb-comment__body">
+            <p class="gb-comment__author">
+              <span>{hero.example.author}</span>
+              <span class="gb-comment__badge mono">{hero.example.badge}</span>
+            </p>
+            <p class="gb-comment__banner">
+              {parts(hero.example.before).map((part) => (names.includes(part) ? <span class="gb-name">{part}</span> : part))}<a class="link" href={gretlybotLink.href}>{hero.example.link}</a>{hero.example.after}
+            </p>
+          </div>
+          <figcaption class="gb-comment__caption">{hero.example.caption}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="gb-band section" aria-labelledby="gb-posts-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">{posts.kicker}</p>
+          <h2 id="gb-posts-title">{posts.title}</h2>
+          <p class="lede">{posts.lead}</p>
+        </header>
+        <ul class="gb-grid">
+          {posts.items.map((item, i) => (
+            <li class="gb-card card" data-reveal>
+              <span class="mono">{index(i)}</span>
+              <h3>{item.title}</h3>
+              <p>{parts(item.text).map((part) => (names.includes(part) ? <span class="gb-name">{part}</span> : part))}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="gb-band section" aria-labelledby="gb-never-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">{never.kicker}</p>
+          <h2 id="gb-never-title">{never.title}</h2>
+          <p class="lede">{never.lead}</p>
+        </header>
+        <ul class="gb-grid gb-grid--four">
+          {never.items.map((item) => (
+            <li class="gb-card gb-card--rule card" data-reveal>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="gb-band section" aria-labelledby="gb-apart-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">{apart.kicker}</p>
+          <h2 id="gb-apart-title">{apart.title}</h2>
+          <p class="lede">{apart.lead}</p>
+        </header>
+        <dl class="gb-rows card" data-reveal>
+          {apart.items.map((item) => (
+            <div class="gb-rows__row">
+              <dt>{item.title}</dt>
+              <dd>{item.text}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </section>
+
+    <section class="gb-band section" aria-labelledby="gb-maintainers-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="kicker">{maintainers.kicker}</p>
+          <h2 id="gb-maintainers-title">{maintainers.title}</h2>
+        </header>
+        <ul class="gb-grid gb-grid--three">
+          {maintainers.items.map((item, i) => (
+            <li class="gb-card card" data-reveal>
+              <span class="mono">{index(i)}</span>
+              <h3>{item.title}</h3>
+              <p>
+                {item.text}
+                {item.code && (
+                  <>
+                    {' '}
+                    <code class="gb-code">{item.code}</code>.
+                  </>
+                )}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .gb-hero,
+  .gb-band {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .gb-hero {
+    background:
+      radial-gradient(ellipse 50% 45% at 12% 0%, color-mix(in srgb, var(--blue) 12%, transparent), transparent 60%),
+      radial-gradient(ellipse 40% 40% at 90% 30%, color-mix(in srgb, var(--teal) 10%, transparent), transparent 55%);
+  }
+
+  .gb-hero__layout {
+    display: grid;
+    gap: var(--section-head);
+    align-items: center;
+  }
+
+  .gb-hero__copy {
+    display: grid;
+    gap: var(--s-4);
+    justify-items: start;
+  }
+
+  .gb-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-2);
+  }
+
+  /* The banner as it appears on GitHub: author line, then the opening line. */
+  .gb-comment {
+    display: grid;
+    gap: var(--s-4);
+    padding: var(--s-5);
+    min-width: 0;
+  }
+
+  .gb-comment__body {
+    display: grid;
+    gap: var(--s-3);
+    padding: var(--s-4) var(--s-5);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) - var(--s-1));
+    background: var(--card-bg-strong);
+  }
+
+  .gb-comment__author {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    font-weight: 600;
+    font-size: var(--t-small);
+  }
+
+  .gb-comment__badge {
+    padding: 0 var(--s-2);
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    text-transform: lowercase;
+    color: var(--fg-2);
+  }
+
+  .gb-comment__banner {
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+    line-height: 1.7;
+    color: var(--fg-2);
+    overflow-wrap: anywhere;
+  }
+
+  .gb-comment__caption {
+    color: var(--fg-3);
+    font-size: var(--t-small);
+  }
+
+  .gb-name {
+    white-space: nowrap;
+  }
+
+  .gb-grid {
+    display: grid;
+    gap: var(--s-4);
+  }
+
+  .gb-card {
+    display: grid;
+    align-content: start;
+    gap: var(--s-3);
+    padding: var(--s-5);
+  }
+
+  .gb-card h3 {
+    font-size: var(--t-lede);
+  }
+
+  .gb-card p {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .gb-code {
+    font-family: var(--font-mono);
+    font-size: var(--t-mono);
+    padding: 0 var(--s-1);
+    border: 1px solid var(--line-2);
+    border-radius: var(--s-1);
+    color: var(--fg);
+  }
+
+  /* A short teal rule marks the limits apart from the numbered reports. */
+  .gb-card--rule::before {
+    content: '';
+    width: var(--s-6);
+    height: 2px;
+    background: var(--teal);
+  }
+
+  .gb-rows {
+    display: grid;
+    padding-inline: var(--s-5);
+  }
+
+  .gb-rows__row {
+    display: grid;
+    gap: var(--s-1);
+    padding-block: var(--s-4);
+  }
+
+  .gb-rows__row + .gb-rows__row {
+    border-top: 1px solid var(--line);
+  }
+
+  .gb-rows dt {
+    font-family: var(--font-display);
+    font-weight: 560;
+    letter-spacing: -0.02em;
+  }
+
+  .gb-rows dd {
+    color: var(--fg-2);
+    font-size: var(--t-small);
+  }
+
+  .gb-grid > :nth-child(3n + 2) {
+    --delay: 80ms;
+  }
+
+  .gb-grid > :nth-child(3n + 3) {
+    --delay: 160ms;
+  }
+
+  @media (min-width: 640px) {
+    .gb-grid:not(.gb-grid--three) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .gb-rows__row {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      gap: var(--s-5);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .gb-hero__layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--s-8);
+    }
+
+    .gb-grid:not(.gb-grid--four) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+</style>
